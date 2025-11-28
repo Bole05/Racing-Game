@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Globals.h"
+#include "pugixml.hpp"
 
 class Application;
 class PhysBody;

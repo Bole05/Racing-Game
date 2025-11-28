@@ -56,7 +56,7 @@
  <tileset firstgid="49" name="MapMetadata" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="2" columns="2">
   <image source="MapMetadata.png" width="67" height="34"/>
  </tileset>
- <tileset firstgid="51" source="spritesheet_tiles.tsx"/>
+ <tileset firstgid="51" source="tiles.tsx"/>
  <layer id="6" name="Fondo" width="64" height="24">
   <properties>
    <property name="Draw" type="bool" value="true"/>

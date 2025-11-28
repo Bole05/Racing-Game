@@ -4,6 +4,7 @@
 #include "ModuleGame.h"
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
+#include "ModuleMap.h"
 
 // TODO 1: Create an enum to represent physics categories for collision detection
 enum PhysicCategory
@@ -124,6 +125,7 @@ bool ModuleGame::Start()
 	bool ret = true;
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
+	App->map->Load("Assets racing/Maps/MapTemplate.tmx");
 
 	plane = LoadTexture("Assets/Plane.png"); 
 	car = LoadTexture("Assets/Car.png");

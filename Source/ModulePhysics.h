@@ -2,7 +2,7 @@
 
 #include "Module.h"
 #include "Globals.h"
-
+#include "pugixml.hpp"
 #include "box2d\box2d.h"
 
 #define GRAVITY_X 0.0f
@@ -18,7 +18,7 @@
 class PhysBody
 {
 public:
-	PhysBody() : listener(NULL), body(NULL)
+	PhysBody() : listener(NULL), body(NULL),width(0),height(0)
 	{}
 
 	//void GetPosition(int& x, int& y) const;

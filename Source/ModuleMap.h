@@ -1,13 +1,15 @@
 #pragma once
-#pragma once
 
 #include "Module.h"
 #include "Globals.h"
 #include "raylib.h"
+#include <list>
 #include <vector>
 #include <string>
 
-// Estructura para guardar la info de cada Tileset
+// Forward declaration para no obligar a incluir pugi aquí
+namespace pugi { class xml_node; class xml_document; }
+
 struct TileSet
 {
     int firstgid;
@@ -16,38 +18,50 @@ struct TileSet
     int tileHeight;
     int spacing;
     int margin;
-    int texWidth;
-    int texHeight;
-    int numTilesWidth;
-    int numTilesHeight;
+    int tileCount;
+    int columns;
     Texture2D texture;
+
+    // Obtener el rectángulo de recorte de la textura para un ID
+    Rectangle GetRect(int gid) {
+        Rectangle rect = { 0 };
+        int relativeIndex = gid - firstgid;
+        if (columns == 0) return rect;
+
+        rect.width = (float)tileWidth;
+        rect.height = (float)tileHeight;
+        rect.x = (float)(margin + (tileWidth + spacing) * (relativeIndex % columns));
+        rect.y = (float)(margin + (tileHeight + spacing) * (relativeIndex / columns));
+        return rect;
+    }
 };
 
-// Estructura para guardar las capas (Layers)
 struct MapLayer
 {
     std::string name;
     int width;
     int height;
-    std::vector<int> data; // Array de GIDs (Global Tile IDs)
+    std::vector<int> tiles; // Array de GIDs
+
+    int Get(int i, int j) const {
+        if (i < 0 || i >= width || j < 0 || j >= height) return 0;
+        return tiles[(j * width) + i];
+    }
 };
 
-// Estructura principal del Mapa
 struct MapData
 {
     int width;
     int height;
     int tileWidth;
     int tileHeight;
-    Color backgroundColor;
-    std::vector<TileSet*> tilesets;
-    std::vector<MapLayer*> layers;
+    std::list<TileSet*> tilesets;
+    std::list<MapLayer*> layers;
 };
 
 class ModuleMap : public Module
 {
 public:
-
     ModuleMap(Application* app, bool start_enabled = true);
     virtual ~ModuleMap();
 
@@ -55,15 +69,15 @@ public:
     update_status Update() override;
     bool CleanUp() override;
 
-    // Función principal para cargar el TMX
+    // Carga el mapa desde un archivo .tmx
     bool Load(const char* path);
 
-    // Utilidad para convertir coordenadas de mundo a tiles
-    void WorldToMap(int x, int y, int& mapX, int& mapY) const;
+    // Utilidades
+    Vector2 MapToWorld(int x, int y) const;
+    Vector2 WorldToMap(int x, int y) const;
+    TileSet* GetTilesetFromTileId(int gid) const;
 
 public:
     MapData mapData;
-
-private:
-    Texture2D tileTexture; // Textura principal (si usas un solo atlas)
+    bool mapLoaded;
 };

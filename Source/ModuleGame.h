@@ -4,7 +4,7 @@
 #include "Module.h"
 
 #include "p2Point.h"
-
+#include "pugixml.hpp"
 #include "raylib.h"
 #include <vector>
 
