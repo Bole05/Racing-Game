@@ -21,46 +21,39 @@ bool ModuleMap::Start()
 
 update_status ModuleMap::Update()
 {
-
     if (mapLoaded)
     {
         for (const auto& mapLayer : mapData.layers)
         {
-            bool shouldDraw = mapLayer->properties.GetPropertyBool("Draw", true);
-            if (shouldDraw) {
-               /* if (mapLayer->properties.GetProperty("Draw") != NULL && mapLayer->properties.GetProperty("Draw")->value) {*/
-
-                    for (int x = 0; x < mapData.width; ++x)
-                    {
-                        for (int y = 0; y < mapData.height; ++y)
-                        {
-                            int gid = mapLayer->Get(x, y);
-                            if (gid != 0)
-                            {
-                                TileSet* tileset = GetTilesetFromTileId(gid);
-                                if (tileset != nullptr)
-                                {
-                                    Rectangle source = tileset->GetRect(gid);
-                                    Vector2 pos = MapToWorld(x, y);
-                                    // Dibujar con Raylib
-                                    DrawTextureRec(tileset->texture, source, pos, WHITE);
-                                }
-                            }
-                        }
-                   /* }*/
-
-
-
-
-
-
-                }
+            // BUSCAMOS LA PROPIEDAD. Si existe la respetamos, si no existe asumimos TRUE (dibujar)
+            bool shouldDraw = true;
+            Properties::Property* prop = mapLayer->properties.GetProperty("Draw");
+            if (prop != nullptr) {
+                shouldDraw = prop->value;
             }
 
-            
+            if (shouldDraw)
+            {
+                for (int x = 0; x < mapData.width; ++x)
+                {
+                    for (int y = 0; y < mapData.height; ++y)
+                    {
+                        int gid = mapLayer->Get(x, y);
+                        if (gid != 0)
+                        {
+                            TileSet* tileset = GetTilesetFromTileId(gid);
+                            if (tileset != nullptr)
+                            {
+                                Rectangle source = tileset->GetRect(gid);
+                                Vector2 pos = MapToWorld(x, y);
+                                DrawTextureRec(tileset->texture, source, pos, WHITE);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
     return UPDATE_CONTINUE;
 }
 
