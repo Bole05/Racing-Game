@@ -1,0 +1,11 @@
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/CMakeFiles/edit_cache.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/CMakeFiles/rebuild_cache.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/CMakeFiles/list_install_components.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/CMakeFiles/install.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/CMakeFiles/install/local.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/src/CMakeFiles/box2d.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/src/CMakeFiles/edit_cache.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/src/CMakeFiles/rebuild_cache.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/src/CMakeFiles/list_install_components.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/src/CMakeFiles/install.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/box2d/x86-windows-dbg/src/CMakeFiles/install/local.dir

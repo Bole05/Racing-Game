@@ -1,0 +1,871 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:8 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - x86
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:8 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/cl.exe 
+      Build flags: /nologo;/DWIN32;/D_WINDOWS;/utf-8;/MP
+      Id flags:  
+      
+      The output was:
+      0
+      CMakeCCompilerId.c
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/3.30.1/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:1243 (message)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:8 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:8 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-09q66y"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-09q66y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-09q66y'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_e56e2
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo   /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_e56e2.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_e56e2.dir\\ /FS -c C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_e56e2.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_e56e2.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_e56e2.exe /implib:cmTC_e56e2.lib /pdb:cmTC_e56e2.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:8 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x86/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:8 (project)"
+    message: |
+      Running the C compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x86/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35209.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/sdlcpu.cmake:93 (try_compile)"
+      - "CMakeLists.txt:81 (SDL_DetectTargetCPUArchitectures)"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeTmp/SDL_detect_arch/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeTmp/SDL_detect_arch/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "SDL_CPU_CHECK_ALL"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeTmp/SDL_detect_arch/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_8a264
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo   /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_8a264.dir\\SDL_detect_arch.c.obj /FdCMakeFiles\\cmTC_8a264.dir\\cmTC_8a264.pdb /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeTmp\\SDL_detect_arch.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\lib.exe /nologo /machine:X86 /nologo /out:cmTC_8a264.lib CMakeFiles\\cmTC_8a264.dir\\SDL_detect_arch.c.obj && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:661 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_MMX"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-xtgtdo"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-xtgtdo"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_MMX"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-xtgtdo'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_d00ab
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_MMX  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_d00ab.dir\\src.c.obj /FdCMakeFiles\\cmTC_d00ab.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-xtgtdo\\src.c
+        C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-xtgtdo\\src.c(7) : warning C4799: function 'ints_add' has no EMMS instruction
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_d00ab.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_d00ab.dir\\src.c.obj  /out:cmTC_d00ab.exe /implib:cmTC_d00ab.lib /pdb:cmTC_d00ab.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:682 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_SSE"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-g9yram"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-g9yram"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_SSE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-g9yram'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_41c86
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_SSE  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_41c86.dir\\src.c.obj /FdCMakeFiles\\cmTC_41c86.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-g9yram\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_41c86.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_41c86.dir\\src.c.obj  /out:cmTC_41c86.exe /implib:cmTC_41c86.lib /pdb:cmTC_41c86.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:703 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_SSE2"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-c8bx8s"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-c8bx8s"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_SSE2"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-c8bx8s'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_5d9e1
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_SSE2  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_5d9e1.dir\\src.c.obj /FdCMakeFiles\\cmTC_5d9e1.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-c8bx8s\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_5d9e1.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_5d9e1.dir\\src.c.obj  /out:cmTC_5d9e1.exe /implib:cmTC_5d9e1.lib /pdb:cmTC_5d9e1.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:724 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_SSE3"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-j7jqbw"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-j7jqbw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_SSE3"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-j7jqbw'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_78ce1
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_SSE3  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_78ce1.dir\\src.c.obj /FdCMakeFiles\\cmTC_78ce1.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-j7jqbw\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_78ce1.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_78ce1.dir\\src.c.obj  /out:cmTC_78ce1.exe /implib:cmTC_78ce1.lib /pdb:cmTC_78ce1.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:745 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_SSE4_1"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-otd1y4"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-otd1y4"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_SSE4_1"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-otd1y4'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_7e9d5
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_SSE4_1  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_7e9d5.dir\\src.c.obj /FdCMakeFiles\\cmTC_7e9d5.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-otd1y4\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_7e9d5.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_7e9d5.dir\\src.c.obj  /out:cmTC_7e9d5.exe /implib:cmTC_7e9d5.lib /pdb:cmTC_7e9d5.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:766 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_SSE4_2"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-xkt4xt"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-xkt4xt"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_SSE4_2"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-xkt4xt'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_fd55d
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_SSE4_2  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_fd55d.dir\\src.c.obj /FdCMakeFiles\\cmTC_fd55d.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-xkt4xt\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_fd55d.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_fd55d.dir\\src.c.obj  /out:cmTC_fd55d.exe /implib:cmTC_fd55d.lib /pdb:cmTC_fd55d.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:784 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_AVX"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-0niu7u"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-0niu7u"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-0niu7u'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_18731
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_AVX  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_18731.dir\\src.c.obj /FdCMakeFiles\\cmTC_18731.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-0niu7u\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_18731.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_18731.dir\\src.c.obj  /out:cmTC_18731.exe /implib:cmTC_18731.lib /pdb:cmTC_18731.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:805 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_AVX2"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-hib6zd"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-hib6zd"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX2"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-hib6zd'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_1c53d
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_AVX2  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_1c53d.dir\\src.c.obj /FdCMakeFiles\\cmTC_1c53d.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-hib6zd\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_1c53d.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_1c53d.dir\\src.c.obj  /out:cmTC_1c53d.exe /implib:cmTC_1c53d.lib /pdb:cmTC_1c53d.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:826 (check_c_source_compiles)"
+    checks:
+      - "Performing Test COMPILER_SUPPORTS_AVX512F"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-71l8lm"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-71l8lm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX512F"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-71l8lm'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_83465
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DCOMPILER_SUPPORTS_AVX512F  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_83465.dir\\src.c.obj /FdCMakeFiles\\cmTC_83465.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-71l8lm\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_83465.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_83465.dir\\src.c.obj  /out:cmTC_83465.exe /implib:cmTC_83465.lib /pdb:cmTC_83465.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckIncludeFile.cmake:90 (try_compile)"
+      - "CMakeLists.txt:969 (check_include_file)"
+    checks:
+      - "Looking for malloc.h"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-jl103a"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-jl103a"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "HAVE_MALLOC_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-jl103a'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_ee099
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo   /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_ee099.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_ee099.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-jl103a\\CheckIncludeFile.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_ee099.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_ee099.dir\\CheckIncludeFile.c.obj  /out:cmTC_ee099.exe /implib:cmTC_ee099.lib /pdb:cmTC_ee099.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:1050 (check_symbol_exists)"
+    checks:
+      - "Looking for _copysign"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-lmscxy"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-lmscxy"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "LIBC_HAS__COPYSIGN"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-lmscxy'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_bdee6
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo   /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_bdee6.dir\\CheckSymbolExists.c.obj /FdCMakeFiles\\cmTC_bdee6.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-lmscxy\\CheckSymbolExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_bdee6.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_bdee6.dir\\CheckSymbolExists.c.obj  /out:cmTC_bdee6.exe /implib:cmTC_bdee6.lib /pdb:cmTC_bdee6.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "CMakeLists.txt:1050 (check_symbol_exists)"
+    checks:
+      - "Looking for _fseeki64"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-qmao4r"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-qmao4r"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "LIBC_HAS__FSEEKI64"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-qmao4r'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_194f9
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo   /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_194f9.dir\\CheckSymbolExists.c.obj /FdCMakeFiles\\cmTC_194f9.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-qmao4r\\CheckSymbolExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_194f9.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_194f9.dir\\CheckSymbolExists.c.obj  /out:cmTC_194f9.exe /implib:cmTC_194f9.lib /pdb:cmTC_194f9.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:1972 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_GAMEINPUT_H"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-8ch7si"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-8ch7si"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "HAVE_GAMEINPUT_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-8ch7si'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_9df9e
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DHAVE_GAMEINPUT_H  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_9df9e.dir\\src.c.obj /FdCMakeFiles\\cmTC_9df9e.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-8ch7si\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_9df9e.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_9df9e.dir\\src.c.obj  /out:cmTC_9df9e.exe /implib:cmTC_9df9e.lib /pdb:cmTC_9df9e.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckIncludeFile.cmake:90 (try_compile)"
+      - "CMakeLists.txt:1978 (check_include_file)"
+    checks:
+      - "Looking for dxgi1_6.h"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-aqta4b"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-aqta4b"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "HAVE_DXGI1_6_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-aqta4b'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_3fe9a
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo   /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_3fe9a.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_3fe9a.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-aqta4b\\CheckIncludeFile.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_3fe9a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_3fe9a.dir\\CheckIncludeFile.c.obj  /out:cmTC_3fe9a.exe /implib:cmTC_3fe9a.lib /pdb:cmTC_3fe9a.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/bolew/AppData/Local/vcpkg/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:1985 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_MFAPI_H"
+    directories:
+      source: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-bcsbuf"
+      binary: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-bcsbuf"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /nologo /DWIN32 /D_WINDOWS /utf-8 /MP "
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Z7 /Ob0 /Od /RTC1 "
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_MODULE_PATH: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/src/ase-3.2.22-cadcb17138.clean/cmake"
+      CMAKE_MSVC_DEBUG_INFORMATION_FORMAT: ""
+      CMAKE_MSVC_RUNTIME_LIBRARY: "MultiThreaded$<$<CONFIG:Debug>:Debug>$<$<STREQUAL:dynamic,dynamic>:DLL>"
+      VCPKG_CHAINLOAD_TOOLCHAIN_FILE: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/toolchains/windows.cmake"
+      VCPKG_CRT_LINKAGE: "dynamic"
+      VCPKG_CXX_FLAGS: ""
+      VCPKG_CXX_FLAGS_DEBUG: ""
+      VCPKG_CXX_FLAGS_RELEASE: ""
+      VCPKG_C_FLAGS: ""
+      VCPKG_C_FLAGS_DEBUG: ""
+      VCPKG_C_FLAGS_RELEASE: ""
+      VCPKG_INSTALLED_DIR: "C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows"
+      VCPKG_LINKER_FLAGS: ""
+      VCPKG_LINKER_FLAGS_DEBUG: ""
+      VCPKG_LINKER_FLAGS_RELEASE: ""
+      VCPKG_PLATFORM_TOOLSET: "v143"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_SET_CHARSET_FLAG: "ON"
+      VCPKG_TARGET_ARCHITECTURE: "x86"
+      VCPKG_TARGET_TRIPLET: "x86-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg"
+    buildResult:
+      variable: "HAVE_MFAPI_H"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/sdl3/x86-windows-dbg/CMakeFiles/CMakeScratch/TryCompile-bcsbuf'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_fd652
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\cl.exe  /nologo -DHAVE_MFAPI_H  /nologo /DWIN32 /D_WINDOWS /utf-8 /MP   -D_GNU_SOURCE=1 /MDd /Z7 /Ob0 /Od /RTC1  -MDd /showIncludes /FoCMakeFiles\\cmTC_fd652.dir\\src.c.obj /FdCMakeFiles\\cmTC_fd652.dir\\ /FS -c C:\\Users\\bolew\\Documents\\GitHub\\Racing-Game\\vcpkg_installed\\x86-windows\\vcpkg\\blds\\sdl3\\x86-windows-dbg\\CMakeFiles\\CMakeScratch\\TryCompile-bcsbuf\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\bolew\\AppData\\Local\\vcpkg\\downloads\\tools\\cmake-3.30.1-windows\\cmake-3.30.1-windows-i386\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_fd652.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x86\\link.exe /nologo CMakeFiles\\cmTC_fd652.dir\\src.c.obj  /out:cmTC_fd652.exe /implib:cmTC_fd652.lib /pdb:cmTC_fd652.pdb /version:0.0 /machine:X86  /nologo    /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+...

@@ -1,0 +1,17 @@
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/jpeg.lib
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/bin/jpeg62.dll
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/bin/jpeg62.pdb
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/turbojpeg.lib
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/bin/turbojpeg.dll
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/bin/turbojpeg.pdb
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/include/turbojpeg.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/pkgconfig/libjpeg.pc
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/pkgconfig/libturbojpeg.pc
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/cmake/libjpeg-turbo/libjpeg-turboConfig.cmake
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/cmake/libjpeg-turbo/libjpeg-turboConfigVersion.cmake
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/cmake/libjpeg-turbo/libjpeg-turboTargets.cmake
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/lib/cmake/libjpeg-turbo/libjpeg-turboTargets-release.cmake
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/include/jconfig.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/include/jerror.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/include/jmorecfg.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/libjpeg-turbo_x86-windows/include/jpeglib.h

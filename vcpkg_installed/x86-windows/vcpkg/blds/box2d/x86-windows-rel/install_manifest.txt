@@ -1,0 +1,11 @@
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/lib/box2d.lib
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/bin/box2d.dll
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/lib/cmake/box2d/box2dConfig.cmake
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/lib/cmake/box2d/box2dConfig-release.cmake
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/include/box2d/base.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/include/box2d/box2d.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/include/box2d/collision.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/include/box2d/id.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/include/box2d/math_functions.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/include/box2d/types.h
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/pkgs/box2d_x86-windows/lib/cmake/box2d/box2dConfigVersion.cmake

@@ -1,0 +1,7 @@
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/png_genfiles.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/png_shared.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/edit_cache.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/rebuild_cache.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/list_install_components.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/install.dir
+C:/Users/bolew/Documents/GitHub/Racing-Game/vcpkg_installed/x86-windows/vcpkg/blds/libpng/x86-windows-rel/CMakeFiles/install/local.dir

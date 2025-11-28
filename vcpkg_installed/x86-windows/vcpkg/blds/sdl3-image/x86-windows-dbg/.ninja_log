@@ -1,0 +1,25 @@
+# ninja log v6
+21	161	7860272217236711	CMakeFiles/SDL3_image-shared.dir/src/IMG_WIC.c.obj	9769e1b49bd18c09
+86	388	7860272217886228	CMakeFiles/SDL3_image-shared.dir/src/IMG_stb.c.obj	3cc430ab3a604ee9
+27	407	7860272217297906	CMakeFiles/SDL3_image-shared.dir/src/IMG_avif.c.obj	78177867f01b7d59
+50	423	7860272217517926	CMakeFiles/SDL3_image-shared.dir/src/IMG_jxl.c.obj	8581a8527a285693
+9	441	7860272217118226	CMakeFiles/SDL3_image-shared.dir/src/IMG.c.obj	4efcafe0b6c993f3
+73	447	7860272217753746	CMakeFiles/SDL3_image-shared.dir/src/IMG_pnm.c.obj	a65b2b83ae916bfd
+31	453	7860272217338311	CMakeFiles/SDL3_image-shared.dir/src/IMG_bmp.c.obj	3f3fc3cb2d5f4cf
+61	460	7860272217629848	CMakeFiles/SDL3_image-shared.dir/src/IMG_pcx.c.obj	3b037470da5f7be
+55	465	7860272217578122	CMakeFiles/SDL3_image-shared.dir/src/IMG_lbm.c.obj	f964319c9dd3961d
+42	470	7860272217442785	CMakeFiles/SDL3_image-shared.dir/src/IMG_jpg.c.obj	7e7985cbfa508a27
+37	475	7860272217387606	CMakeFiles/SDL3_image-shared.dir/src/IMG_gif.c.obj	432cad993fac5504
+80	480	7860272217819101	CMakeFiles/SDL3_image-shared.dir/src/IMG_qoi.c.obj	6486b6b4533d7577
+66	485	7860272217690367	CMakeFiles/SDL3_image-shared.dir/src/IMG_png.c.obj	53abafa124c70f17
+102	520	7860272218054002	CMakeFiles/SDL3_image-shared.dir/src/IMG_tif.c.obj	f38ca9c38407e280
+110	530	7860272218126244	CMakeFiles/SDL3_image-shared.dir/src/IMG_webp.c.obj	a92253bbbdfe30fb
+97	539	7860272217993586	CMakeFiles/SDL3_image-shared.dir/src/IMG_tga.c.obj	aa20528378ee9d7e
+91	548	7860272217938403	CMakeFiles/SDL3_image-shared.dir/src/IMG_svg.c.obj	1bc62cd8d2e9686c
+424	551	7860272221270116	CMakeFiles/SDL3_image-shared.dir/src/version.rc.res	ced060f532909d55
+164	601	7860272218662622	CMakeFiles/SDL3_image-shared.dir/src/IMG_xcf.c.obj	7483c416f81bd163
+390	669	7860272220933226	CMakeFiles/SDL3_image-shared.dir/src/IMG_xpm.c.obj	89d1e3d7bad61731
+407	676	7860272221094352	CMakeFiles/SDL3_image-shared.dir/src/IMG_xv.c.obj	d5b28bc48920078e
+676	1053	7860272227265878	SDL3_image.dll	e4460996a5f1c7b9
+676	1053	7860272227265878	SDL3_image.lib	e4460996a5f1c7b9
+1053	1220	7860272227553856	CMakeFiles/install.util	37cf4ef90ef974eb
