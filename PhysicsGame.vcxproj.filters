@@ -31,6 +31,9 @@
     <ClCompile Include="Source\ModuleMap.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Source\pugixml.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source/p2Point.h">
