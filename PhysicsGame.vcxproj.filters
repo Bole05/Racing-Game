@@ -28,7 +28,7 @@
     <ClCompile Include="Source\ModuleGame.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleMap.cpp">
+    <ClCompile Include="Source\ModuleMap.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,7 +63,7 @@
     <ClInclude Include="Source\ModuleGame.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleMap.h">
+    <ClInclude Include="Source\ModuleMap.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
