@@ -1,5 +1,4 @@
 # Development Game Proyect
-
 https://github.com/Bole05/Racing-Game
 
 ## Team Members
@@ -21,7 +20,6 @@ Drive, explore, outrun your opponents, be the first to reach the finish line.
 
 
 ### Game Objective:
-
 Be the first to reach the finish line, win the golden trophy.
 
 ## Features Implemented
