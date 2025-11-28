@@ -9,6 +9,36 @@
 
 // Forward declaration para no obligar a incluir pugi aquí
 namespace pugi { class xml_node; class xml_document; }
+struct Properties
+{
+    struct Property
+    {
+        std::string name;
+        bool value = false;
+
+    };
+    std::list<Property*>propertiesList;
+    ~Properties() {
+        for (auto prop : propertiesList)
+            delete prop;
+        propertiesList.clear();
+    }
+
+
+    Property* GetProperty(const char* name) {
+        for (const auto& property : propertiesList) {
+            if (property->name == name) return property;
+        }
+        return NULL;
+    }
+
+    bool GetPropertyBool(const char* name, bool defaultValue = true)
+    {
+        Property* p = GetProperty(name);
+        return (p) ? p->value : defaultValue;
+    }
+
+};
 
 struct TileSet
 {
@@ -42,7 +72,7 @@ struct MapLayer
     int width;
     int height;
     std::vector<int> tiles; // Array de GIDs
-
+    Properties properties;
     int Get(int i, int j) const {
         if (i < 0 || i >= width || j < 0 || j >= height) return 0;
         return tiles[(j * width) + i];
@@ -79,5 +109,6 @@ public:
 
 public:
     MapData mapData;
+    pugi::xml_document mapFileXML;
     bool mapLoaded;
 };

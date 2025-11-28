@@ -3,10 +3,6 @@
 #include "ModuleMap.h"
 #include "ModuleRender.h"
 #include "ModulePhysics.h"
-
-// ASEGÚRATE DE QUE ESTA RUTA SEA CORRECTA
-// Si lo tienes en External/PugiXml: #include "External/PugiXml/src/pugixml.hpp"
-// Si lo tienes junto al resto: 
 #include "pugixml.hpp" 
 
 ModuleMap::ModuleMap(Application* app, bool start_enabled) : Module(app, start_enabled), mapLoaded(false)
@@ -25,31 +21,43 @@ bool ModuleMap::Start()
 
 update_status ModuleMap::Update()
 {
+
     if (mapLoaded)
     {
-        for (const auto& layer : mapData.layers)
+        for (const auto& mapLayer : mapData.layers)
         {
-            // Opcional: Ignorar capa de colisiones si no quieres dibujarla
-            if (layer->name == "Collisions" || layer->name == "Colisiones") continue;
+            bool shouldDraw = mapLayer->properties.GetPropertyBool("Draw", true);
+            if (shouldDraw) {
+               /* if (mapLayer->properties.GetProperty("Draw") != NULL && mapLayer->properties.GetProperty("Draw")->value) {*/
 
-            for (int y = 0; y < mapData.height; ++y)
-            {
-                for (int x = 0; x < mapData.width; ++x)
-                {
-                    int gid = layer->Get(x, y);
-                    if (gid != 0)
+                    for (int x = 0; x < mapData.width; ++x)
                     {
-                        TileSet* tileset = GetTilesetFromTileId(gid);
-                        if (tileset != nullptr)
+                        for (int y = 0; y < mapData.height; ++y)
                         {
-                            Rectangle source = tileset->GetRect(gid);
-                            Vector2 pos = MapToWorld(x, y);
-                            // Dibujar con Raylib
-                            DrawTextureRec(tileset->texture, source, pos, WHITE);
+                            int gid = mapLayer->Get(x, y);
+                            if (gid != 0)
+                            {
+                                TileSet* tileset = GetTilesetFromTileId(gid);
+                                if (tileset != nullptr)
+                                {
+                                    Rectangle source = tileset->GetRect(gid);
+                                    Vector2 pos = MapToWorld(x, y);
+                                    // Dibujar con Raylib
+                                    DrawTextureRec(tileset->texture, source, pos, WHITE);
+                                }
+                            }
                         }
-                    }
+                   /* }*/
+
+
+
+
+
+
                 }
             }
+
+            
         }
     }
 
@@ -110,6 +118,17 @@ bool ModuleMap::Load(const char* path)
         layer->width = layerNode.attribute("width").as_int();
         layer->height = layerNode.attribute("height").as_int();
 
+
+        pugi::xml_node propertiesNode = layerNode.child("properties");
+        for (pugi::xml_node propNode = propertiesNode.child("property"); propNode; propNode = propNode.next_sibling("property"))
+        {
+            Properties::Property* p = new Properties::Property();
+            p->name = propNode.attribute("name").as_string();
+            // Asumimos que en Tiled usaste "bool"
+            p->value = propNode.attribute("value").as_bool();
+            layer->properties.propertiesList.push_back(p);
+        }
+
         for (pugi::xml_node tileNode = layerNode.child("data").child("tile"); tileNode; tileNode = tileNode.next_sibling("tile"))
         {
             layer->tiles.push_back(tileNode.attribute("gid").as_int());
@@ -136,6 +155,7 @@ bool ModuleMap::Load(const char* path)
                         PhysBody* b = App->physics->CreateRectangle(cx, cy, mapData.tileWidth, mapData.tileHeight, 0x0001, 0xFFFF, 0);
 
                         // IMPORTANTE: Hacerlo estático para que no se caiga
+                        b->body->SetFixedRotation(true);
                         b->body->SetType(b2_staticBody);
                     }
                 }
