@@ -1,29 +1,33 @@
-# {Project Name}
+# Development Game Proyect
+https://github.com/Bole05/Racing-Game
 
-## Description
+## Team Members
 
-{project description}
+- [Yangfeng Xu](https://github.com/yangfeng-xu)
+- [Bole Wu](https://github.com/Bole05)
 
-## Key Features
+## Description of the game
 
- - {Feature01}
- - {Feature02}
- - {Feature03}
- - {Feature04}
- 
-## Controls
+Drive, explore, outrun your opponents, be the first to reach the finish line.
 
- - {ControlsScheme}
+## How to play
 
-## Developers
+- **WSDA KEYS**: Drive
+- **Esc**: Exit the game.
 
- - {Dev01} - {Role(s)}
- - {Dev02} - {Role(s)}
- - {Dev03} - {Role(s)}
- - {Dev04} - {Role(s)}
+## Debug keys
+
+
+
+### Game Objective:
+Be the first to reach the finish line, win the golden trophy.
+
+## Features Implemented
+
+
 
 ## License
 
-This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
-{AdditionalLicenses}
+Thank you for visiting the repository!
