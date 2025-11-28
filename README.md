@@ -1,29 +1,35 @@
-# {Project Name}
+# Development Game Proyect
 
-## Description
 
-{project description}
 
-## Key Features
+## Team Members
 
- - {Feature01}
- - {Feature02}
- - {Feature03}
- - {Feature04}
- 
-## Controls
+- [Yangfeng Xu](https://github.com/yangfeng-xu)
+- [Bole Wu](https://github.com/Bole05)
 
- - {ControlsScheme}
+## Description of the game
 
-## Developers
 
- - {Dev01} - {Role(s)}
- - {Dev02} - {Role(s)}
- - {Dev03} - {Role(s)}
- - {Dev04} - {Role(s)}
+
+## How to play
+
+- **WSDA KEYS**: Drive
+- **Esc**: Exit the game.
+
+## Debug keys
+
+
+
+### Game Objective:
+
+
+
+## Features Implemented
+
+
 
 ## License
 
-This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
-{AdditionalLicenses}
+Thank you for visiting the repository!
