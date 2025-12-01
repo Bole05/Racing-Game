@@ -60,7 +60,7 @@
   <image source="MapTemplate.png" width="2048" height="768"/>
  </tileset>
  <tileset firstgid="1587" source="spritesheet_tiles.tsx"/>
- <layer id="1" name="Map" width="64" height="24">
+ <layer id="1" name="Map" width="64" height="24" locked="1">
   <properties>
    <property name="Draw" type="bool" value="true"/>
   </properties>
@@ -497,7 +497,7 @@
    <tile gid="480"/>
    <tile gid="481"/>
    <tile gid="482"/>
-   <tile gid="483"/>
+   <tile gid="3823"/>
    <tile gid="484"/>
    <tile gid="485"/>
    <tile gid="486"/>
@@ -972,7 +972,7 @@
    <tile gid="955"/>
    <tile gid="956"/>
    <tile gid="957"/>
-   <tile gid="958"/>
+   <tile gid="3906"/>
    <tile gid="959"/>
    <tile gid="960"/>
    <tile gid="961"/>
@@ -981,7 +981,7 @@
    <tile gid="964"/>
    <tile gid="965"/>
    <tile gid="966"/>
-   <tile gid="967"/>
+   <tile gid="3895"/>
    <tile gid="968"/>
    <tile gid="969"/>
    <tile gid="970"/>
@@ -1036,7 +1036,7 @@
    <tile gid="1019"/>
    <tile gid="1020"/>
    <tile gid="1021"/>
-   <tile gid="1022"/>
+   <tile gid="3826"/>
    <tile gid="1023"/>
    <tile gid="1024"/>
    <tile gid="1025"/>
@@ -1045,7 +1045,7 @@
    <tile gid="1028"/>
    <tile gid="1029"/>
    <tile gid="1030"/>
-   <tile gid="1031"/>
+   <tile gid="3967"/>
    <tile gid="1032"/>
    <tile gid="1033"/>
    <tile gid="1034"/>
@@ -1262,7 +1262,7 @@
    <tile gid="1245"/>
    <tile gid="1246"/>
    <tile gid="1247"/>
-   <tile gid="1248"/>
+   <tile gid="3751"/>
    <tile gid="1249"/>
    <tile gid="1250"/>
    <tile gid="1251"/>
@@ -2040,7 +2040,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3679"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2515,7 +2514,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3754"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2524,7 +2522,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3607"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2579,7 +2576,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3826"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2588,7 +2584,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3895"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2805,7 +2800,12 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3751"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -3146,7 +3146,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="7" name="Navigation" width="64" height="24" visible="0">
+ <layer id="7" name="Navigation" width="64" height="24">
   <properties>
    <property name="Draw" type="bool" value="false"/>
    <property name="Navigation" type="bool" value="true"/>
