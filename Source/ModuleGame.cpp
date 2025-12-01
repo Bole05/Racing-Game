@@ -125,7 +125,7 @@ bool ModuleGame::Start()
 	bool ret = true;
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
-	App->map->Load("Assets racing/Maps/MapTemplate.tmx");
+	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
 
 	plane = LoadTexture("Assets/Plane.png"); 
 	car = LoadTexture("Assets/Car.png");

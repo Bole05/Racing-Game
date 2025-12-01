@@ -91,7 +91,7 @@ bool ModuleMap::Load(const char* path)
 
         // Ruta de la imagen
         //std::string imgPath = "Assets/"; // Asume carpeta Assets
-        std::string imgPath = "Assets racing/Maps/"; // Asume carpeta Assets
+        std::string imgPath = "Assets-racing/Maps/"; // Asume carpeta Assets
         std::string source = tilesetNode.child("image").attribute("source").as_string();
 
         // Limpiar ruta relativa simple
