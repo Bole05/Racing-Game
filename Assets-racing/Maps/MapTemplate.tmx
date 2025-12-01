@@ -59,7 +59,8 @@
  <tileset firstgid="51" name="MapTemplate" tilewidth="32" tileheight="32" tilecount="1536" columns="64">
   <image source="MapTemplate.png" width="2048" height="768"/>
  </tileset>
- <layer id="1" name="Map" width="64" height="24" visible="0">
+ <tileset firstgid="1587" source="spritesheet_tiles.tsx"/>
+ <layer id="1" name="Map" width="64" height="24">
   <properties>
    <property name="Draw" type="bool" value="true"/>
   </properties>
@@ -2039,6 +2040,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="3679"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2513,6 +2515,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="3754"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2521,6 +2524,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="3607"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2575,6 +2579,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="3826"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2583,6 +2588,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="3895"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2799,12 +2805,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="3751"/>
    <tile/>
    <tile/>
    <tile/>
