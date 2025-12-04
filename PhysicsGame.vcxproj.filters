@@ -34,6 +34,9 @@
     <ClCompile Include="Source\pugixml.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source/p2Point.h">
@@ -67,6 +70,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\ModuleMap.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
