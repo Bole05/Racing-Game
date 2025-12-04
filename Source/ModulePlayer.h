@@ -14,5 +14,13 @@ public:
 	bool CleanUp();
 
 public:
+	PhysBody* pbody;
+	Texture2D texture;
 
+	int x;
+	int y;
+	int width;
+	int height;
+	int speed;
+	int turn_speed;
 }; 
