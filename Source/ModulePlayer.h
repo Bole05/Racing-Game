@@ -15,4 +15,4 @@ public:
 
 public:
 
-}; #pragma once
+}; 
