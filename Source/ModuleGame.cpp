@@ -132,6 +132,13 @@ bool ModuleGame::Start()
 	ship = LoadTexture("Assets/Ship.png");
 	bike = LoadTexture("Assets/Bike.png");
 	
+	for (int i = 0; i < 6; ++i) {
+		Car* new_car = new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car);
+		entities.push_back(new_car);
+		if (i == 0) {
+			car_to_track = new_car->body; // Se hace seguimiento al primer coche
+		}
+	}
 
 	for (int i = 0; i < 6; ++i) {
 		entities.push_back(new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car));
@@ -148,6 +155,32 @@ bool ModuleGame::Start()
 	for (int i = 0; i < 3; ++i) {
 		entities.push_back(new Plane(App->physics, i * 300 + SCREEN_WIDTH * 0.25f, 600, this, plane));
 	}
+
+	// --- CREACION DE SENSORES DE VUELTA ---
+	// Posiciones estimadas para un circuito rectangular:
+	// S1: Línea de inicio/meta (arriba a la izquierda)
+	// S2: Arriba a la derecha
+	// S3: Abajo a la derecha
+	// S4: Abajo a la izquierda
+
+	int sensor_width = 10;
+	int sensor_height = 100;
+
+	// S1 (Inicio/Fin): cerca de la posición inicial del coche, línea vertical
+	sensor1 = App->physics->CreateRectangleSensor(SCREEN_WIDTH * 0.25f - 50, 150, sensor_width, sensor_height);
+	sensor1->listener = this;
+
+	// S2 (Checkpoint): Esquina superior derecha, línea horizontal
+	sensor2 = App->physics->CreateRectangleSensor(SCREEN_WIDTH - 150, 100, sensor_height * 2, sensor_width);
+	sensor2->listener = this;
+
+	// S3 (Checkpoint): Esquina inferior derecha, línea vertical
+	sensor3 = App->physics->CreateRectangleSensor(SCREEN_WIDTH - 50, SCREEN_HEIGHT * 0.75f, sensor_width, sensor_height);
+	sensor3->listener = this;
+
+	// S4 (Checkpoint): Esquina inferior izquierda, línea horizontal
+	sensor4 = App->physics->CreateRectangleSensor(150, SCREEN_HEIGHT - 100, sensor_height * 2, sensor_width);
+	sensor4->listener = this;
 
 	return ret;
 }
@@ -216,5 +249,66 @@ update_status ModuleGame::Update()
 
 void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
-	
+	PhysBody* sensor = nullptr;
+	PhysBody* other = nullptr;
+
+	// 1. Identificar cuál cuerpo es el sensor y cuál es el coche a seguir.
+	if ((bodyA == sensor1 || bodyA == sensor2 || bodyA == sensor3 || bodyA == sensor4) && bodyB == car_to_track) {
+		sensor = bodyA;
+		other = bodyB;
+	}
+	else if ((bodyB == sensor1 || bodyB == sensor2 || bodyB == sensor3 || bodyB == sensor4) && bodyA == car_to_track) {
+		sensor = bodyB;
+		other = bodyA;
+	}
+
+	if (sensor && other == car_to_track) {
+		// 2. Definir los bits para el estado de progreso
+		int sensor_bit = 0;
+		const int S1 = 1, S2 = 2, S3 = 4, S4 = 8;
+		const int ALL_SENSORS_HIT = S1 | S2 | S3 | S4; // 1 + 2 + 4 + 8 = 15
+
+		if (sensor == sensor1) sensor_bit = S1;
+		else if (sensor == sensor2) sensor_bit = S2;
+		else if (sensor == sensor3) sensor_bit = S3;
+		else if (sensor == sensor4) sensor_bit = S4;
+
+		if (sensor_bit != 0) {
+
+			if (sensor == sensor1) {
+				// S1 es la línea de INICIO/FIN
+				if (lap_progress_state == ALL_SENSORS_HIT) {
+					// FIN DE VUELTA: Todos los checkpoints fueron tocados y S1 es tocado de nuevo.
+					laps++;
+					lap_progress_state = S1; // Reiniciar progreso a S1 tocado (inicio de la próxima vuelta)
+					LOG("--- VUELTA COMPLETADA! Vueltas Totales: %d ---", laps);
+				}
+				else {
+					// INICIO/REINICIO: Se toca S1 antes de completar la vuelta. Se reinicia el progreso
+					// a solo S1 tocado, forzando la secuencia a empezar de nuevo.
+					lap_progress_state = S1;
+					LOG("Coche inició/reinició vuelta en Sensor 1. Estado de Progreso: %d", lap_progress_state);
+				}
+			}
+			else if ((lap_progress_state & S1) == S1) {
+				// 3. Progresar: Solo se permite progresar si S1 (Inicio) ya ha sido tocado.
+
+				// S2 debe ser tocado después de S1. Si S1 está en 1 y S2 no.
+				if (sensor == sensor2 && lap_progress_state == S1) {
+					lap_progress_state |= S2;
+					LOG("Coche tocó Sensor 2. Estado de Progreso: %d", lap_progress_state);
+				}
+				// S3 debe ser tocado después de S2 (es decir, si S2 está en el estado).
+				else if (sensor == sensor3 && (lap_progress_state & S2) && !(lap_progress_state & S3)) {
+					lap_progress_state |= S3;
+					LOG("Coche tocó Sensor 3. Estado de Progreso: %d", lap_progress_state);
+				}
+				// S4 debe ser tocado después de S3 (es decir, si S3 está en el estado).
+				else if (sensor == sensor4 && (lap_progress_state & S3) && !(lap_progress_state & S4)) {
+					lap_progress_state |= S4;
+					LOG("Coche tocó Sensor 4. Estado de Progreso: %d", lap_progress_state);
+				}
+			}
+		}
+	}
 }
