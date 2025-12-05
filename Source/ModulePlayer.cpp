@@ -59,21 +59,36 @@ update_status ModulePlayer::Update()
         b2Vec2 velocity = b->GetLinearVelocity();
         float currentSpeed = velocity.Length();
         float minSpeedToTurn = 0.5f;
+        float turnDrag = 0.96f;
         // Girar (A/D o Izquierda/Derecha) -> Aplica Torque o velocidad angular
         if (currentSpeed > minSpeedToTurn) {
-
+            bool isTurning = false;
             if (IsKeyDown(KEY_LEFT)) {
                 // Opción A: Torque (más realista, con inercia)
                 // b->ApplyTorque(-turn_speed, true);
                 // Opción B: Velocidad directa (más arcade/preciso)
                 b->SetAngularVelocity(-turn_speed);
+                isTurning = true;
             }
             else if (IsKeyDown(KEY_RIGHT)) {
                 b->SetAngularVelocity(turn_speed);
+                isTurning = true;
             }
             else {
                 // Si no tocas nada, deja de girar (útil para control arcade)
                 b->SetAngularVelocity(0.0f);
+            }
+
+            if (isTurning)
+            {
+                // Obtenemos la velocidad actual y la reducimos
+                b2Vec2 v = b->GetLinearVelocity();
+
+                // Multiplicamos por el factor de frenado (ej: reduce un 4% la velocidad en cada frame)
+                v.x *= turnDrag;
+                v.y *= turnDrag;
+
+                b->SetLinearVelocity(v);
             }
         }
         else {
@@ -113,6 +128,22 @@ update_status ModulePlayer::Update()
             b2Vec2 direction(sin(angle), -cos(angle));
             direction *= -speed * 0.5f; // Marcha atrás más lenta
             b->ApplyForceToCenter(direction, true);
+        }
+        if (IsKeyDown(KEY_SPACE))
+        {
+            b2Body* b = pbody->body;
+            b2Vec2 velocity = b->GetLinearVelocity();
+
+            // Factor de frenado:
+            // 0.95f = Frena poco (suave)
+            // 0.90f = Frena normal
+            // 0.80f = Frena fuerte
+            float brakePower = 0.95f;
+
+            velocity.x *= brakePower;
+            velocity.y *= brakePower;
+
+            b->SetLinearVelocity(velocity);
         }
         if (!IsKeyDown(KEY_UP) && !IsKeyDown(KEY_DOWN)) {
             b2Vec2 velocity = pbody->body->GetLinearVelocity();
