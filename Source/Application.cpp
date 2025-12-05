@@ -25,16 +25,17 @@ Application::Application()
 
 	// Main Modules
 	AddModule(window);
+	
 	AddModule(physics);
 	AddModule(audio);
 	
 	// Scenes
 	AddModule(scene_intro);
-
+	AddModule(map);
 	AddModule(player);
 	// Rendering happens at the end
 	AddModule(renderer);
-	AddModule(map);
+	
 }
 
 Application::~Application()
