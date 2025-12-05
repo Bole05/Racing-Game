@@ -16,6 +16,9 @@ enum main_states
 
 int main(int argc, char ** argv)
 {
+
+	SetTargetFPS(60);
+	
 	LOG("Starting game '%s'...", TITLE);
 
 	int main_return = EXIT_FAILURE;
