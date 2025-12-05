@@ -127,34 +127,34 @@ bool ModuleGame::Start()
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
 
-	plane = LoadTexture("Assets/Plane.png"); 
-	car = LoadTexture("Assets/Car.png");
-	ship = LoadTexture("Assets/Ship.png");
-	bike = LoadTexture("Assets/Bike.png");
-	
-	for (int i = 0; i < 6; ++i) {
-		Car* new_car = new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car);
-		entities.push_back(new_car);
-		if (i == 0) {
-			car_to_track = new_car->body; // Se hace seguimiento al primer coche
-		}
-	}
+	//plane = LoadTexture("Assets/Plane.png"); 
+	//car = LoadTexture("Assets/Car.png");
+	//ship = LoadTexture("Assets/Ship.png");
+	//bike = LoadTexture("Assets/Bike.png");
+	//
+	//for (int i = 0; i < 6; ++i) {
+	//	Car* new_car = new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car);
+	//	entities.push_back(new_car);
+	//	if (i == 0) {
+	//		car_to_track = new_car->body; // Se hace seguimiento al primer coche
+	//	}
+	//}
 
-	for (int i = 0; i < 6; ++i) {
-		entities.push_back(new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car));
-	}
+	//for (int i = 0; i < 6; ++i) {
+	//	entities.push_back(new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car));
+	//}
 
-	for (int i = 0; i < 2; ++i) {
-		entities.push_back(new Ship(App->physics, i * 300 + SCREEN_WIDTH * 0.35f, SCREEN_HEIGHT * 0.5f, this, ship));
-	}
+	//for (int i = 0; i < 2; ++i) {
+	//	entities.push_back(new Ship(App->physics, i * 300 + SCREEN_WIDTH * 0.35f, SCREEN_HEIGHT * 0.5f, this, ship));
+	//}
 
-	for (int i = 0; i < 6; ++i) {
-		entities.push_back(new Bike(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.5f, this, bike));
-	}
+	//for (int i = 0; i < 6; ++i) {
+	//	entities.push_back(new Bike(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.5f, this, bike));
+	//}
 
-	for (int i = 0; i < 3; ++i) {
-		entities.push_back(new Plane(App->physics, i * 300 + SCREEN_WIDTH * 0.25f, 600, this, plane));
-	}
+	//for (int i = 0; i < 3; ++i) {
+	//	entities.push_back(new Plane(App->physics, i * 300 + SCREEN_WIDTH * 0.25f, 600, this, plane));
+	//}
 
 	// --- CREACION DE SENSORES DE VUELTA ---
 	// Posiciones estimadas para un circuito rectangular:
@@ -167,19 +167,19 @@ bool ModuleGame::Start()
 	int sensor_height = 100;
 
 	// S1 (Inicio/Fin): cerca de la posición inicial del coche, línea vertical
-	sensor1 = App->physics->CreateRectangleSensor(SCREEN_WIDTH * 0.25f - 50, 150, sensor_width, sensor_height);
+	sensor1 = App->physics->CreateRectangleSensor(704, 700, sensor_width, sensor_height*2);
 	sensor1->listener = this;
 
 	// S2 (Checkpoint): Esquina superior derecha, línea horizontal
-	sensor2 = App->physics->CreateRectangleSensor(SCREEN_WIDTH - 150, 100, sensor_height * 2, sensor_width);
+	sensor2 = App->physics->CreateRectangleSensor(430, 200, sensor_height * 1.5, sensor_width);
 	sensor2->listener = this;
 
 	// S3 (Checkpoint): Esquina inferior derecha, línea vertical
-	sensor3 = App->physics->CreateRectangleSensor(SCREEN_WIDTH - 50, SCREEN_HEIGHT * 0.75f, sensor_width, sensor_height);
+	sensor3 = App->physics->CreateRectangleSensor(1400, 100, sensor_width, sensor_height*2);
 	sensor3->listener = this;
 
 	// S4 (Checkpoint): Esquina inferior izquierda, línea horizontal
-	sensor4 = App->physics->CreateRectangleSensor(150, SCREEN_HEIGHT - 100, sensor_height * 2, sensor_width);
+	sensor4 = App->physics->CreateRectangleSensor(1580, 580, sensor_height * 2.7, sensor_width);
 	sensor4->listener = this;
 
 	return ret;
