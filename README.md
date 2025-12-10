@@ -24,6 +24,15 @@ Be the first to reach the finish line, win the golden trophy.
 
 ## Features Implemented
 
+## lista de cosas que nos falta
+- audios de musica de fondo, de vuelta completada
+- ui de menu, lose and win
+- imagen de coche
+- boost como skill
+- boost en el mapa
+- ranking
+- lose and win condicion
+- 
 
 
 ## License
