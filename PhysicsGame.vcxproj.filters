@@ -37,6 +37,9 @@
     <ClCompile Include="Source\ModulePlayer.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleAi.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source/p2Point.h">
@@ -73,6 +76,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\ModulePlayer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAi.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

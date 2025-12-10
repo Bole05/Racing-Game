@@ -14,6 +14,17 @@
 #define METERS_TO_PIXELS(m) ((int) floor(PIXELS_PER_METER * m))
 #define PIXEL_TO_METERS(p)  ((float) METER_PER_PIXEL * p)
 
+struct VehicleInfo {
+	float density = 20.0f;
+	float friction = 5.0f;
+	float restitution = 0.0f;
+	float linearDamping = 0.05f;
+	float angularDamping = 0.05f;
+
+	// Puedes añadir aquí velocidad máxima, fuerza de aceleración, etc.
+	float maxSpeed = 100.0f;
+	float accelerationForce = 50.0f;
+};
 // Small class to return to other modules to track position and rotation of physics bodies
 class PhysBody
 {
@@ -49,6 +60,7 @@ public:
 	PhysBody* CreateRectangle(int x, int y, int width, int height, uint16 categoryBits, uint16 maskBits, int16 groupIndex = 0);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
 	PhysBody* CreateChain(int x, int y, const int* points, int size);
+	/*PhysBody* CreateRacingCar(int x, int y, const VehicleInfo& info);*/
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
