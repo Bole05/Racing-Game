@@ -30,9 +30,10 @@ Application::Application()
 	AddModule(audio);
 	
 	// Scenes
+	AddModule(player);
 	AddModule(scene_intro);
 	AddModule(map);
-	AddModule(player);
+	//AddModule(player);
 	// Rendering happens at the end
 	AddModule(renderer);
 	

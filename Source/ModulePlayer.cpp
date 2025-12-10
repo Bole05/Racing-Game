@@ -15,7 +15,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 	texture = LoadTexture("Assets-racing/Textures/Car1.png");
-	
+
    
     int frameWidth = 26;
     int frameHeight = 43;
@@ -27,6 +27,7 @@ bool ModulePlayer::Start()
     this->height = frameHeight;
 	if (pbody != nullptr)
 	{
+        pbody->listener = this;
 		// Damping: "Freno" natural. Si sueltas el gas, el coche para.
 		pbody->body->SetLinearDamping(0.2f);  // Fricción de movimiento
 		pbody->body->SetAngularDamping(2.0f); // Fricción de rotación
@@ -152,28 +153,50 @@ update_status ModulePlayer::Update()
             pbody->body->SetLinearVelocity(velocity);
     }
 
-    // --- RENDERIZADO (RAYLIB) ---
+    //// --- RENDERIZADO (RAYLIB) ---
 
-    // 1. Obtener posición actualizada de las físicas
-    int posX, posY;
-    pbody->GetPhysicPosition(posX, posY); // Helper que convierte metros a píxeles
+    //// 1. Obtener posición actualizada de las físicas
+    //int posX, posY;
+    //pbody->GetPhysicPosition(posX, posY); // Helper que convierte metros a píxeles
 
-    // 2. Obtener rotación
-    // Box2D devuelve radianes, Raylib necesita grados.
-    float rotationDegrees = pbody->GetRotation() * RAD2DEG;
+    //// 2. Obtener rotación
+    //// Box2D devuelve radianes, Raylib necesita grados.
+    //float rotationDegrees = pbody->GetRotation() * RAD2DEG;
 
-    // 3. Dibujar
-    // Usamos DrawTexturePro para poder rotar la imagen desde su centro
-    Rectangle sourceRec = { 0.0f, 0.0f, (float)this->width,(float)this->height };
-    Rectangle destRec = { (float)posX, (float)posY, (float)this->width, (float)this->height };
+    //// 3. Dibujar
+    //// Usamos DrawTexturePro para poder rotar la imagen desde su centro
+    //Rectangle sourceRec = { 0.0f, 0.0f, (float)this->width,(float)this->height };
+    //Rectangle destRec = { (float)posX, (float)posY, (float)this->width, (float)this->height };
 
-    // El origen de rotación debe ser el centro de TU RECORTE, no de toda la imagen
-    Vector2 origin = { (float)this->width / 2, (float)this->height / 2 };
+    //// El origen de rotación debe ser el centro de TU RECORTE, no de toda la imagen
+    //Vector2 origin = { (float)this->width / 2, (float)this->height / 2 };
 
-    DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, WHITE);
+    //DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, WHITE);
 }
     return UPDATE_CONTINUE;
 }
 
+update_status ModulePlayer::PostUpdate()
+{
+    if (pbody != nullptr)
+    {
+        // --- RENDERIZADO (RAYLIB) ---
 
+        // 1. Obtener posición actualizada de las físicas
+        int posX, posY;
+        pbody->GetPhysicPosition(posX, posY);
+
+        // 2. Obtener rotación
+        float rotationDegrees = pbody->GetRotation() * RAD2DEG;
+
+        // 3. Dibujar
+        Rectangle sourceRec = { 0.0f, 0.0f, (float)this->width,(float)this->height };
+        Rectangle destRec = { (float)posX, (float)posY, (float)this->width, (float)this->height };
+        Vector2 origin = { (float)this->width / 2, (float)this->height / 2 };
+
+        DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, WHITE);
+    }
+
+    return UPDATE_CONTINUE;
+}
 

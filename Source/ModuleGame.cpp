@@ -5,6 +5,7 @@
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
 #include "ModuleMap.h"
+#include "ModulePlayer.h"
 
 // TODO 1: Create an enum to represent physics categories for collision detection
 enum PhysicCategory
@@ -122,6 +123,7 @@ ModuleGame::~ModuleGame()
 bool ModuleGame::Start()
 {
 	LOG("Loading Intro assets");
+	LOG("Loading Intro assets---------------------------------------------------------------------");
 	bool ret = true;
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
@@ -162,12 +164,19 @@ bool ModuleGame::Start()
 	// S2: Arriba a la derecha
 	// S3: Abajo a la derecha
 	// S4: Abajo a la izquierda
+	//Car* new_car = new Car(App->physics, 700, 600, this, car); // Posición cerca de S1
+	//entities.push_back(new_car);
+	//car_to_track = new_car->body;
+
+	//App->player->pbody es el cuerpo físico que acabas de crear en ModulePlayer
+		// Lo asignamos a la variable de seguimiento del juego.
+	car_to_track = App->player->pbody;
 
 	int sensor_width = 10;
 	int sensor_height = 100;
 
 	// S1 (Inicio/Fin): cerca de la posición inicial del coche, línea vertical
-	sensor1 = App->physics->CreateRectangleSensor(704, 700, sensor_width, sensor_height*2);
+	sensor1 = App->physics->CreateRectangleSensor(600, 700, sensor_width, sensor_height*2);
 	sensor1->listener = this;
 
 	// S2 (Checkpoint): Esquina superior derecha, línea horizontal
@@ -245,6 +254,43 @@ update_status ModuleGame::Update()
 	}
 
 	return UPDATE_CONTINUE;
+}
+
+update_status ModuleGame::PostUpdate()
+{
+	// Llama a la Update() base por si tiene lógica.
+	update_status ret = Module::PostUpdate();
+
+	int current_lap = laps + 1;
+
+	if (laps == 0 && (lap_progress_state & 1) != 1) { // Si laps es 0 y S1 (bit 1) no ha sido tocado aún
+		current_lap = 1; // Se considera que está en la vuelta 1, aunque laps sea 0.
+	}
+	else {
+		current_lap = laps + 1;
+	}
+
+	// --- CONVERSIÓN DE ENTERO A TEXTO ---
+	// Buffer para construir la cadena de texto: "Laps: X"
+	static char laps_text[64];
+	sprintf_s(laps_text, 64, "Vueltas: %d", laps);
+
+	// --- DIBUJAR TEXTO (Usando DrawText simple de Raylib) ---
+	// Dibuja el texto en la esquina superior izquierda (ejemplo: 20px, 20px)
+	// El tamaño de la fuente es 20, y el color es blanco.
+
+	// La cámara del renderer debe estar ajustada para esto, pero DrawText debería
+	// dibujar en coordenadas de pantalla (no de mundo) por defecto.
+
+	DrawText(laps_text, 20, 20, 20, WHITE);
+
+	// Opcionalmente, mostrar el estado de progreso
+	static char progress_text[64];
+	sprintf_s(progress_text, 64, "Progreso: %d", lap_progress_state);
+	DrawText(progress_text, 20, 50, 20, YELLOW);
+
+
+	return ret;
 }
 
 void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
