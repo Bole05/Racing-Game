@@ -148,6 +148,7 @@ public:
 
 using vec2i = vec2<int>;
 using vec2f = vec2<float>;
-
+typedef vec2<int> iPoint;
+typedef vec2<float> fPoint;
 
 #endif // __P2POINT_H__

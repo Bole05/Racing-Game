@@ -12,6 +12,7 @@ class ModulePhysics;
 class ModuleGame;
 class ModuleMap;
 class ModulePlayer;
+class ModuleAi;
 
 class Application
 {
@@ -24,6 +25,7 @@ public:
 	ModuleMap* map;
 	ModuleGame* scene_intro;
 	ModulePlayer* player;
+	ModuleAi* Ai;
 	
 
 
