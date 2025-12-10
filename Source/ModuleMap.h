@@ -6,7 +6,7 @@
 #include <list>
 #include <vector>
 #include <string>
-
+#include "box2d/box2d.h"
 // Forward declaration para no obligar a incluir pugi aquí
 namespace pugi { class xml_node; class xml_document; }
 struct Properties
@@ -111,4 +111,5 @@ public:
     MapData mapData;
     pugi::xml_document mapFileXML;
     bool mapLoaded;
+    std::vector<b2Vec2>trackPath;
 };

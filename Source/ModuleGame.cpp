@@ -6,7 +6,7 @@
 #include "ModulePhysics.h"
 #include "ModuleMap.h"
 #include "ModulePlayer.h"
-
+#include"ModuleAi.h"
 // TODO 1: Create an enum to represent physics categories for collision detection
 enum PhysicCategory
 {
@@ -171,6 +171,12 @@ bool ModuleGame::Start()
 	//App->player->pbody es el cuerpo físico que acabas de crear en ModulePlayer
 		// Lo asignamos a la variable de seguimiento del juego.
 	car_to_track = App->player->pbody;
+	App->map->Load("mi_mapa.tmx");
+
+	// Crear un par de enemigos en posiciones diferentes de la ruta
+	App->Ai->CreateEnemy(0);  // Empieza en el punto 0
+	App->Ai->CreateEnemy(5);  // Empieza en el punto 5 (más adelante)
+	
 
 	int sensor_width = 10;
 	int sensor_height = 100;
