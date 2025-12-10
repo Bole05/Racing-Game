@@ -8,6 +8,7 @@
 #include "ModuleMap.h"
 #include"ModulePlayer.h"
 #include "Application.h"
+#include"ModuleAi.h"
 
 Application::Application()
 {
@@ -18,6 +19,7 @@ Application::Application()
 	scene_intro = new ModuleGame(this);
 	map = new ModuleMap(this);
 	player = new ModulePlayer(this);
+	Ai = new ModuleAi(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -31,6 +33,7 @@ Application::Application()
 	
 	// Scenes
 	AddModule(player);
+	AddModule(Ai);
 	AddModule(scene_intro);
 	AddModule(map);
 	//AddModule(player);
