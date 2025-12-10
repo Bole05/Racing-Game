@@ -195,6 +195,21 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, const int* points, int size)
 	return pbody;
 }
 
+PhysBody* ModulePhysics::CreateRacingCar(int x, int y, const VehicleInfo& info)
+{
+	// Usamos CreateRectangle que ya tienes implementado como base
+	// Nota: CreateRectangle crea un cuerpo dinámico con densidad 1.0f por defecto
+	PhysBody* pbody = CreateRectangle(x, y, info.width, info.height, 1, 0xFFFF);
+
+	if (pbody != nullptr && pbody->body != nullptr)
+	{
+		// Aplicamos las propiedades físicas específicas del coche de carreras
+		pbody->body->SetLinearDamping(info.linearDamping);
+		pbody->body->SetAngularDamping(info.angularDamping);
+	}
+
+	return pbody;
+}
 // 
 update_status ModulePhysics::PostUpdate()
 {
@@ -393,6 +408,7 @@ int PhysBody::RayCast(int x1, int y1, int x2, int y2, float& normal_x, float& no
 
 	return ret;
 }
+
 
 void ModulePhysics::BeginContact(b2Contact* contact)
 {

@@ -37,7 +37,7 @@
     <ClCompile Include="Source\ModulePlayer.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleAi.cpp">
+    <ClCompile Include="Source\ModuleAi.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,7 +78,7 @@
     <ClInclude Include="Source\ModulePlayer.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleAi.h">
+    <ClInclude Include="Source\ModuleAi.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

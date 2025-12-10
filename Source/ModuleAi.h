@@ -1,7 +1,8 @@
 #pragma once
-#inlude"Module.h"
+#include "Module.h"
 #include "p2Point.h"
 #include "ModulePhysics.h"
+
 class ModuleAi : public Module
 {
 public:
@@ -9,14 +10,20 @@ public:
     virtual ~ModuleAi();
 
     bool Start();
-    update_status Update(float dt);
+    update_status Update();
+    update_status PostUpdate();
     bool CleanUp();
 
 public:
-    PhysBody* vehicle; // El cuerpo físico del enemigo
-    VehicleInfo stats; // Sus estadísticas (idénticas al player)
+    PhysBody* pbody;
+    VehicleInfo info; // Aquí guardaremos las mismas stats que el player
+    Texture2D texture;
 
-    // Variables para la lógica de conducción
-    float currentTurn;
-    float currentAcceleration;
+    // IA Variables
+    std::vector<iPoint> pathPoints; // Puntos de ruta
+    int currentPathIndex;
+
+private:
+    void LoadTrackPoints(); // Carga los puntos del mapa
+    void HandleMovement();  // Lógica de conducción automática
 };
