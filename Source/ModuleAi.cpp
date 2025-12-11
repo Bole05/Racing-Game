@@ -3,6 +3,7 @@
 #include "ModulePhysics.h"
 #include "ModuleMap.h"
 #include "ModuleRender.h"
+#include "ModuleGame.h"
 
 void EnemyCar::Init(PhysBody* body, int startPathIndex) {
     pbody = body;
@@ -66,6 +67,12 @@ void ModuleAi::CreateEnemy(int startPathIndex)
 
 update_status ModuleAi::Update()
 {
+
+    if (App->game != nullptr && App->game->game_over == true)
+    {
+        return UPDATE_CONTINUE;
+    }
+
     // Si no hay ruta, no hacemos nada
     const auto& path = App->map->trackPath;
     if (path.empty()) return UPDATE_CONTINUE;

@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModulePlayer.h"
 #include "ModulePhysics.h"
+#include "ModuleGame.h"
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -51,6 +52,11 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+    if (App->game != nullptr && App->game->game_over == true)
+    {
+        return UPDATE_CONTINUE;
+    }
+
     if (pbody != nullptr)
     {
 

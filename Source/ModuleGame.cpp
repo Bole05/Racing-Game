@@ -211,6 +211,11 @@ bool ModuleGame::CleanUp()
 // Update: draw background
 update_status ModuleGame::Update()
 {
+	if (game_over) {
+		// Si el juego ha terminado, no procesamos la entrada ni actualizamos entidades.
+		return UPDATE_CONTINUE;
+	}
+
 	if(IsKeyPressed(KEY_SPACE))
 	{
 		ray_on = !ray_on;
@@ -295,6 +300,13 @@ update_status ModuleGame::PostUpdate()
 	sprintf_s(progress_text, 64, "Progreso: %d", lap_progress_state);
 	DrawText(progress_text, 20, 50, 20, YELLOW);
 
+	if (laps >= 2) // Comprobamos si las vueltas son 8 o más
+	{
+		// Dibuja el mensaje de "WIN" en el centro de la pantalla
+		DrawText("WIN", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2, 50, GOLD);
+
+		return UPDATE_CONTINUE;
+	}
 
 	return ret;
 }
@@ -332,6 +344,10 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 				if (lap_progress_state == ALL_SENSORS_HIT) {
 					// FIN DE VUELTA: Todos los checkpoints fueron tocados y S1 es tocado de nuevo.
 					laps++;
+					if (laps == 2) {
+						game_over = true;
+						//DrawText("WIN", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2, 50, GOLD);
+					}
 					lap_progress_state = S1; // Reiniciar progreso a S1 tocado (inicio de la próxima vuelta)
 					LOG("--- VUELTA COMPLETADA! Vueltas Totales: %d ---", laps);
 				}

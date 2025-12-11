@@ -26,6 +26,7 @@ public:
 	ModuleGame* scene_intro;
 	ModulePlayer* player;
 	ModuleAi* Ai;
+	ModuleGame* game = nullptr;
 	
 
 
