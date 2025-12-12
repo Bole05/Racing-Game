@@ -22,6 +22,6 @@ public:
 	int y;
 	int width;
 	int height;
-	int speed;
-	int turn_speed;
+	float speed;
+	float turn_speed;
 }; 
