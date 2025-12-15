@@ -60,7 +60,7 @@ class PhysBody;
 struct EnemyCar {
     PhysBody* pbody = nullptr;
     int currentPathIndex = 0;
-
+    int selectedPathIndex = 0;
     // Propiedades del coche
     float maxSpeed = 10.0f;
     float turnSpeed = 4.0f;
@@ -70,7 +70,7 @@ struct EnemyCar {
     int stuckTimer = 0;
 
     // Métodos helper
-    void Init(PhysBody* body, int startPathIndex);
+    void Init(PhysBody* body, int startPathIndex,int pathIndex);
 };
 
 class ModuleAi : public Module

@@ -410,40 +410,86 @@ bool ModuleMap::Load(const char* path)
     for (; objectGroup; objectGroup = objectGroup.next_sibling("objectgroup"))
     {
         std::string name = objectGroup.attribute("name").as_string();
-        if (name == "Path") // Buscamos la capa específica
+        if (name == "Path"|| name=="Paths") // Buscamos la capa específica
         {
-            pugi::xml_node object = objectGroup.child("object");
+            trackPaths.clear();
+
+            for (pugi::xml_node object = objectGroup.child("object"); object; object = object.next_sibling("object")) {
+                std::vector<b2Vec2> newPath;
+
+                int originX = object.attribute("x").as_int();
+                int originY = object.attribute("y").as_int();
+
+
+                pugi::xml_node polyline = object.child("polyline");
+                std::string pointsString = polyline.attribute("points").as_string();
+
+                // Parsear el string de puntos
+                std::stringstream ss(pointsString);
+                std::string pointData;
+
+
+                while (std::getline(ss, pointData, ' ')) // Separar por espacio
+                {
+                    size_t commaPos = pointData.find(',');
+                    if (commaPos != std::string::npos)
+                    {
+                        std::string xStr = pointData.substr(0, commaPos);
+                        std::string yStr = pointData.substr(commaPos + 1);
+
+                        float x = std::stof(xStr) + originX;
+                        float y = std::stof(yStr) + originY;
+
+                        // Convertir de Píxeles a Metros y guardar
+                        newPath.push_back({ PIXEL_TO_METERS(x), PIXEL_TO_METERS(y) });
+                    }
+                }
+                /*LOG("AI Path loaded with %d points", trackPath.size());*/
+                if (!newPath.empty()) {
+                    trackPaths.push_back(newPath);
+                    LOG("Loaded path with %d points", newPath.size());
+                }
+
+
+
+
+
+
+
+
+            }
+           /* pugi::xml_node object = objectGroup.child("object");*/
             // Asumimos que es una Polyline. Tiled guarda los puntos en el atributo "points"
             // Formato: "0,0 10,10 20,20 ..." relativos a la posición X,Y del objeto
 
-            int originX = object.attribute("x").as_int();
-            int originY = object.attribute("y").as_int();
+         /*   int originX = object.attribute("x").as_int();
+            int originY = object.attribute("y").as_int();*/
 
-            pugi::xml_node polyline = object.child("polyline");
-            std::string pointsString = polyline.attribute("points").as_string();
+            //pugi::xml_node polyline = object.child("polyline");
+            //std::string pointsString = polyline.attribute("points").as_string();
 
-            // Parsear el string de puntos
-            std::stringstream ss(pointsString);
-            std::string pointData;
+            //// Parsear el string de puntos
+            //std::stringstream ss(pointsString);
+            //std::string pointData;
 
-            trackPath.clear();
+          /*  trackPath.clear();*/
 
-            while (std::getline(ss, pointData, ' ')) // Separar por espacio
-            {
-                size_t commaPos = pointData.find(',');
-                if (commaPos != std::string::npos)
-                {
-                    std::string xStr = pointData.substr(0, commaPos);
-                    std::string yStr = pointData.substr(commaPos + 1);
+            //while (std::getline(ss, pointData, ' ')) // Separar por espacio
+            //{
+            //    size_t commaPos = pointData.find(',');
+            //    if (commaPos != std::string::npos)
+            //    {
+            //        std::string xStr = pointData.substr(0, commaPos);
+            //        std::string yStr = pointData.substr(commaPos + 1);
 
-                    float x = std::stof(xStr) + originX;
-                    float y = std::stof(yStr) + originY;
+            //        float x = std::stof(xStr) + originX;
+            //        float y = std::stof(yStr) + originY;
 
-                    // Convertir de Píxeles a Metros y guardar
-                    trackPath.push_back({ PIXEL_TO_METERS(x), PIXEL_TO_METERS(y) });
-                }
-            }
-            LOG("AI Path loaded with %d points", trackPath.size());
+            //        // Convertir de Píxeles a Metros y guardar
+            //        newPath.push_back({ PIXEL_TO_METERS(x), PIXEL_TO_METERS(y) });
+            //    }
+            //}
+            //LOG("AI Path loaded with %d points", trackPath.size());
         }
     }
 

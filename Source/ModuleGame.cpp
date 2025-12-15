@@ -275,7 +275,7 @@ update_status ModuleGame::PostUpdate()
 	int current_lap = laps + 1;
 
 	if (laps == 0 && (lap_progress_state & 1) != 1) { // Si laps es 0 y S1 (bit 1) no ha sido tocado aún
-		current_lap = 1; // Se considera que está en la vuelta 1, aunque laps sea 0.
+		current_lap = 1; // Se considera que est?en la vuelta 1, aunque laps sea 0.
 	}
 	else {
 		current_lap = laps + 1;
@@ -355,26 +355,26 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 					// INICIO/REINICIO: Se toca S1 antes de completar la vuelta. Se reinicia el progreso
 					// a solo S1 tocado, forzando la secuencia a empezar de nuevo.
 					lap_progress_state = S1;
-					LOG("Coche inició/reinició vuelta en Sensor 1. Estado de Progreso: %d", lap_progress_state);
+					LOG("Coche inici?reinici?vuelta en Sensor 1. Estado de Progreso: %d", lap_progress_state);
 				}
 			}
 			else if ((lap_progress_state & S1) == S1) {
 				// 3. Progresar: Solo se permite progresar si S1 (Inicio) ya ha sido tocado.
 
-				// S2 debe ser tocado después de S1. Si S1 está en 1 y S2 no.
+				// S2 debe ser tocado después de S1. Si S1 est?en 1 y S2 no.
 				if (sensor == sensor2 && lap_progress_state == S1) {
 					lap_progress_state |= S2;
-					LOG("Coche tocó Sensor 2. Estado de Progreso: %d", lap_progress_state);
+					LOG("Coche toc?Sensor 2. Estado de Progreso: %d", lap_progress_state);
 				}
-				// S3 debe ser tocado después de S2 (es decir, si S2 está en el estado).
+				// S3 debe ser tocado después de S2 (es decir, si S2 est?en el estado).
 				else if (sensor == sensor3 && (lap_progress_state & S2) && !(lap_progress_state & S3)) {
 					lap_progress_state |= S3;
-					LOG("Coche tocó Sensor 3. Estado de Progreso: %d", lap_progress_state);
+					LOG("Coche toc?Sensor 3. Estado de Progreso: %d", lap_progress_state);
 				}
-				// S4 debe ser tocado después de S3 (es decir, si S3 está en el estado).
+				// S4 debe ser tocado después de S3 (es decir, si S3 est?en el estado).
 				else if (sensor == sensor4 && (lap_progress_state & S3) && !(lap_progress_state & S4)) {
 					lap_progress_state |= S4;
-					LOG("Coche tocó Sensor 4. Estado de Progreso: %d", lap_progress_state);
+					LOG("Coche toc?Sensor 4. Estado de Progreso: %d", lap_progress_state);
 				}
 			}
 		}

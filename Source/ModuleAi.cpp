@@ -27,7 +27,7 @@
 //    currentPathIndex = startPathIndex;
 //    active = true;
 //
-//    // Como hemos incluido ModulePhysics.h, ahora sí podemos acceder a 'body'
+//    // Como hemos incluido ModulePhysics.h, ahora s?podemos acceder a 'body'
 //    if (pbody != nullptr && pbody->body != nullptr) {
 //        pbody->body->SetLinearDamping(0.4f);
 //        pbody->body->SetAngularDamping(2.0f);
@@ -49,8 +49,8 @@
 //    // Cargar textura (puedes usar una de color diferente o la misma del player)
 //    texture = LoadTexture("Assets-racing/Textures/Car1.png"); // O usa un CarEnemy.png si tienes
 //
-//    // Esperamos un frame para asegurar que el Mapa ya cargó los puntos en Start()
-//    // O mejor, creamos los enemigos aquí si estamos seguros de que Map->Start() corre antes.
+//    // Esperamos un frame para asegurar que el Mapa ya carg?los puntos en Start()
+//    // O mejor, creamos los enemigos aqu?si estamos seguros de que Map->Start() corre antes.
 //    // Si no estás seguro del orden, llama a CreateEnemy desde ModuleGame::Start.
 //
 //    return true;
@@ -125,7 +125,7 @@
 ////        while (nextAngle > b2_pi) nextAngle -= 2 * b2_pi;
 ////
 ////        // Aplicar giro suave usando velocidad angular (NO SetTransform)
-////        // 'turnSpeed' controla qué tan rápido corrige el volante
+////        // 'turnSpeed' controla qu?tan rápido corrige el volante
 ////        b->SetAngularVelocity(nextAngle * car.turnSpeed);
 ////
 ////
@@ -369,7 +369,7 @@
 //    }
 //
 //    if (callback.fixture) {
-//        // Cuanto más cerca está la pared, más fuerte es el vector de rechazo
+//        // Cuanto más cerca est?la pared, más fuerte es el vector de rechazo
 //        float urgency = (1.0f - callback.fraction) * 5.0f; // Multiplicador de fuerza
 //
 //        // El vector de rechazo es la NORMAL de la pared (perpendicular hacia afuera)
@@ -535,7 +535,7 @@
 ////        float speed = b->GetLinearVelocity().Length();
 ////        float sensorLen = 3.0f + (speed * 0.4f);
 ////
-////        // Llamamos a CastRay (ahora sí existe)
+////        // Llamamos a CastRay (ahora s?existe)
 ////        float leftSpace = CastRay(b, sensorLen, -35.0f * DEGTORAD, 0);
 ////        float rightSpace = CastRay(b, sensorLen, 35.0f * DEGTORAD, 0);
 ////        float frontSpace = CastRay(b, sensorLen * 1.2f, 0.0f, 1);
@@ -809,9 +809,10 @@ public:
     }
 };
 
-void EnemyCar::Init(PhysBody* body, int startPathIndex) {
+void EnemyCar::Init(PhysBody* body, int startPathIndex,int pathIndex) {
     pbody = body;
     currentPathIndex = startPathIndex;
+    selectedPathIndex = pathIndex;
     active = true;
     if (pbody && pbody->body) {
         // Aumentamos damping angular para reducir el "trote" (vibración)
@@ -832,9 +833,12 @@ bool ModuleAi::Start()
 
 void ModuleAi::CreateEnemy(int startPathIndex)
 {
-    if (App->map->trackPath.empty()) return;
+    //if (App->map->trackPath.empty()) return;
 
-    b2Vec2 startPos = App->map->trackPath[startPathIndex];
+    int randomPathID = rand() % App->map->trackPaths.size();
+    if (App->map->trackPaths[randomPathID].empty())return;
+
+    b2Vec2 startPos = App->map->trackPaths[randomPathID][startPathIndex];
 
     PhysBody* pb = App->physics->CreateRectangle(
         METERS_TO_PIXELS(startPos.x),
@@ -844,7 +848,7 @@ void ModuleAi::CreateEnemy(int startPathIndex)
     );
 
     EnemyCar enemy;
-    enemy.Init(pb, startPathIndex);
+    enemy.Init(pb, startPathIndex,randomPathID);
     enemies.push_back(enemy);
 }
 
@@ -881,13 +885,14 @@ update_status ModuleAi::Update()
 {
     if (App->game != nullptr && App->game->game_over) return UPDATE_CONTINUE;
 
-    const auto& path = App->map->trackPath;
-    if (path.empty()) return UPDATE_CONTINUE;
-
+   /* const auto& path = App->map->trackPaths;
+    if (path.empty()) return UPDATE_CONTINUE;*/
+    if (App->map->trackPaths.empty()) return UPDATE_CONTINUE;
     for (auto& car : enemies)
     {
         if (!car.active || !car.pbody) continue;
-
+        const std::vector<b2Vec2>& path = App->map->trackPaths[car.selectedPathIndex];
+        if (path.empty()) continue;
         b2Body* b = car.pbody->body;
         b2Vec2 position = b->GetPosition();
 
@@ -1030,9 +1035,16 @@ update_status ModuleAi::PostUpdate()
             Vector2 origin = { (float)car.width / 2, (float)car.height / 2 };
             DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, RED);
 
-            if (App->physics->debug && !App->map->trackPath.empty()) {
-                b2Vec2 t = App->map->trackPath[(car.currentPathIndex + 2) % App->map->trackPath.size()];
-                DrawLine(posX, posY, METERS_TO_PIXELS(t.x), METERS_TO_PIXELS(t.y), BLUE);
+            //if (App->physics->debug && !App->map->trackPath.empty()) {
+            //    b2Vec2 t = App->map->trackPath[(car.currentPathIndex + 2) % App->map->trackPath.size()];
+            //    DrawLine(posX, posY, METERS_TO_PIXELS(t.x), METERS_TO_PIXELS(t.y), BLUE);
+            //}
+            if (App->physics->debug) {
+                for (const auto& path : App->map->trackPaths) {
+                    for (const auto& p : path) {
+                        DrawCircle(METERS_TO_PIXELS(p.x), METERS_TO_PIXELS(p.y), 3, GREEN);
+                    }
+                }
             }
         }
     }
