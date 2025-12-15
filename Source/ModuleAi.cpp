@@ -782,6 +782,8 @@
 #include "ModuleMap.h"
 #include "ModuleRender.h"
 #include "ModuleGame.h"
+#include "ModulePlayer.h"
+#include "Application.h"
 #include <cmath>
 
 // Definiciones de seguridad
@@ -798,9 +800,26 @@ public:
     b2Vec2 point;
     b2Vec2 normal;
     float fraction = 1.0f;
+    bool hitPlayer = false;
 
+    Module* playerModule = nullptr;
     float ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float fraction) override {
         if (fixture->IsSensor()) return -1.0f;
+        //para caso de que el raycast un de susline encuentra el player y implementar estos codis para que el raycasr conoce que ese objeto es player
+        b2Body* body = fixture->GetBody();
+        if (body) {
+            PhysBody* pbody = (PhysBody*)body->GetUserData().pointer;
+            if (pbody && playerModule != nullptr && pbody->listener == playerModule) {
+                hitPlayer = true;
+            }
+            else {
+                hitPlayer = false;
+            }
+        }
+        
+
+
+
         this->fixture = fixture;
         this->point = point;
         this->normal = normal;
@@ -852,8 +871,9 @@ void ModuleAi::CreateEnemy(int startPathIndex)
     enemies.push_back(enemy);
 }
 
-float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int colorType)
+float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int colorType, bool& outHitPlayer)
 {
+    outHitPlayer = false;
     b2World* world = body->GetWorld();
     if (!world) return 1.0f;
 
@@ -869,14 +889,28 @@ float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int co
     end.y = start.y + (direction.y * rayLength);
 
     AICallback callback;
+    callback.playerModule = App->player;
     world->RayCast(&callback, start, end);
+    if (callback.fixture) {
+        outHitPlayer = callback.hitPlayer;
+    }
 
     if (App->physics->debug) {
         Color c = (colorType == 0) ? YELLOW : ORANGE;
         if (callback.fixture) c = RED;
+        if (callback.hitPlayer)c = PURPLE;
         b2Vec2 drawEnd = (callback.fixture) ? callback.point : end;
-        DrawLine(METERS_TO_PIXELS(start.x), METERS_TO_PIXELS(start.y),
-            METERS_TO_PIXELS(drawEnd.x), METERS_TO_PIXELS(drawEnd.y), c);
+
+        DebugLine line;
+        line.x1 = METERS_TO_PIXELS(start.x);
+        line.y1 = METERS_TO_PIXELS(start.y);
+        line.x2 = METERS_TO_PIXELS(drawEnd.x);
+        line.y2 = METERS_TO_PIXELS(drawEnd.y);
+        line.color = c;
+
+        debugLines.push_back(line);
+        //DrawLine(METERS_TO_PIXELS(start.x), METERS_TO_PIXELS(start.y),
+        //    METERS_TO_PIXELS(drawEnd.x), METERS_TO_PIXELS(drawEnd.y), c);
     }
     return callback.fraction;
 }
@@ -884,9 +918,6 @@ float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int co
 update_status ModuleAi::Update()
 {
     if (App->game != nullptr && App->game->game_over) return UPDATE_CONTINUE;
-
-   /* const auto& path = App->map->trackPaths;
-    if (path.empty()) return UPDATE_CONTINUE;*/
     if (App->map->trackPaths.empty()) return UPDATE_CONTINUE;
     for (auto& car : enemies)
     {
@@ -900,6 +931,7 @@ update_status ModuleAi::Update()
 
         // Buscar el punto m醩 cercano en toda la ruta (para no perderse nunca)
         // Optimizamos buscando solo en los siguientes 5 puntos para no iterar todo siempre
+        //---------------------------Seguimiento Ruta------------------------------------------------------------------------------------//
         int bestIndex = car.currentPathIndex;
         float minDistance = 100000.0f;
 
@@ -921,24 +953,45 @@ update_status ModuleAi::Update()
         b2Vec2 diff = target - position;
         float desiredAngle = atan2f(diff.y, diff.x) + (b2_pi / 2.0f);
 
-        // --- 2. EVASI覰 SUAVE ---
-        float speed = b->GetLinearVelocity().Length();
+        // --- 2. RayCast ---
+      /*  float speed = b->GetLinearVelocity().Length();*/
         float lookAhead = 4.0f; // Rayos fijos para estabilidad
+        float sideLookAhead = 2.5f;
 
-        float leftSpace = CastRay(b, lookAhead, -30.0f * DEGTORAD, 0);
-        float rightSpace = CastRay(b, lookAhead, 30.0f * DEGTORAD, 0);
-        float frontSpace = CastRay(b, lookAhead * 1.2f, 0.0f, 1);
+        bool hitPlayerLeft = false;
+        bool hitPlayerRight = false;
+        bool hitPlayerFront = false;
+
+
+        float leftSpace = CastRay(b, sideLookAhead, -30.0f * DEGTORAD, 0,hitPlayerLeft);
+        float rightSpace = CastRay(b, sideLookAhead, 30.0f * DEGTORAD, 0,hitPlayerRight);
+        float frontSpace = CastRay(b, lookAhead * 1.2f, 0.0f, 1,hitPlayerFront);
 
         float finalAngle = desiredAngle;
         float avoidanceFactor = 0.0f;
 
+        //if (frontSpace < 0.5f) {
+        //    if (hitPlayerFront) {
+        //        // 如果是玩家，可能想撞过去，或者稍微减速但保持攻击性
+        //        car.maxSpeed = 8.0f;
+        //        // AI 可能会尝试轻微变道去超车，而不是像躲墙一样剧烈转向
+        //    }
+        //    else {
+        //        // 如果是墙壁，必须大力刹车和转向
+        //        car.maxSpeed = 2.0f;
+        //    }
+        //}
+
         // Si detectamos pared, mezclamos el 醤gulo deseado con la correcci髇
         // No reemplazamos totalmente el 醤gulo, solo lo empujamos
-        if (leftSpace < 0.8f) {
-            avoidanceFactor += (0.8f - leftSpace) * 2.0f; // Empujar derecha
+        if (leftSpace < 0.9f) {
+            // 如果左边是玩家，AI可能会更激进（挤压玩家），如果是墙则避让
+            float force = (hitPlayerLeft) ? 0.5f : 2.0f;
+            avoidanceFactor += (0.8f - leftSpace) * force;
         }
-        if (rightSpace < 0.8f) {
-            avoidanceFactor -= (0.8f - rightSpace) * 2.0f; // Empujar izquierda
+        if (rightSpace < 0.9f) {
+            float force = (hitPlayerRight) ? 0.5f : 2.0f;
+            avoidanceFactor -= (0.8f - rightSpace) * force;
         }
 
         finalAngle += avoidanceFactor;
@@ -950,28 +1003,58 @@ update_status ModuleAi::Update()
         while (nextAngle > b2_pi) nextAngle -= 2 * b2_pi;
 
         // Giramos con Clamp para evitar que el volante se vuelva loco
-        float turnSpeed = 3.0f;
+        float turnSpeed = 4.0f;
         b->SetAngularVelocity(nextAngle * turnSpeed);
+
+
+
+        //--------------Calcular la curvatura de la carrera
+
+        float pathAngleDiff = desiredAngle - currentAngle;
+        while (pathAngleDiff <= -b2_pi) pathAngleDiff += 2 * b2_pi;
+        while (pathAngleDiff > b2_pi) pathAngleDiff -= 2 * b2_pi;
+
+        float turnDrag = 1.0f;
+        if (abs(pathAngleDiff) > 0.6f) {
+            turnDrag = 0.7f;
+        }
+
+        // 4.3 只有当障碍物出现在“正前方”时，才剧烈刹车
+        // 侧面有墙(left/rightSpace)不会触发这里
+        if (frontSpace < 0.6f) {
+            if (hitPlayerFront) {
+                turnDrag *= 0.7f; // 撞玩家轻微减速
+            }
+            else {
+                turnDrag *= 0.4f; // 撞墙必须重刹
+            }
+        }
+
+
+
 
         // --- 4. MOVIMIENTO (CORREGIDO PARA CURVAS) ---
         b2Vec2 forwardVec;
         forwardVec.x = sin(b->GetAngle());
         forwardVec.y = -cos(b->GetAngle());
 
+        float speed = b->GetLinearVelocity().Length();
+        float currentMaxSpeed = car.maxSpeed * turnDrag;
         // --- L骻ica Anti-Atasco (Stuck) MENOS SENSIBLE ---
         // Solo activamos si la velocidad es casi CERO (0.2)
+
         if (speed < 0.2f) car.stuckTimer++;
         else car.stuckTimer = 0;
 
         if (car.stuckTimer > 60) {
             // Maniobra de rescate
             b2Vec2 reverseForce;
-            reverseForce.x = forwardVec.x * -4.0f;
-            reverseForce.y = forwardVec.y * -4.0f;
+            reverseForce.x = forwardVec.x * -6.0f;
+            reverseForce.y = forwardVec.y * -6.0f;
             b->ApplyForceToCenter(reverseForce, true);
 
             // Girar mientras retrocede para desencajarse
-            b->SetAngularVelocity(1.5f);
+            b->SetAngularVelocity(2.0f);
 
             if (car.stuckTimer > 120) car.stuckTimer = 0;
         }
@@ -980,21 +1063,21 @@ update_status ModuleAi::Update()
 
             // Frenado en curvas: Mucho m醩 permisivo.
             // Antes frenaba si el 醤gulo era > 0.2, ahora permitimos hasta 0.5 sin frenar apenas
-            float turnDrag = 1.0f;
-            if (abs(nextAngle) > 0.5f) {
-                turnDrag = 0.6f; // Reducimos velocidad al 60% solo en curvas cerradas
-            }
+            //float turnDrag = 1.0f;
+            //if (abs(nextAngle) > 0.5f) {
+            //    turnDrag = 0.6f; // Reducimos velocidad al 60% solo en curvas cerradas
+            //}
 
-            // Si hay pared enfrente, frenamos m醩
-            if (frontSpace < 0.6f) turnDrag *= 0.5f;
+            //// Si hay pared enfrente, frenamos m醩
+            //if (frontSpace < 0.6f) turnDrag *= 0.5f;
 
-            float currentMaxSpeed = car.maxSpeed * turnDrag;
+            //float currentMaxSpeed = car.maxSpeed * turnDrag;
 
             // Aceleramos
             if (speed < currentMaxSpeed) {
                 b2Vec2 driveForce;
-                driveForce.x = forwardVec.x * 12.0f;
-                driveForce.y = forwardVec.y * 12.0f;
+                driveForce.x = forwardVec.x * 15.0f;
+                driveForce.y = forwardVec.y * 15.0f;
                 b->ApplyForceToCenter(driveForce, true);
             }
         }
@@ -1039,11 +1122,29 @@ update_status ModuleAi::PostUpdate()
             //    b2Vec2 t = App->map->trackPath[(car.currentPathIndex + 2) % App->map->trackPath.size()];
             //    DrawLine(posX, posY, METERS_TO_PIXELS(t.x), METERS_TO_PIXELS(t.y), BLUE);
             //}
-            if (App->physics->debug) {
+       /*     if (App->physics->debug) {
                 for (const auto& path : App->map->trackPaths) {
                     for (const auto& p : path) {
                         DrawCircle(METERS_TO_PIXELS(p.x), METERS_TO_PIXELS(p.y), 3, GREEN);
                     }
+                }
+            }*/
+        }
+    }
+
+    if (App->physics->debug) {
+        // 1. 绘制缓存的射线
+        for (const auto& line : debugLines) {
+            DrawLine(line.x1, line.y1, line.x2, line.y2, line.color);
+        }
+        // 2. 清空列表，为下一帧做准备
+        debugLines.clear();
+
+        // 绘制路径点（保留你原来的代码）
+        if (!App->map->trackPaths.empty()) {
+            for (const auto& path : App->map->trackPaths) {
+                for (const auto& p : path) {
+                    DrawCircle(METERS_TO_PIXELS(p.x), METERS_TO_PIXELS(p.y), 3, GREEN);
                 }
             }
         }

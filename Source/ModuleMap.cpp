@@ -371,7 +371,7 @@ bool ModuleMap::Load(const char* path)
             p->value = propNode.attribute("value").as_bool();
             layer->properties.propertiesList.push_back(p);
         }
-
+        
         for (pugi::xml_node tileNode = layerNode.child("data").child("tile"); tileNode; tileNode = tileNode.next_sibling("tile"))
         {
             layer->tiles.push_back(tileNode.attribute("gid").as_int());

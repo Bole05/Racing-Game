@@ -73,6 +73,10 @@ struct EnemyCar {
     void Init(PhysBody* body, int startPathIndex,int pathIndex);
 };
 
+struct DebugLine {
+    int x1, y1, x2, y2;
+    Color color;
+};
 class ModuleAi : public Module
 {
 public:
@@ -97,5 +101,6 @@ private:
 
     // --- ESTA ES LA LÍNEA QUE TE FALTABA ---
     // Función auxiliar para lanzar rayos (retorna distancia 0.0 a 1.0)
-    float CastRay(b2Body* body, float rayLength, float angleOffset, int colorType);
+    float CastRay(b2Body* body, float rayLength, float angleOffset, int colorType,bool& outHitPlayer);
+    std::vector<DebugLine> debugLines;
 };
