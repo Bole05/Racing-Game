@@ -406,13 +406,14 @@ bool ModuleMap::Load(const char* path)
         }
     }
     // 4. Cargar Ruta de IA (Object Layer llamada "Path")
+     trackPaths.clear();
     pugi::xml_node objectGroup = mapNode.child("objectgroup");
     for (; objectGroup; objectGroup = objectGroup.next_sibling("objectgroup"))
     {
         std::string name = objectGroup.attribute("name").as_string();
         if (name == "Path"|| name=="Paths") // Buscamos la capa específica
         {
-            trackPaths.clear();
+           /* trackPaths.clear();*/
 
             for (pugi::xml_node object = objectGroup.child("object"); object; object = object.next_sibling("object")) {
                 std::vector<b2Vec2> newPath;
@@ -422,6 +423,7 @@ bool ModuleMap::Load(const char* path)
 
 
                 pugi::xml_node polyline = object.child("polyline");
+              
                 std::string pointsString = polyline.attribute("points").as_string();
 
                 // Parsear el string de puntos
@@ -494,7 +496,7 @@ bool ModuleMap::Load(const char* path)
     }
 
 
-
+    LOG("TOTAL PATHS LOADED: %d", trackPaths.size());
     mapLoaded = true;
     LOG("Map loaded successfully");
     return true;

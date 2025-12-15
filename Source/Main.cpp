@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Globals.h"
+#include<time.h>
 
 #include "raylib.h"
 
@@ -16,7 +17,7 @@ enum main_states
 
 int main(int argc, char ** argv)
 {
-
+	srand(time(NULL));
 	SetTargetFPS(60);
 	
 	LOG("Starting game '%s'...", TITLE);
