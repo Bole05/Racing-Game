@@ -128,6 +128,36 @@ bool ModuleGame::Start()
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
+	// App->player->pbody->body->SetTransform(App->map->playerSpawnPoint, 0);
+
+	// 2. 设置玩家位置 (修复重点：取消注释并转换坐标单位)
+	if (App->player->pbody != nullptr) {
+		// 必须将 Tiled 的像素坐标转换为物理引擎的米坐标
+		float metersX = PIXEL_TO_METERS(App->map->playerSpawnPoint.x);
+		float metersY = PIXEL_TO_METERS(App->map->playerSpawnPoint.y);
+
+		App->player->pbody->body->SetTransform(b2Vec2(metersX, metersY), -90.0f * DEGTORAD);
+		LOG("Player moved to spawn point (meters): %f, %f", metersX, metersY);
+	}
+
+	/*App->Ai->enemies.clear();*/
+	// 2. 生成敌人
+	for (const auto& spawnPos : App->map->enemySpawnPoints)
+	{
+		// 这里的 0 是路径索引，你可能需要逻辑来计算该生成点离哪个路径点最近
+		App->Ai->CreateEnemyAtPosition(spawnPos, 0);
+	}
+
+	App->Ai->CreateEnemy(0);
+	App->Ai->CreateEnemy(5);
+	//for (auto& enemy : App->Ai->enemies)
+	//{
+	//	if (enemy.pbody != nullptr) {
+	//		b2Vec2 pos = enemy.pbody->body->GetPosition();
+	//		enemy.pbody->body->SetTransform(pos, 90.0f * DEGTORAD);
+	//	}
+	//}
+
 
 	//plane = LoadTexture("Assets/Plane.png"); 
 	//car = LoadTexture("Assets/Car.png");

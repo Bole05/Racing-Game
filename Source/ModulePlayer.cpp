@@ -3,6 +3,7 @@
 #include "ModulePlayer.h"
 #include "ModulePhysics.h"
 #include "ModuleGame.h"
+#include "ModuleMap.h"
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -20,8 +21,15 @@ bool ModulePlayer::Start()
    
     int frameWidth = 26;
     int frameHeight = 43;
-    x = 100;
-    y = 300;
+    x = App->map->playerSpawnPoint.x;
+    y = App->map->playerSpawnPoint.y;
+
+    if (x == 0 && y == 0) {
+        x = 100; // Ä¬ÈÏÖµ
+        y = 300;
+        LOG("Warning: No PlayerStart found in map, using default.");
+    }
+
     pbody = App->physics->CreateRectangle(x, y, frameWidth, frameHeight, 1, 0xFFFF);
 
     this->width = frameWidth;
@@ -88,11 +96,11 @@ update_status ModulePlayer::Update()
 
         float targetRotVelocity = 0.0f;
 
-        // Define aquí la velocidad máxima de giro (asegúrate de que sea alta, ej: 6.0f)
+        // Define aqu?la velocidad máxima de giro (asegúrate de que sea alta, ej: 6.0f)
         // Si usas la variable de clase 'turn_speed', asegúrate de haberla puesto a 6.0f en Start()
         float maxTurnSpeed = 6.0f;
 
-        // Solo permitimos girar si el coche se está moviendo un mínimo
+        // Solo permitimos girar si el coche se est?moviendo un mínimo
         if (abs(forwardSpeed) > 0.5f)
         {
             if (IsKeyDown(KEY_LEFT)) {
@@ -162,7 +170,7 @@ update_status ModulePlayer::Update()
     }
 
     // Nota: El renderizado se mueve a PostUpdate en muchos engines, 
-    // pero si tu estructura lo requiere aquí, déjalo aquí.
+    // pero si tu estructura lo requiere aqu? déjalo aqu?
     // He omitido el bloque de renderizado comentado para mantenerlo limpio,
     // ya que tu código original tenía uno en PostUpdate también.
 

@@ -111,6 +111,7 @@ public:
     MapData mapData;
     pugi::xml_document mapFileXML;
     bool mapLoaded;
-    /*std::vector<b2Vec2>trackPath;*/
     std::vector<std::vector<b2Vec2>>trackPaths;
+    b2Vec2 playerSpawnPoint;
+    std::vector<b2Vec2> enemySpawnPoints;
 };

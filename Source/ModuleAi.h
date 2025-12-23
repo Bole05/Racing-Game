@@ -90,7 +90,7 @@ public:
 
     // Función para crear un enemigo
     void CreateEnemy(int pathIndexOffset = 0);
-
+    void CreateEnemyAtPosition(b2Vec2 position, int startPathIndex);
 public:
     Texture2D texture;
     std::vector<EnemyCar> enemies;

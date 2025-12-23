@@ -88,8 +88,15 @@ void ModuleAi::CreateEnemy(int startPathIndex)
         1, 0xFFFF
     );
 
+    if (pb != nullptr) {
+        pb->body->SetTransform(pb->body->GetPosition(),-90.0f * DEGTORAD);
+    }
+
     EnemyCar enemy;
     enemy.Init(pb, startPathIndex,randomPathID);
+
+    enemy.width = 26;
+    enemy.height = 43;
     enemies.push_back(enemy);
 }
 
@@ -373,6 +380,32 @@ update_status ModuleAi::PostUpdate()
     }
     return UPDATE_CONTINUE;
 }
+
+void ModuleAi::CreateEnemyAtPosition(b2Vec2 position, int startPathIndex)
+{
+    // 创建物理身体
+    // 注意：确保 METERS_TO_PIXELS 转换逻辑与你的地图坐标系统一致
+    // 如果 Tiled 里的坐标已经是像素，这里可能不需要转换，或者取决于你如何读取的 x,y
+    PhysBody* pb = App->physics->CreateRectangle(
+        position.x,
+        position.y,
+        26, 43,
+        1, 0xFFFF
+    );
+
+    if (pb != nullptr) {
+        pb->body->SetTransform(pb->body->GetPosition(), -90.0f * DEGTORAD);
+    }
+    EnemyCar enemy;
+    // 这里传入 0 或者最近的路径点索引
+    int defaultPathIndex = 0;
+    enemy.Init(pb, startPathIndex, defaultPathIndex);
+    enemy.width = 26;
+    enemy.height = 43;
+    enemies.push_back(enemy);
+}
+
+
 
 bool ModuleAi::CleanUp()
 {
