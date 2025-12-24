@@ -7,6 +7,12 @@
 #include "ModuleMap.h"
 #include "ModulePlayer.h"
 #include"ModuleAi.h"
+#include <algorithm>
+struct RankingInfo {
+	const char* name;
+	int score;
+	bool isPlayer;
+};
 // TODO 1: Create an enum to represent physics categories for collision detection
 enum PhysicCategory
 {
@@ -16,6 +22,7 @@ enum PhysicCategory
 	SHIP =		1 << 3,
 	BIKE =		1 << 4
 };
+
 
 // TODO 4: Create an enum to define different physics groups
 enum PhysicGroup {
@@ -140,7 +147,7 @@ bool ModuleGame::Start()
 		LOG("Player moved to spawn point (meters): %f, %f", metersX, metersY);
 	}
 
-	/*App->Ai->enemies.clear();*/
+	
 	// 2. 生成敌人
 	for (const auto& spawnPos : App->map->enemySpawnPoints)
 	{
@@ -149,57 +156,7 @@ bool ModuleGame::Start()
 	}
 
 	App->Ai->CreateEnemy(0);
-	App->Ai->CreateEnemy(5);
-	//for (auto& enemy : App->Ai->enemies)
-	//{
-	//	if (enemy.pbody != nullptr) {
-	//		b2Vec2 pos = enemy.pbody->body->GetPosition();
-	//		enemy.pbody->body->SetTransform(pos, 90.0f * DEGTORAD);
-	//	}
-	//}
-
-
-	//plane = LoadTexture("Assets/Plane.png"); 
-	//car = LoadTexture("Assets/Car.png");
-	//ship = LoadTexture("Assets/Ship.png");
-	//bike = LoadTexture("Assets/Bike.png");
-	//
-	//for (int i = 0; i < 6; ++i) {
-	//	Car* new_car = new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car);
-	//	entities.push_back(new_car);
-	//	if (i == 0) {
-	//		car_to_track = new_car->body; // Se hace seguimiento al primer coche
-	//	}
-	//}
-
-	//for (int i = 0; i < 6; ++i) {
-	//	entities.push_back(new Car(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, 100, this, car));
-	//}
-
-	//for (int i = 0; i < 2; ++i) {
-	//	entities.push_back(new Ship(App->physics, i * 300 + SCREEN_WIDTH * 0.35f, SCREEN_HEIGHT * 0.5f, this, ship));
-	//}
-
-	//for (int i = 0; i < 6; ++i) {
-	//	entities.push_back(new Bike(App->physics, i * 100 + SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.5f, this, bike));
-	//}
-
-	//for (int i = 0; i < 3; ++i) {
-	//	entities.push_back(new Plane(App->physics, i * 300 + SCREEN_WIDTH * 0.25f, 600, this, plane));
-	//}
-
-	// --- CREACION DE SENSORES DE VUELTA ---
-	// Posiciones estimadas para un circuito rectangular:
-	// S1: L韓ea de inicio/meta (arriba a la izquierda)
-	// S2: Arriba a la derecha
-	// S3: Abajo a la derecha
-	// S4: Abajo a la izquierda
-	//Car* new_car = new Car(App->physics, 700, 600, this, car); // Posici髇 cerca de S1
-	//entities.push_back(new_car);
-	//car_to_track = new_car->body;
-
-	//App->player->pbody es el cuerpo f韘ico que acabas de crear en ModulePlayer
-		// Lo asignamos a la variable de seguimiento del juego.
+	
 	car_to_track = App->player->pbody;
 	
 
@@ -330,6 +287,75 @@ update_status ModuleGame::PostUpdate()
 	sprintf_s(progress_text, 64, "Progreso: %d", lap_progress_state);
 	DrawText(progress_text, 20, 50, 20, YELLOW);
 
+
+
+
+
+	// 1. 收集数据
+	std::vector<RankingInfo> leaderboard;
+
+	// 添加玩家
+	int playerSensors = 0;
+	if (lap_progress_state & 8) playerSensors = 4;
+	else if (lap_progress_state & 4) playerSensors = 3;
+	else if (lap_progress_state & 2) playerSensors = 2;
+	else if (lap_progress_state & 1) playerSensors = 1;
+	leaderboard.push_back({ "Player", laps * 10 + playerSensors, true });
+
+	// 添加 AI
+	for (int i = 0; i < App->Ai->enemies.size(); ++i) {
+		auto& e = App->Ai->enemies[i];
+		int aiSensors = 0;
+		if (e.lap_progress_state & 8) aiSensors = 4;
+		else if (e.lap_progress_state & 4) aiSensors = 3;
+		else if (e.lap_progress_state & 2) aiSensors = 2;
+		else if (e.lap_progress_state & 1) aiSensors = 1;
+
+		static char aiName[16];
+		sprintf_s(aiName, "Enemy %d", i + 1);
+		leaderboard.push_back({ aiName, e.laps * 10 + aiSensors, false });
+	}
+
+	// 2. 排序（分数高的在前）
+	std::sort(leaderboard.begin(), leaderboard.end(), [](const RankingInfo& a, const RankingInfo& b) {
+		return a.score > b.score;
+		});
+
+	// 3. 绘制排行榜界面
+	int py = 100;
+	int playerRank = 0;
+	DrawText("--- RANKING ---", 20, py, 20, GOLD);
+	for (int i = 0; i < leaderboard.size(); ++i) {
+		py += 25;
+		Color color = leaderboard[i].isPlayer ? GREEN : WHITE;
+		if (leaderboard[i].isPlayer) playerRank = i + 1;
+
+		static char rankText[64];
+		sprintf_s(rankText, "%d. %s (Laps: %d)", i + 1, leaderboard[i].name, leaderboard[i].score / 10);
+		DrawText(rankText, 20, py, 20, color);
+	}
+
+	// 在屏幕显眼位置显示玩家当前排名
+	static char currentRankStr[32];
+	sprintf_s(currentRankStr, "POS: %d / %d", playerRank, (int)leaderboard.size());
+	DrawText(currentRankStr, SCREEN_WIDTH - 150, 20, 30, ORANGE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	if (laps >= 2) // Comprobamos si las vueltas son 8 o m醩
 	{
 		// Dibuja el mensaje de "WIN" en el centro de la pantalla
@@ -341,70 +367,61 @@ update_status ModuleGame::PostUpdate()
 	return ret;
 }
 
+
 void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	PhysBody* sensor = nullptr;
-	PhysBody* other = nullptr;
+	PhysBody* vehicleBody = nullptr;
 
-	// 1. Identificar cu醠 cuerpo es el sensor y cu醠 es el coche a seguir.
-	if ((bodyA == sensor1 || bodyA == sensor2 || bodyA == sensor3 || bodyA == sensor4) && bodyB == car_to_track) {
+	// 1. 识别哪个是传感器，哪个是车辆
+	if (bodyA == sensor1 || bodyA == sensor2 || bodyA == sensor3 || bodyA == sensor4) {
 		sensor = bodyA;
-		other = bodyB;
+		vehicleBody = bodyB;
 	}
-	else if ((bodyB == sensor1 || bodyB == sensor2 || bodyB == sensor3 || bodyB == sensor4) && bodyA == car_to_track) {
+	else if (bodyB == sensor1 || bodyB == sensor2 || bodyB == sensor3 || bodyB == sensor4) {
 		sensor = bodyB;
-		other = bodyA;
+		vehicleBody = bodyA;
 	}
 
-	if (sensor && other == car_to_track) {
-		// 2. Definir los bits para el estado de progreso
+	if (sensor && vehicleBody) {
+		// 2. 获取进位掩码
 		int sensor_bit = 0;
 		const int S1 = 1, S2 = 2, S3 = 4, S4 = 8;
-		const int ALL_SENSORS_HIT = S1 | S2 | S3 | S4; // 1 + 2 + 4 + 8 = 15
+		const int ALL_SENSORS_HIT = 15;
 
 		if (sensor == sensor1) sensor_bit = S1;
 		else if (sensor == sensor2) sensor_bit = S2;
 		else if (sensor == sensor3) sensor_bit = S3;
 		else if (sensor == sensor4) sensor_bit = S4;
 
-		if (sensor_bit != 0) {
-
+		// 3. 处理逻辑（提取成 lambda 或函数以复用）
+		auto UpdateLapLogic = [&](int& vehicleLaps, int& vehicleProgress) {
 			if (sensor == sensor1) {
-				// S1 es la l韓ea de INICIO/FIN
-				if (lap_progress_state == ALL_SENSORS_HIT) {
-					// FIN DE VUELTA: Todos los checkpoints fueron tocados y S1 es tocado de nuevo.
-					laps++;
-					if (laps == 2) {
-						game_over = true;
-						//DrawText("WIN", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2, 50, GOLD);
-					}
-					lap_progress_state = S1; // Reiniciar progreso a S1 tocado (inicio de la pr髕ima vuelta)
-					LOG("--- VUELTA COMPLETADA! Vueltas Totales: %d ---", laps);
+				if (vehicleProgress == ALL_SENSORS_HIT) {
+					vehicleLaps++;
+					vehicleProgress = S1;
+					LOG("Vehicle completed a lap! Total: %d", vehicleLaps);
 				}
 				else {
-					// INICIO/REINICIO: Se toca S1 antes de completar la vuelta. Se reinicia el progreso
-					// a solo S1 tocado, forzando la secuencia a empezar de nuevo.
-					lap_progress_state = S1;
-					LOG("Coche inici?reinici?vuelta en Sensor 1. Estado de Progreso: %d", lap_progress_state);
+					vehicleProgress = S1;
 				}
 			}
-			else if ((lap_progress_state & S1) == S1) {
-				// 3. Progresar: Solo se permite progresar si S1 (Inicio) ya ha sido tocado.
+			else if ((vehicleProgress & S1) == S1) {
+				if (sensor == sensor2 && vehicleProgress == S1) vehicleProgress |= S2;
+				else if (sensor == sensor3 && (vehicleProgress & S2) && !(vehicleProgress & S3)) vehicleProgress |= S3;
+				else if (sensor == sensor4 && (vehicleProgress & S3) && !(vehicleProgress & S4)) vehicleProgress |= S4;
+			}
+			};
 
-				// S2 debe ser tocado despu閟 de S1. Si S1 est?en 1 y S2 no.
-				if (sensor == sensor2 && lap_progress_state == S1) {
-					lap_progress_state |= S2;
-					LOG("Coche toc?Sensor 2. Estado de Progreso: %d", lap_progress_state);
-				}
-				// S3 debe ser tocado despu閟 de S2 (es decir, si S2 est?en el estado).
-				else if (sensor == sensor3 && (lap_progress_state & S2) && !(lap_progress_state & S3)) {
-					lap_progress_state |= S3;
-					LOG("Coche toc?Sensor 3. Estado de Progreso: %d", lap_progress_state);
-				}
-				// S4 debe ser tocado despu閟 de S3 (es decir, si S3 est?en el estado).
-				else if (sensor == sensor4 && (lap_progress_state & S3) && !(lap_progress_state & S4)) {
-					lap_progress_state |= S4;
-					LOG("Coche toc?Sensor 4. Estado de Progreso: %d", lap_progress_state);
+		// 判断是玩家还是 AI
+		if (vehicleBody == car_to_track) {
+			UpdateLapLogic(laps, lap_progress_state);
+		}
+		else {
+			for (auto& enemy : App->Ai->enemies) {
+				if (vehicleBody == enemy.pbody) {
+					UpdateLapLogic(enemy.laps, enemy.lap_progress_state);
+					break;
 				}
 			}
 		}

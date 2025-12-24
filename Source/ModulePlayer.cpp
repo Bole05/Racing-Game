@@ -103,10 +103,10 @@ update_status ModulePlayer::Update()
         // Solo permitimos girar si el coche se est?moviendo un mínimo
         if (abs(forwardSpeed) > 0.5f)
         {
-            if (IsKeyDown(KEY_LEFT)) {
+            if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
                 targetRotVelocity = -maxTurnSpeed;
             }
-            else if (IsKeyDown(KEY_RIGHT)) {
+            else if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
                 targetRotVelocity = maxTurnSpeed;
             }
 
@@ -133,7 +133,7 @@ update_status ModulePlayer::Update()
         b2Vec2 direction = forwardDir;
 
         // Acelerar
-        if (IsKeyDown(KEY_UP))
+        if (IsKeyDown(KEY_UP)||IsKeyDown(KEY_W))
         {
             if (forwardSpeed < maxSpeed) {
                 b2Vec2 force = { direction.x * speed, direction.y * speed };
@@ -142,7 +142,7 @@ update_status ModulePlayer::Update()
         }
 
         // Marcha atrás / Frenar
-        if (IsKeyDown(KEY_DOWN))
+        if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_S))
         {
             if (forwardSpeed > -maxSpeed * 0.5f) { // Límite marcha atrás
                 b2Vec2 force = { direction.x * -speed * 0.5f, direction.y * -speed * 0.5f };

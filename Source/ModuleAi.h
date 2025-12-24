@@ -61,6 +61,10 @@ struct EnemyCar {
     PhysBody* pbody = nullptr;
     int currentPathIndex = 0;
     int selectedPathIndex = 0;
+
+    int laps=0;
+    int lap_progress_state = 0;
+
     // Propiedades del coche
     float maxSpeed = 10.0f;
     float turnSpeed = 4.0f;
@@ -68,6 +72,7 @@ struct EnemyCar {
     int height = 43;
     bool active = false;
     int stuckTimer = 0;
+
 
     // Métodos helper
     void Init(PhysBody* body, int startPathIndex,int pathIndex);

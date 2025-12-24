@@ -199,18 +199,6 @@ update_status ModuleAi::Update()
         float finalAngle = desiredAngle;
         float avoidanceFactor = 0.0f;
 
-        //if (frontSpace < 0.5f) {
-        //    if (hitPlayerFront) {
-        //        // 如果是玩家，可能想撞过去，或者稍微减速但保持攻击性
-        //        car.maxSpeed = 8.0f;
-        //        // AI 可能会尝试轻微变道去超车，而不是像躲墙一样剧烈转向
-        //    }
-        //    else {
-        //        // 如果是墙壁，必须大力刹车和转向
-        //        car.maxSpeed = 2.0f;
-        //    }
-        //}
-
         // Si detectamos pared, mezclamos el 醤gulo deseado con la correcci髇
         // No reemplazamos totalmente el 醤gulo, solo lo empujamos
         if (leftSpace < 0.9f) {
@@ -288,19 +276,6 @@ update_status ModuleAi::Update()
             if (car.stuckTimer > 120) car.stuckTimer = 0;
         }
         else {
-            // CONDUCCI覰 NORMAL
-
-            // Frenado en curvas: Mucho m醩 permisivo.
-            // Antes frenaba si el 醤gulo era > 0.2, ahora permitimos hasta 0.5 sin frenar apenas
-            //float turnDrag = 1.0f;
-            //if (abs(nextAngle) > 0.5f) {
-            //    turnDrag = 0.6f; // Reducimos velocidad al 60% solo en curvas cerradas
-            //}
-
-            //// Si hay pared enfrente, frenamos m醩
-            //if (frontSpace < 0.6f) turnDrag *= 0.5f;
-
-            //float currentMaxSpeed = car.maxSpeed * turnDrag;
 
             // Aceleramos
             if (speed < currentMaxSpeed) {
@@ -347,17 +322,6 @@ update_status ModuleAi::PostUpdate()
             Vector2 origin = { (float)car.width / 2, (float)car.height / 2 };
             DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, RED);
 
-            //if (App->physics->debug && !App->map->trackPath.empty()) {
-            //    b2Vec2 t = App->map->trackPath[(car.currentPathIndex + 2) % App->map->trackPath.size()];
-            //    DrawLine(posX, posY, METERS_TO_PIXELS(t.x), METERS_TO_PIXELS(t.y), BLUE);
-            //}
-       /*     if (App->physics->debug) {
-                for (const auto& path : App->map->trackPaths) {
-                    for (const auto& p : path) {
-                        DrawCircle(METERS_TO_PIXELS(p.x), METERS_TO_PIXELS(p.y), 3, GREEN);
-                    }
-                }
-            }*/
         }
     }
 
