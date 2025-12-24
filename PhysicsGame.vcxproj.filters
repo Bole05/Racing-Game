@@ -81,7 +81,7 @@
     <ClInclude Include="Source\ModuleAi.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="CarProperties.h">
+    <ClInclude Include="Source\CarProperties.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

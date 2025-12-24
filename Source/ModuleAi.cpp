@@ -5,7 +5,8 @@
 #include "ModuleRender.h"
 #include "ModuleGame.h"
 #include "ModulePlayer.h"
-#include "Application.h"
+#include "CarProperties.h"
+
 #include <cmath>
 
 // Definiciones de seguridad
@@ -74,29 +75,52 @@ bool ModuleAi::Start()
 
 void ModuleAi::CreateEnemy(int startPathIndex)
 {
-    //if (App->map->trackPath.empty()) return;
-
     int randomPathID = rand() % App->map->trackPaths.size();
-    if (App->map->trackPaths[randomPathID].empty())return;
+    if (App->map->trackPaths[randomPathID].empty()) return;
 
     b2Vec2 startPos = App->map->trackPaths[randomPathID][startPathIndex];
 
+    // 创建矩形碰撞体
     PhysBody* pb = App->physics->CreateRectangle(
         METERS_TO_PIXELS(startPos.x),
         METERS_TO_PIXELS(startPos.y),
         26, 43,
-        1, 0xFFFF
+        1, 0xFFFF // 这里的 0xFFFF 允许 AI 碰撞所有物体，包括传感器
     );
 
     if (pb != nullptr) {
-        pb->body->SetTransform(pb->body->GetPosition(),-90.0f * DEGTORAD);
+        pb->body->SetTransform(pb->body->GetPosition(), -90.0f * DEGTORAD);
+
+        // --- 为了公平性，添加以下物理属性设置 ---
+
+        // 1. 设置和玩家一样的阻尼 (Damping)
+        pb->body->SetLinearDamping(CarStats::LINEAR_DAMPING);
+        pb->body->SetAngularDamping(CarStats::ANGULAR_DAMPING);
+
+        // 2. 设置物理材质属性
+        b2Fixture* fixture = pb->body->GetFixtureList();
+        if (fixture) {
+            fixture->SetDensity(CarStats::DENSITY);     // 确保重量一致
+            fixture->SetFriction(CarStats::FRICTION);   // 确保摩擦一致
+            fixture->SetRestitution(CarStats::RESTITUTION); // 确保碰撞弹性一致
+
+            // 重要：改变密度后必须重置质量，否则 AI 会感觉很轻或很重
+            pb->body->ResetMassData();
+        }
     }
 
     EnemyCar enemy;
-    enemy.Init(pb, startPathIndex,randomPathID);
+    enemy.Init(pb, startPathIndex, randomPathID);
 
+    enemy.maxSpeed = CarStats::MAX_SPEED;
+    enemy.turnSpeed = CarStats::STEERING_SPEED; 
     enemy.width = 26;
     enemy.height = 43;
+
+    // 初始化圈数计数变量（如果你已经在 EnemyCar 结构体里添加了它们）
+    enemy.laps = 0;
+    enemy.lap_progress_state = 0;
+
     enemies.push_back(enemy);
 }
 
@@ -294,20 +318,15 @@ update_status ModuleAi::Update()
 
 void ModuleAi::KillOrthogonalVelocity(b2Body* body)
 {
-    b2Vec2 localPoint(0, 0);
-    b2Vec2 velocity = body->GetLinearVelocityFromLocalPoint(localPoint);
-    b2Vec2 sidewaysAxis = body->GetWorldVector(b2Vec2(1, 0));
-    float mag = b2Dot(velocity, sidewaysAxis);
+    float currentAngle = body->GetAngle();
+    // 注意：这里的 forwardDir 必须和玩家定义的计算方式完全一致
+    b2Vec2 forwardDir = { (float)sin(currentAngle), (float)-cos(currentAngle) };
 
-    // Reducimos la deriva lateral al 95% en cada frame (derrape controlado)
-    // Usar 1.0f quita el derrape totalmente (coche sobre ra韑es)
-    // Usar 0.9f permite derrape
-    float driftCorrection = 0.95f;
+    b2Vec2 currentVel = body->GetLinearVelocity();
+    float forwardSpeed = b2Dot(currentVel, forwardDir);
 
-    b2Vec2 impulse;
-    impulse.x = sidewaysAxis.x * (-mag * body->GetMass() * driftCorrection);
-    impulse.y = sidewaysAxis.y * (-mag * body->GetMass() * driftCorrection);
-    body->ApplyLinearImpulse(impulse, body->GetWorldCenter(), true);
+    // AI 也只保留向前速度，消除侧向速度
+    body->SetLinearVelocity(forwardSpeed * forwardDir);
 }
 
 update_status ModuleAi::PostUpdate()

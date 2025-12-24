@@ -183,7 +183,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CarProperties.h" />
     <ClInclude Include="Source/Application.h" />
     <ClInclude Include="Source/Globals.h" />
     <ClInclude Include="Source/ModulePhysics.h" />
@@ -192,6 +191,7 @@
     <ClInclude Include="Source/ModuleRender.h" />
     <ClInclude Include="Source/ModuleWindow.h" />
     <ClInclude Include="Source/p2Point.h" />
+    <ClInclude Include="Source\CarProperties.h" />
     <ClInclude Include="Source\ModuleAi.h" />
     <ClInclude Include="Source\ModuleGame.h" />
     <ClInclude Include="Source\ModuleMap.h" />
