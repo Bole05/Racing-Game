@@ -455,6 +455,73 @@ bool ModuleMap::Load(const char* path)
             }
 
         }
+
+        if (name=="Powerups") {
+            for (pugi::xml_node object = objectGroup.child("object"); object; object = object.next_sibling("object")) {
+                std::string type = object.attribute("type").as_string(); // Tiled 的 "Class" 或 "Type" 字段
+
+                // 或者如果使用的是自定义属性，请用这段:
+                /* pugi::xml_node props = object.child("properties");
+                for (pugi::xml_node p = props.child("property"); p; p = p.next_sibling("property")) {
+                    std::string propName = p.attribute("name").as_string();
+                    if (propName == "Type") type = p.attribute("value").as_string();
+                }
+                */
+
+                // 如果检测到是加速带
+                if (type == "Boost")
+                {
+                    int x = object.attribute("x").as_int();
+                    int y = object.attribute("y").as_int();
+                    int width = object.attribute("width").as_int();
+                    int height = object.attribute("height").as_int();
+
+                    // Tiled 的坐标是左上角，Box2D 通常以中心点为原点创建矩形
+                    // 我们需要把坐标偏移到中心
+                    int centerX = x + width / 2;
+                    int centerY = y + height / 2;
+
+                    // 创建传感器 (Sensor)
+                    PhysBody* boost = App->physics->CreateRectangleSensor(centerX, centerY, width, height);
+                    boost->ptype = BodyType::BOOST; // 设置类型
+
+                    // 也可以设置 listener 为 ModulePlayer 或 ModuleGame，以便接收回调
+                    // boost->listener = App->player; 
+
+                    LOG("BOOST");
+                }
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     // -------------------------------------------------------------------------
         // 5. Cargar Spawn Points (Object Layer llamada "Spawn")

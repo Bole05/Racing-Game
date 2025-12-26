@@ -14,6 +14,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 public:
 	PhysBody* pbody;
 	Texture2D texture;
@@ -24,4 +25,7 @@ public:
 	int height;
 	float speed;
 	float turn_speed;
+	// 增加倒计时
+	int boostTimer = 0;
+	float currentMaxSpeed = 0.0f;
 }; 

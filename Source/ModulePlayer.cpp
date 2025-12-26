@@ -57,6 +57,9 @@ bool ModulePlayer::Start()
     speed = CarStats::ACCELERATION;
     turn_speed = CarStats::STEERING_SPEED;
 
+
+    currentMaxSpeed = CarStats::MAX_SPEED; // 初始速度
+    boostTimer = 0;
 	return true;
 }
 
@@ -73,6 +76,24 @@ update_status ModulePlayer::Update()
 
     if (pbody != nullptr)
     {
+        // 1. 处理加速计时逻辑
+        if (boostTimer > 0) {
+            boostTimer--;
+            if (boostTimer == 0) {
+                currentMaxSpeed = CarStats::MAX_SPEED; // 时间到，恢复原始速度
+                LOG("Speed normal");
+            }
+        }
+
+        // 2. 使用 currentMaxSpeed 而不是固定值
+        // 如果 currentMaxSpeed 还没初始化，就在 Start 里设置 currentMaxSpeed = CarStats::MAX_SPEED
+        float maxSpeed = currentMaxSpeed;
+
+
+
+
+
+
         b2Body* b = pbody->body;
 
         // 1. OBTENER DIRECCI?N Y VELOCIDAD
@@ -106,7 +127,7 @@ update_status ModulePlayer::Update()
         b->SetAngularVelocity(newRot);
 
         // 4. ACELERACI?N
-        float maxSpeed = CarStats::MAX_SPEED;
+    /*    float maxSpeed = CarStats::MAX_SPEED;*/
 
         if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_W))
         {
@@ -164,3 +185,14 @@ update_status ModulePlayer::PostUpdate()
     return UPDATE_CONTINUE;
 }
 
+// ModulePlayer.cpp
+void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+{
+    // bodyB 是玩家撞到的东西
+    if (bodyB != nullptr && bodyB->ptype == BodyType::BOOST)
+    {
+        boostTimer = 60; // 3秒加速 (假设60fps)
+        currentMaxSpeed = CarStats::MAX_SPEED * 2.0f; // 速度翻倍
+        LOG("BOOST ACTIVE!");
+    }
+}

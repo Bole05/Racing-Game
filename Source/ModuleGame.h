@@ -38,7 +38,7 @@ public:
 	bool ray_on;
 
 	// Variables para el sistema de vueltas
-	PhysBody* car_to_track = nullptr; // El coche al que se le hará el seguimiento
+	PhysBody* car_to_track = nullptr; // El coche al que se le har?el seguimiento
 	PhysBody* sensor1 = nullptr; // Sensor de Inicio/Fin
 	PhysBody* sensor2 = nullptr; // Checkpoint 2
 	PhysBody* sensor3 = nullptr; // Checkpoint 3
