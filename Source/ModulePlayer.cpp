@@ -192,7 +192,7 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
     if (bodyB != nullptr && bodyB->ptype == BodyType::BOOST)
     {
         boostTimer = 60; // 3秒加速 (假设60fps)
-        currentMaxSpeed = CarStats::MAX_SPEED * 2.0f; // 速度翻倍
+        currentMaxSpeed = CarStats::MAX_SPEED +3.0f; // 速度翻倍
         LOG("BOOST ACTIVE!");
     }
 }
