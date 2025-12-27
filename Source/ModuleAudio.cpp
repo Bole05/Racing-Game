@@ -29,6 +29,22 @@ bool ModuleAudio::Init()
 	return ret;
 }
 
+update_status ModuleAudio::Update()
+{
+    //// Esto hace que la música siga sonando
+    //if (IsMusicReady(music))
+    //{
+    //    UpdateMusicStream(music);
+    //}
+    //return update_status::UPDATE_CONTINUE;
+
+	if (music.stream.buffer != NULL && IsMusicStreamPlaying(music))
+	{
+		UpdateMusicStream(music);
+	}
+	return update_status::UPDATE_CONTINUE;
+}
+
 // Called before quitting
 bool ModuleAudio::CleanUp()
 {
@@ -55,19 +71,34 @@ bool ModuleAudio::CleanUp()
 // Play a music file
 bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 {
-	if(IsEnabled() == false)
+	//if(IsEnabled() == false)
+	//	return false;
+
+	//bool ret = true;
+	//
+ //   StopMusicStream(music);
+ //   music = LoadMusicStream(path);
+ //   
+ //   PlayMusicStream(music);
+
+	//LOG("Successfully playing %s", path);
+
+	//return ret;
+	if (IsEnabled() == false) return false;
+
+	StopMusicStream(music);
+	music = LoadMusicStream(path);
+
+	// Verificación de seguridad
+	if (music.stream.buffer == NULL) {
+		LOG("ERROR: No se pudo cargar la musica en %s", path);
 		return false;
+	}
 
-	bool ret = true;
-	
-    StopMusicStream(music);
-    music = LoadMusicStream(path);
-    
-    PlayMusicStream(music);
-
+	PlayMusicStream(music);
+	SetMusicVolume(music, 0.5f); // Prueba con volumen al 50%
 	LOG("Successfully playing %s", path);
-
-	return ret;
+	return true;
 }
 
 // Load WAV

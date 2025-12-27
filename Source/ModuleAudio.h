@@ -12,8 +12,8 @@ public:
 	ModuleAudio(Application* app, bool start_enabled = true);
 	~ModuleAudio();
 
-	bool Init();
-	bool CleanUp();
+	bool Init() override;
+	bool CleanUp() override;
 
 	// Play a music file
 	bool PlayMusic(const char* path, float fade_time = DEFAULT_MUSIC_FADE_TIME);
@@ -23,6 +23,8 @@ public:
 
 	// Play a previously loaded sound
 	bool PlayFx(unsigned int fx, int repeat = 0);
+
+	update_status Update() override;
 
 private:
 

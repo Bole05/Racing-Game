@@ -137,6 +137,10 @@ bool ModuleGame::Start()
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
 	// App->player->pbody->body->SetTransform(App->map->playerSpawnPoint, 0);
 
+	App->audio->PlayMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav");
+
+	finishFx = App->audio->LoadFx("Assets-racing/Audio/Music/vueltaCompletada.wav");
+
 	// 2. 设置玩家位置 (修复重点：取消注释并转换坐标单位)
 	if (App->player->pbody != nullptr) {
 		// 必须将 Tiled 的像素坐标转换为物理引擎的米坐标
@@ -202,6 +206,7 @@ update_status ModuleGame::Update()
 		// Si el juego ha terminado, no procesamos la entrada ni actualizamos entidades.
 		return UPDATE_CONTINUE;
 	}
+
 
 	if(IsKeyPressed(KEY_SPACE))
 	{
@@ -400,6 +405,9 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 				if (vehicleProgress == ALL_SENSORS_HIT) {
 					vehicleLaps++;
 					vehicleProgress = S1;
+					if (vehicleBody == car_to_track) {
+						App->audio->PlayFx(finishFx);
+					}
 					LOG("Vehicle completed a lap! Total: %d", vehicleLaps);
 				}
 				else {

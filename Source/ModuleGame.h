@@ -24,6 +24,7 @@ public:
 	bool CleanUp();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 	bool game_over = false;
+	uint finishFx = 0;
 
 public:
 
