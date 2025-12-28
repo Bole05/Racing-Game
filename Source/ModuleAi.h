@@ -62,6 +62,9 @@ struct EnemyCar {
     int currentPathIndex = 0;
     int selectedPathIndex = 0;
 
+    //b2Vec2 spawnPos; // Posición inicial en metros
+    //float initialRotation; // Rotación inicial
+
     int laps=0;
     int lap_progress_state = 0;
 
@@ -75,7 +78,8 @@ struct EnemyCar {
 
 
     // Métodos helper
-    void Init(PhysBody* body, int startPathIndex,int pathIndex);
+    //void Init(PhysBody* body, int startPathIndex,int pathIndex);
+    void Init(PhysBody* body, int startPathIndex, int pathIndex);
 };
 
 struct DebugLine {
@@ -96,6 +100,7 @@ public:
     // Función para crear un enemigo
     void CreateEnemy(int pathIndexOffset = 0);
     void CreateEnemyAtPosition(b2Vec2 position, int startPathIndex);
+    void ResetEnemies();
 public:
     Texture2D texture;
     std::vector<EnemyCar> enemies;

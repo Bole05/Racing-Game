@@ -171,6 +171,19 @@ float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int co
 update_status ModuleAi::Update()
 {
     if (App->game != nullptr && App->game->game_over) return UPDATE_CONTINUE;
+
+    if (App->game != nullptr && App->game->game_over == true) {
+        for (auto& enemy : enemies) {
+            if (enemy.pbody != nullptr && enemy.pbody->body != nullptr) {
+                // IMPORTANTE: Primero frenamos el motor físico
+                enemy.pbody->body->SetLinearVelocity({ 0.0f, 0.0f });
+                enemy.pbody->body->SetAngularVelocity(0.0f);
+            }
+        }
+        // Después de frenar a todos, salimos para no procesar la IA
+        return UPDATE_CONTINUE;
+    }
+
     if (App->map->trackPaths.empty()) return UPDATE_CONTINUE;
     for (auto& car : enemies)
     {
@@ -388,11 +401,27 @@ void ModuleAi::CreateEnemyAtPosition(b2Vec2 position, int startPathIndex)
     enemies.push_back(enemy);
 }
 
-
-
 bool ModuleAi::CleanUp()
 {
     UnloadTexture(texture);
     enemies.clear();
     return true;
 }
+
+//void ModuleAi::ResetEnemies() {
+//    for (auto& enemy : enemies) {
+//        if (enemy.pbody != nullptr && enemy.pbody->body != nullptr) {
+//            // Teletransporte a la posición original de Tiled
+//            enemy.pbody->body->SetTransform(enemy.spawnPos, enemy.initialRotation);
+//
+//            // Freno total de velocidad e inercia
+//            enemy.pbody->body->SetLinearVelocity({ 0.0f, 0.0f });
+//            enemy.pbody->body->SetAngularVelocity(0.0f);
+//
+//            // Reinicio de lógica
+//            enemy.laps = 0;
+//            enemy.lap_progress_state = 0;
+//            enemy.stuckTimer = 0;
+//        }
+//    }
+//}

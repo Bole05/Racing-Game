@@ -202,11 +202,28 @@ bool ModuleGame::CleanUp()
 // Update: draw background
 update_status ModuleGame::Update()
 {
+
+	if (game_over && IsKeyPressed(KEY_R)) {
+		game_over = false;
+		laps = 0;
+		lap_progress_state = 0;
+
+		// Llamamos a la función que acabas de crear
+		//App->Ai->ResetEnemies();
+
+		// Resetear al Jugador (usando sus coordenadas de spawn)
+		if (App->player->pbody != nullptr) {
+			float metersX = PIXEL_TO_METERS(App->map->playerSpawnPoint.x);
+			float metersY = PIXEL_TO_METERS(App->map->playerSpawnPoint.y);
+			App->player->pbody->body->SetTransform({ metersX, metersY }, -90.0f * DEGTORAD);
+			App->player->pbody->body->SetLinearVelocity({ 0, 0 });
+		}
+	}
+
 	if (game_over) {
 		// Si el juego ha terminado, no procesamos la entrada ni actualizamos entidades.
 		return UPDATE_CONTINUE;
 	}
-
 
 	if(IsKeyPressed(KEY_SPACE))
 	{
@@ -345,26 +362,37 @@ update_status ModuleGame::PostUpdate()
 	sprintf_s(currentRankStr, "POS: %d / %d", playerRank, (int)leaderboard.size());
 	DrawText(currentRankStr, SCREEN_WIDTH - 150, 20, 30, ORANGE);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	if (laps >= 2) // Comprobamos si las vueltas son 8 o más
 	{
 		// Dibuja el mensaje de "WIN" en el centro de la pantalla
 		DrawText("WIN", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2, 50, GOLD);
+
+		return UPDATE_CONTINUE;
+	}
+
+	if (game_over)
+	{
+		// Dibujamos un fondo oscuro para que resalte el texto final
+		DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Fade(BLACK, 0.5f));
+
+		// Comprobamos quién está en la posición 1 del leaderboard que ya calculaste arriba
+		if (!leaderboard.empty()) {
+			if (leaderboard[0].isPlayer) {
+				// Si el primero de la lista es el jugador
+				DrawText("YOU WIN!", SCREEN_WIDTH / 2 - 120, SCREEN_HEIGHT / 2 - 100, 60, GOLD);
+			}
+			else {
+				// Si el primero es un enemigo
+				DrawText("LOSE", SCREEN_WIDTH / 2 - 80, SCREEN_HEIGHT / 2 - 100, 60, RED);
+			}
+
+			// Mostramos tu ranking final en grande
+			char finalPos[32];
+			sprintf_s(finalPos, "FINAL RANKING: %d", playerRank);
+			DrawText(finalPos, SCREEN_WIDTH / 2 - 110, SCREEN_HEIGHT / 2, 30, WHITE);
+
+			DrawText("PRESS R TO RESTART", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 + 60, 20, GRAY);
+		}
 
 		return UPDATE_CONTINUE;
 	}
@@ -377,6 +405,8 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	PhysBody* sensor = nullptr;
 	PhysBody* vehicleBody = nullptr;
+
+	if (game_over) return;
 
 	// 1. Ê¶±ðÄÄ¸öÊÇ´«¸ÐÆ÷£¬ÄÄ¸öÊÇ³µÁ¾
 	if (bodyA == sensor1 || bodyA == sensor2 || bodyA == sensor3 || bodyA == sensor4) {
@@ -405,6 +435,17 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 				if (vehicleProgress == ALL_SENSORS_HIT) {
 					vehicleLaps++;
 					vehicleProgress = S1;
+
+					if (vehicleLaps >= 2) { // Si alguien llega a las vueltas necesarias (ej: 2)
+						this->game_over = true;
+						if (vehicleBody == car_to_track) {
+							// El jugador ganó (esto lo manejaremos en el dibujo)
+						}
+						else {
+							LOG("Un enemigo ha ganado. GAME OVER.");
+						}
+					}
+
 					if (vehicleBody == car_to_track) {
 						App->audio->PlayFx(finishFx);
 					}
