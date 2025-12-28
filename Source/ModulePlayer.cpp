@@ -175,7 +175,7 @@ update_status ModulePlayer::PostUpdate()
         float rotationDegrees = pbody->GetRotation() * RAD2DEG;
 
         // 3. Dibujar
-        Rectangle sourceRec = { 0.0f, 0.0f, (float)this->width,(float)this->height };
+        Rectangle sourceRec = { 1.0f, 0.0f, (float)this->width,(float)this->height };
         Rectangle destRec = { (float)posX, (float)posY, (float)this->width, (float)this->height };
         Vector2 origin = { (float)this->width / 2, (float)this->height / 2 };
 
