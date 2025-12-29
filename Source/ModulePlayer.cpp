@@ -315,6 +315,11 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
+    //if (App->game == nullptr) return UPDATE_CONTINUE;
+    //if (App->game->current_state == START_MENU) {
+    //    // (Aquí va tu código de dibujo de menu_img que pusimos antes)
+    //    return UPDATE_CONTINUE;
+    //}
     if (pbody != nullptr)
     {
         // --- RENDERIZADO (RAYLIB) ---

@@ -214,22 +214,29 @@ bool ModuleGame::CleanUp()
 update_status ModuleGame::Update()
 {
 
+	//if (current_state == START_MENU) {
+	//	// 1. Dibujar imagen de fondo
+	//	DrawTexture(menu_img, 0, 0, WHITE);
+
+	//	// 2. Dibujar texto con un pequeño parpadeo (opcional)
+	//	if ((int)(GetTime() * 2) % 2 == 0) {
+	//		DrawText("PRESIONAR ENTER PARA INICIAR", SCREEN_WIDTH / 2 - 170, SCREEN_HEIGHT / 2 + 150, 20, LIGHTGRAY);
+	//	}
+
+	//	// 3. Pasar al juego
+	//	if (IsKeyPressed(KEY_ENTER)) {
+	//		current_state = INGAME;
+	//	}
+
+	//	// IMPORTANTE: Retornamos aquí para que no se ejecute NADA de lo de abajo
+	//	return UPDATE_CONTINUE;
+	//}
+
 	if (current_state == START_MENU) {
-		// 1. Dibujar imagen de fondo
-		DrawTexture(menu_img, 0, 0, WHITE);
-
-		// 2. Dibujar texto con un pequeño parpadeo (opcional)
-		if ((int)(GetTime() * 2) % 2 == 0) {
-			DrawText("PRESIONAR ENTER PARA INICIAR", SCREEN_WIDTH / 2 - 170, SCREEN_HEIGHT / 2 + 150, 20, LIGHTGRAY);
-		}
-
-		// 3. Pasar al juego
 		if (IsKeyPressed(KEY_ENTER)) {
 			current_state = INGAME;
 		}
-
-		// IMPORTANTE: Retornamos aquí para que no se ejecute NADA de lo de abajo
-		return UPDATE_CONTINUE;
+		return UPDATE_CONTINUE; // No ejecutamos lógica de juego
 	}
 
 	if (game_over && IsKeyPressed(KEY_R)) {
@@ -311,6 +318,29 @@ update_status ModuleGame::PostUpdate()
 		return UPDATE_CONTINUE;
 	}*/
 	// Llama a la Update() base por si tiene lógica.
+
+	//if (current_state == START_MENU) return UPDATE_CONTINUE;
+
+	if (current_state == START_MENU) {
+		// Obligatorio: Salir del modo cámara para usar coordenadas de pantalla (0,0 es la esquina)
+		EndMode2D();
+
+		// Dibujamos el fondo negro para tapar cualquier residuo del mapa
+		ClearBackground(BLACK);
+
+		// Dibujamos la textura del menú
+		DrawTexture(menu_img, 0, 0, WHITE);
+
+		// Texto de inicio
+		if ((int)(GetTime() * 2) % 2 == 0) {
+			DrawText("PRESIONAR ENTER PARA INICIAR", SCREEN_WIDTH / 2 - 170, SCREEN_HEIGHT / 2 + 250, 30, YELLOW);
+		}
+
+		// Volvemos a activar la cámara por si el motor la necesita para el siguiente módulo
+		BeginMode2D(App->renderer->camera);
+		return UPDATE_CONTINUE;
+	}
+
 	update_status ret = Module::PostUpdate();
 
 	int current_lap = laps + 1;
