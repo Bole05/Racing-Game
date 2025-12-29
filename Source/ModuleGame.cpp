@@ -375,7 +375,7 @@ update_status ModuleGame::PostUpdate()
 		// Dibujamos un fondo oscuro para que resalte el texto final
 		DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Fade(BLACK, 0.5f));
 
-		// Comprobamos quién está en la posición 1 del leaderboard que ya calculaste arriba
+		// Comprobamos quién est?en la posición 1 del leaderboard que ya calculaste arriba
 		if (!leaderboard.empty()) {
 			if (leaderboard[0].isPlayer) {
 				// Si el primero de la lista es el jugador
@@ -439,7 +439,7 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 					if (vehicleLaps >= 2) { // Si alguien llega a las vueltas necesarias (ej: 2)
 						this->game_over = true;
 						if (vehicleBody == car_to_track) {
-							// El jugador ganó (esto lo manejaremos en el dibujo)
+							// El jugador gan?(esto lo manejaremos en el dibujo)
 						}
 						else {
 							LOG("Un enemigo ha ganado. GAME OVER.");

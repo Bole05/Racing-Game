@@ -60,6 +60,14 @@ bool ModulePlayer::Start()
 
     currentMaxSpeed = CarStats::MAX_SPEED; // 初始速度
     boostTimer = 0;
+
+    currentBoostCharge = 0.0f;
+
+    // 这里设定“1/4圈”的距离。
+    // 注意：Box2D的单位是米。你需要根据你的地图大小调整这个数值。
+    // 如果一圈大概是 2000米，那这里设为 500.0f。
+    // 你需要运行游戏测试一下，跑完1/4路程时看日志或UI调整这个值。
+    maxBoostCharge = 1500.0f;
 	return true;
 }
 
@@ -92,6 +100,22 @@ update_status ModulePlayer::Update()
                 LOG("Speed normal");
             }
         }
+        float currentSpeed = pbody->body->GetLinearVelocity().Length();
+
+        if (boostTimer <= 0 && currentBoostCharge < maxBoostCharge) {
+            currentBoostCharge += currentSpeed * 0.5f;
+
+            if (currentBoostCharge>maxBoostCharge) {
+                currentBoostCharge = maxBoostCharge;
+                LOG("Boost Ready !");
+            }
+        }
+
+
+
+
+
+
 
         // 2. 使用 currentMaxSpeed 而不是固定值
         // 如果 currentMaxSpeed 还没初始化，就在 Start 里设置 currentMaxSpeed = CarStats::MAX_SPEED
@@ -137,11 +161,12 @@ update_status ModulePlayer::Update()
         // 4. ACELERACI?N
     /*    float maxSpeed = CarStats::MAX_SPEED;*/
 
-        if (IsKeyPressed(KEY_SPACE) && boostTimer <= 0) // IsKeyPressed para que solo se active una vez por pulsaci髇
+        if (IsKeyPressed(KEY_SPACE) && boostTimer <= 0&&currentBoostCharge>=maxBoostCharge) // IsKeyPressed para que solo se active una vez por pulsaci髇
         {
             boostTimer = 120; // 2 segundos a 60 FPS
             currentMaxSpeed = CarStats::MAX_SPEED * 1.5f; // Aumentamos la velocidad m醲ima (ejemplo: x1.5)
-            LOG("BOOST ACTIVADO CON ESPACIO!");
+            currentBoostCharge = 0.0f;
+            LOG("BOOST ACTIVADO! Change reset");
         }
 
         if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_W))
@@ -195,6 +220,42 @@ update_status ModulePlayer::PostUpdate()
         Vector2 origin = { (float)this->width / 2, (float)this->height / 2 };
 
         DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, WHITE);
+
+        //UI boost with space
+        int barWidth = 200;
+        int barHeight = 20;
+        int screenW = GetScreenWidth();
+        int magin = 30;
+        int barX = screenW - barWidth - magin;
+        int barY = magin;
+
+        float percentage = currentBoostCharge / maxBoostCharge;
+
+        if (percentage > 1.0f)percentage = 1.0f;
+
+        DrawRectangle(barX, barY, barWidth, barHeight, Fade(DARKGRAY, 0.8f));
+        DrawRectangleLines(barX,barY,barWidth,barHeight,WHITE);//margen
+
+        Color barColor = YELLOW;
+
+        if (percentage >= 1.0f) {
+            barColor = GREEN;
+
+            DrawText("Boost Ready [SPACE]", barX, barY + 25, 10, GREEN);
+        }
+        
+        DrawRectangle(barX, barY, (int)(barWidth * percentage), barHeight, barColor);
+
+        if (boostTimer > 0) {
+            DrawText("BOOSTING!!", barX, barY + 25, 10, RED);
+
+            DrawRectangle(barX,barY,barWidth,barHeight,RED);
+        }
+
+
+
+
+
     }
 
     return UPDATE_CONTINUE;
