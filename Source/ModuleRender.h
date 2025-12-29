@@ -23,5 +23,6 @@ public:
 public:
 
 	Color background;
-    Rectangle camera;
+	Camera2D camera;
+	
 };

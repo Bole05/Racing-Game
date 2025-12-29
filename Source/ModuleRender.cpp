@@ -7,6 +7,13 @@
 ModuleRender::ModuleRender(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
     background = RAYWHITE;
+
+    camera.rotation = 0.0f;
+    camera.zoom = 1.0f;
+    camera.offset = { 0,0 };
+    camera.target = { 0,0 };
+
+
 }
 
 // Destructor
@@ -27,6 +34,8 @@ update_status ModuleRender::PreUpdate()
 {
     ClearBackground(background);
     BeginDrawing();
+    //movimiento camara2d
+    BeginMode2D(camera);
 	return UPDATE_CONTINUE;
 }
 
@@ -46,6 +55,7 @@ update_status ModuleRender::Update()
 // PostUpdate present buffer to screen
 update_status ModuleRender::PostUpdate()
 {
+    EndMode2D();
     // Draw everything in our batch!
     DrawFPS(10, 10);
 
@@ -76,8 +86,8 @@ bool ModuleRender::Draw(Texture2D texture, int x, int y, const Rectangle* sectio
 
     if (section != NULL) rect = *section;
 
-    position.x = (float)(x-pivot_x) * scale + camera.x;
-    position.y = (float)(y-pivot_y) * scale + camera.y;
+    position.x = (float)(x-pivot_x) * scale;
+    position.y = (float)(y-pivot_y) * scale;
 
 	rect.width *= scale;
 	rect.height *= scale;

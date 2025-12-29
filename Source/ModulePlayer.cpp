@@ -5,6 +5,8 @@
 #include "ModuleGame.h"
 #include "ModuleMap.h"
 #include "CarProperties.h"
+#include "ModuleRender.h"
+#include<algorithm>
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -194,7 +196,63 @@ update_status ModulePlayer::Update()
             v.y *= 0.98f;
             b->SetLinearVelocity(v);
         }
+        //Get player position
+        int px;
+        int py;
+        pbody->GetPhysicPosition(px,py);
+        // --- 镜头跟随与限制逻辑 (Camera Clamping) ---
+
+   // 2. 获取地图的总宽高 (单位：像素)
+        // mapData.width 是格子的数量，tileWidth 是一个格子的像素宽
+        int mapWidth = App->map->mapData.width * App->map->mapData.tileWidth;
+        int mapHeight = App->map->mapData.height * App->map->mapData.tileHeight;
+
+        // 3. 获取屏幕尺寸和当前的缩放倍率
+        float screenW = (float)GetScreenWidth();
+        float screenH = (float)GetScreenHeight();
+        float zoom = App->renderer->camera.zoom;
+
+        // 4. 计算“视野的一半”有多大 (在地图世界中的尺寸)
+        // 比如屏幕宽800，缩放1.0，那视野半径就是400。如果缩放2.0，视野半径就是200。
+        float halfViewW = (screenW / 2.0f) / zoom;
+        float halfViewH = (screenH / 2.0f) / zoom;
+
+        // 5. 计算目标位置，但增加限制 (Clamping)
+        Vector2 target;
+        target.x = (float)px;
+        target.y = (float)py;
+
+        // --- X轴限制 ---
+        // 只有当地图比屏幕宽时才限制，否则就居中
+        if (mapWidth > screenW / zoom) {
+            // 如果玩家太靠左，相机停在最左边 (halfViewW)
+            if (target.x < halfViewW) target.x = halfViewW;
+            // 如果玩家太靠右，相机停在最右边 (地图总宽 - halfViewW)
+            else if (target.x > mapWidth - halfViewW) target.x = mapWidth - halfViewW;
+        }
+        else {
+            target.x = mapWidth / 2.0f; // 地图太小，直接居中
+        }
+
+        // --- Y轴限制 ---
+        if (mapHeight > screenH / zoom) {
+            // 如果玩家太靠上
+            if (target.y < halfViewH) target.y = halfViewH;
+            // 如果玩家太靠下
+            else if (target.y > mapHeight - halfViewH) target.y = mapHeight - halfViewH;
+        }
+        else {
+            target.y = mapHeight / 2.0f; // 地图太小，直接居中
+        }
+
+        // 6. 应用目标位置
+        App->renderer->camera.target = target;
+
+        // 偏移量永远是屏幕中心 (因为我们要把 target 放在屏幕中间显示)
+        App->renderer->camera.offset = { screenW / 2.0f, screenH / 2.0f };
     }
+
+    
 
     return UPDATE_CONTINUE;
 }
@@ -221,13 +279,14 @@ update_status ModulePlayer::PostUpdate()
 
         DrawTexturePro(texture, sourceRec, destRec, origin, rotationDegrees, WHITE);
 
+        EndMode2D();
         //UI boost with space
         int barWidth = 200;
         int barHeight = 20;
         int screenW = GetScreenWidth();
-        int magin = 30;
+        int magin = 80;
         int barX = screenW - barWidth - magin;
-        int barY = magin;
+        int barY = 30;
 
         float percentage = currentBoostCharge / maxBoostCharge;
 
@@ -253,7 +312,7 @@ update_status ModulePlayer::PostUpdate()
         }
 
 
-
+        BeginMode2D(App->renderer->camera);
 
 
     }

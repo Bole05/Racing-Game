@@ -133,7 +133,10 @@ bool ModuleGame::Start()
 	LOG("Loading Intro assets---------------------------------------------------------------------");
 	bool ret = true;
 
-	App->renderer->camera.x = App->renderer->camera.y = 0;
+	//App->renderer->camera.x = App->renderer->camera.y = 0;
+	App->renderer->camera.target = { 0.0f, 0.0f };
+	App->renderer->camera.offset = { 0.0f, 0.0f };
+	App->renderer->camera.zoom = 1.0f;
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
 	// App->player->pbody->body->SetTransform(App->map->playerSpawnPoint, 0);
 
@@ -159,14 +162,14 @@ bool ModuleGame::Start()
 		App->Ai->CreateEnemyAtPosition(spawnPos, 0);
 	}
 
-	App->Ai->CreateEnemy(0);
+	//App->Ai->CreateEnemy(0);
 	
 	car_to_track = App->player->pbody;
 	
 
-	// Crear un par de enemigos en posiciones diferentes de la ruta
-	App->Ai->CreateEnemy(0);  // Empieza en el punto 0
-	App->Ai->CreateEnemy(5);  // Empieza en el punto 5 (más adelante)
+	//// Crear un par de enemigos en posiciones diferentes de la ruta
+	//App->Ai->CreateEnemy(0);  // Empieza en el punto 0
+	//App->Ai->CreateEnemy(5);  // Empieza en el punto 5 (más adelante)
 	
 
 	int sensor_width = 10;
@@ -290,6 +293,7 @@ update_status ModuleGame::PostUpdate()
 		current_lap = laps + 1;
 	}
 
+	EndMode2D();
 	// --- CONVERSIÓN DE ENTERO A TEXTO ---
 	// Buffer para construir la cadena de texto: "Laps: X"
 	static char laps_text[64];
