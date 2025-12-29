@@ -82,6 +82,9 @@ bool ModulePlayer::CleanUp()
 }
 update_status ModulePlayer::Update()
 {
+    float currentSpeed = pbody->body->GetLinearVelocity().Length();
+    bool showNotReadyWarning = false;
+
     if (App->game != nullptr && App->game->game_over == true) return UPDATE_CONTINUE;
 
     if (App->game != nullptr && App->game->game_over == true) {
@@ -90,6 +93,25 @@ update_status ModulePlayer::Update()
             pbody->body->SetAngularVelocity(0);
         }
         return UPDATE_CONTINUE;
+    }
+
+    if (boostTimer > 0)
+    {
+        boostTimer--;
+
+        // Calculamos cu·nto debe bajar la barra en cada frame
+        // Si el boost dura 120 frames, restamos 1/120 de la barra cada vez
+        float depletionSpeed = maxBoostCharge / 20.0f;
+        currentBoostCharge -= depletionSpeed;
+
+        // Evitamos que baje de 0
+        if (currentBoostCharge < 0) currentBoostCharge = 0.0f;
+
+        if (boostTimer == 0)
+        {
+            currentMaxSpeed = CarStats::MAX_SPEED;
+            LOG("Boost finalizado - Velocidad normal");
+        }
     }
 
     if (pbody != nullptr)
@@ -113,7 +135,15 @@ update_status ModulePlayer::Update()
             }
         }
 
+        if (IsKeyPressed(KEY_H)) {
+            showHelpMenu = !showHelpMenu;
+        }
 
+        // Si el men˙ est· abierto, "paramos" el juego devolviendo UPDATE_CONTINUE 
+        // pero salt·ndonos toda la lÛgica de fÌsicas y movimiento de abajo.
+        if (showHelpMenu) return UPDATE_CONTINUE;
+
+        if (App->game != nullptr && App->game->game_over == true) return UPDATE_CONTINUE;
 
 
 
@@ -163,13 +193,37 @@ update_status ModulePlayer::Update()
         // 4. ACELERACI?N
     /*    float maxSpeed = CarStats::MAX_SPEED;*/
 
-        if (IsKeyPressed(KEY_SPACE) && boostTimer <= 0&&currentBoostCharge>=maxBoostCharge) // IsKeyPressed para que solo se active una vez por pulsaciÛn
+        //if (IsKeyPressed(KEY_SPACE) && boostTimer <= 0&&currentBoostCharge>=maxBoostCharge) // IsKeyPressed para que solo se active una vez por pulsaciÛn
+        //{
+        //    boostTimer = 120; // 2 segundos a 60 FPS
+        //    currentMaxSpeed = CarStats::MAX_SPEED * 1.5f; // Aumentamos la velocidad m·xima (ejemplo: x1.5)
+        //    currentBoostCharge = 0.0f;
+        //    LOG("BOOST ACTIVADO! Change reset");
+        //}
+
+        if (IsKeyPressed(KEY_SPACE))
         {
-            boostTimer = 120; // 2 segundos a 60 FPS
-            currentMaxSpeed = CarStats::MAX_SPEED * 1.5f; // Aumentamos la velocidad m·xima (ejemplo: x1.5)
-            currentBoostCharge = 0.0f;
-            LOG("BOOST ACTIVADO! Change reset");
+            if (currentBoostCharge >= maxBoostCharge && boostTimer <= 0)
+            {
+                // ACTIVACI”N EXITOSA
+                boostTimer = 120; // 2 segundos
+                currentMaxSpeed = CarStats::MAX_SPEED * 3.5f;
+                LOG("BOOST ACTIVADO!");
+            }
+            else if (boostTimer <= 0)
+            {
+                // EL JUGADOR PULS” PERO NO EST¡ LLENO
+                showNotReadyWarning = true;
+                LOG("Boost no preparado");
+            }
         }
+
+        if (IsKeyPressed(KEY_SPACE) && currentBoostCharge < maxBoostCharge && boostTimer <= 0)
+        {
+            warningTimer = 60; // El mensaje durar· 60 frames (1 segundo)
+        }
+
+        if (warningTimer > 0) warningTimer--;
 
         if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_W))
         {
@@ -311,9 +365,74 @@ update_status ModulePlayer::PostUpdate()
             DrawRectangle(barX,barY,barWidth,barHeight,RED);
         }
 
+        if (warningTimer > 0)
+        {
+            // Lo dibujamos cerca de la barra o en el centro
+            DrawText("BOOST NO PREPARADO", barX - 20, barY + 45, 25, BLUE);
+        }
+
+        // Aseg˙rate de que este bloque se mantenga para ver cuando SÕ funciona
+        if (percentage >= 1.0f && boostTimer <= 0) {
+            DrawText("Boost Ready [SPACE]", barX, barY + 25, 25, BLUE);
+        }
+
+        if (showHelpMenu) {
+            int screenW = GetScreenWidth();
+            int screenH = GetScreenHeight();
+
+            // 1. Dibujar un fondo oscuro semitransparente que cubra toda la pantalla
+            DrawRectangle(0, 0, screenW, screenH, Fade(BLACK, 0.6f));
+
+            // 2. Dibujar la "ventana" central
+            int winW = 400;
+            int winH = 300;
+            int winX = (screenW - winW) / 2;
+            int winY = (screenH - winH) / 2;
+
+            DrawRectangle(winX, winY, winW, winH, RAYWHITE);
+            DrawRectangleLines(winX, winY, winW, winH, DARKGRAY);
+
+            // 3. Dibujar el texto de los controles
+            DrawText("CONTROLES DEL JUGADOR", winX + 50, winY + 30, 20, MAROON);
+
+            DrawText("- W / Flecha Arriba: Acelerar", winX + 40, winY + 80, 18, DARKGRAY);
+            DrawText("- S / Flecha Abajo: Frenar/Reversa", winX + 40, winY + 110, 18, DARKGRAY);
+            DrawText("- A-D / Flechas Izq-Der: Girar", winX + 40, winY + 140, 18, DARKGRAY);
+            DrawText("- ESPACIO: Activar Boost (si est· lleno)", winX + 40, winY + 170, 18, DARKGRAY);
+            DrawText("- H: Cerrar este menu", winX + 40, winY + 210, 18, BLUE);
+
+            DrawText("EL JUEGO ESTA EN PAUSA", winX + 80, winY + 260, 15, RED);
+        }
+
+        if (pbody != nullptr)
+        {
+            // 1. Obtener la velocidad actual (magnitud del vector)
+            float speedVal = pbody->body->GetLinearVelocity().Length();
+
+            // 2. Convertir a una cadena de texto (multiplicamos por 10 para que el n˙mero sea m·s vistoso)
+            static char speedText[32];
+            sprintf_s(speedText, 32, "VELOCIDAD: %.1f KM/H", speedVal * 9.0f);
+
+            // 3. Definir posiciÛn en pantalla (por ejemplo, esquina inferior derecha)
+            int screenW = GetScreenWidth();
+            int screenH = GetScreenHeight();
+            int posX = screenW - 250;
+            int posY = screenH - 50;
+
+            // 4. Dibujar un pequeÒo fondo para el texto
+            DrawRectangle(posX - 10, posY - 5, 230, 30, Fade(BLACK, 0.5f));
+
+            // 5. Dibujar el texto de velocidad
+            // Si la velocidad es alta (por boost), la pintamos en un color diferente
+            Color velocityColor = (boostTimer > 0) ? GOLD : WHITE;
+            DrawText(speedText, posX, posY, 20, velocityColor);
+        }
+
+
 
         BeginMode2D(App->renderer->camera);
 
+        
 
     }
 
@@ -321,13 +440,26 @@ update_status ModulePlayer::PostUpdate()
 }
 
 // ModulePlayer.cpp
+//void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+//{
+//    // bodyB  «ÕÊº“◊≤µΩµƒ∂´Œ˜
+//    if (bodyB != nullptr && bodyB->ptype == BodyType::BOOST)
+//    {
+//        boostTimer = 60; // 3√Îº”ÀŸ (ºŸ…Ë60fps)
+//        currentMaxSpeed = CarStats::MAX_SPEED +3.0f; // ÀŸ∂»∑≠±∂
+//        LOG("BOOST ACTIVE!");
+//    }
+//}
+
 void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
-    // bodyB  «ÕÊº“◊≤µΩµƒ∂´Œ˜
     if (bodyB != nullptr && bodyB->ptype == BodyType::BOOST)
     {
-        boostTimer = 60; // 3√Îº”ÀŸ (ºŸ…Ë60fps)
-        currentMaxSpeed = CarStats::MAX_SPEED +3.0f; // ÀŸ∂»∑≠±∂
-        LOG("BOOST ACTIVE!");
+        // Si no quieres que afecte al timer de la barra, 
+        // podrÌas aplicar un impulso directo o usar una variable diferente.
+        // Si solo quieres velocidad sin que la barra se vea afectada, quita el boostTimer aquÌ:
+        currentMaxSpeed = CarStats::MAX_SPEED + 2.0f;
+        // boostTimer = 60; <-- Elimina o comenta esta lÌnea para que no afecte a la barra
+        LOG("BOOST SUELO ACTIVO!");
     }
 }

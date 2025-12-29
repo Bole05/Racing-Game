@@ -133,6 +133,14 @@ bool ModuleGame::Start()
 	LOG("Loading Intro assets---------------------------------------------------------------------");
 	bool ret = true;
 
+	menu_img = LoadTexture("Assets-racing/Textures/menu_sinletra.png");
+
+	// Asegúrate de que el resto de cosas se carguen (coche, etc.)
+	// Pero el estado inicial será START_MENU
+	current_state = START_MENU;
+	is_paused = false;
+	game_over = false;
+
 	//App->renderer->camera.x = App->renderer->camera.y = 0;
 	App->renderer->camera.target = { 0.0f, 0.0f };
 	App->renderer->camera.offset = { 0.0f, 0.0f };
@@ -198,13 +206,31 @@ bool ModuleGame::Start()
 bool ModuleGame::CleanUp()
 {
 	LOG("Unloading Intro scene");
-
+	UnloadTexture(menu_img);
 	return true;
 }
 
 // Update: draw background
 update_status ModuleGame::Update()
 {
+
+	if (current_state == START_MENU) {
+		// 1. Dibujar imagen de fondo
+		DrawTexture(menu_img, 0, 0, WHITE);
+
+		// 2. Dibujar texto con un pequeño parpadeo (opcional)
+		if ((int)(GetTime() * 2) % 2 == 0) {
+			DrawText("PRESIONAR ENTER PARA INICIAR", SCREEN_WIDTH / 2 - 170, SCREEN_HEIGHT / 2 + 150, 20, LIGHTGRAY);
+		}
+
+		// 3. Pasar al juego
+		if (IsKeyPressed(KEY_ENTER)) {
+			current_state = INGAME;
+		}
+
+		// IMPORTANTE: Retornamos aquí para que no se ejecute NADA de lo de abajo
+		return UPDATE_CONTINUE;
+	}
 
 	if (game_over && IsKeyPressed(KEY_R)) {
 		game_over = false;
@@ -281,6 +307,9 @@ update_status ModuleGame::Update()
 
 update_status ModuleGame::PostUpdate()
 {
+	/*if (current_state == START_MENU) {
+		return UPDATE_CONTINUE;
+	}*/
 	// Llama a la Update() base por si tiene lógica.
 	update_status ret = Module::PostUpdate();
 

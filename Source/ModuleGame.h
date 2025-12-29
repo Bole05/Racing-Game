@@ -11,6 +11,11 @@
 class PhysBody;
 class PhysicEntity;
 
+enum GameState {
+	START_MENU,
+	INGAME,
+	GAME_OVER
+};
 
 class ModuleGame : public Module
 {
@@ -24,7 +29,13 @@ public:
 	bool CleanUp();
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 	bool game_over = false;
+	bool is_paused = false;
+
+	GameState current_state = START_MENU; // Empezamos en el menú
+	Texture2D menu_img;
+
 	uint finishFx = 0;
+	
 
 public:
 

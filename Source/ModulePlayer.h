@@ -31,4 +31,8 @@ public:
 
 	float currentBoostCharge = 0.0f; // 当前充能进度 (累计行驶距离)
 	float maxBoostCharge = 0.0f;     // 需要行驶的总距离 (即 100% 进度)
+
+	int warningTimer = 0;
+
+	bool showHelpMenu = false;
 }; 

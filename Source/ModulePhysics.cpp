@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModulePhysics.h"
+#include "ModuleGame.h"
 
 #include "p2Point.h"
 
@@ -54,6 +55,10 @@ bool ModulePhysics::Start()
 
 update_status ModulePhysics::PreUpdate()
 {
+	/*if (App->game->game_over || App->game->is_paused) {
+		return UPDATE_CONTINUE;
+	}*/
+
 	world->Step(1.0f / 60.0f, 6, 2);
 
 	for(b2Contact* c = world->GetContactList(); c; c = c->GetNext())
@@ -70,6 +75,18 @@ update_status ModulePhysics::PreUpdate()
 		}
 	}
 
+	return UPDATE_CONTINUE;
+}
+
+update_status ModulePhysics::Update()
+{
+	// Si el juego ha terminado o está en pausa, NO llamamos a world->Step
+	//if (App->game->game_over || App->game->is_paused) {
+	//	return UPDATE_CONTINUE;
+	//}
+
+	//world->Step(1.0f / 60.0f, 6, 2);
+	// ... resto del código
 	return UPDATE_CONTINUE;
 }
 
