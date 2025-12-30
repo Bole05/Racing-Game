@@ -135,6 +135,7 @@ bool ModuleGame::Start()
 	bool ret = true;
 
 	menu_img = LoadTexture("Assets-racing/Textures/menu_sinletra.png");
+	menuMusic = App->audio->PlayMusic("Assets-racing/Audio/Music/cyberpunk-tohican-141620.wav");
 
 	// Asegúrate de que el resto de cosas se carguen (coche, etc.)
 	// Pero el estado inicial ser?START_MENU

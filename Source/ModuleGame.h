@@ -35,6 +35,7 @@ public:
 	GameState current_state = START_MENU; // Empezamos en el men?
 	Texture2D menu_img;
 
+	uint menuMusic = 0;
 	uint finishFx = 0;
 	
 
