@@ -14,26 +14,32 @@ Drive, explore, outrun your opponents, be the first to reach the finish line.
 
 - **WSDA KEYS**: Drive
 - **Esc**: Exit the game.
+- **SPACE BAR**: Boost
 
 ## Debug keys
 
-
+- F1 : Show coliders
+- H KEY: Help menu
 
 ### Game Objective:
 Be the first to reach the finish line, win the golden trophy.
 
 ## Features Implemented
 
-## lista de cosas que nos falta
-- audios de musica de fondo, de vuelta completada
-- ui de menu, lose and win
-- imagen de coche
-- boost como skill
-- boost en el mapa
-- ranking
-- lose and win condicion
-- 
-
+- Collision of cars and walls
+- Audios efects and background music
+- Special kill (boost)
+- Accelerators on the map
+- Map with Tiled
+- Car movement
+- IA of the enemy cars and movement
+- Ranking system
+- UI of initial menu, win and lose menu and help menu
+- Sensors for turns
+- Image of the car
+- Boost bar with animation
+- Speed indicator
+- Turns indicator
 
 ## License
 
