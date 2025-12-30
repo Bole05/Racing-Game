@@ -4,7 +4,7 @@ namespace CarStats {
     const float MAX_SPEED = 10.0f;       // 最高速度
     const float ACCELERATION = 7.0f;    // 加速力 (Torque/Force)
     const float BRAKING_FORCE = 30.0f;   // 刹车力
-    const float STEERING_SPEED = 8.0f;  // 转向速度 (弧度)
+    const float STEERING_SPEED = 8.3f;  // 转向速度 (弧度)
 
     // 物理属性 (Box2D)
     const float DENSITY = 1.0f;          // 密度 (影响重量)
