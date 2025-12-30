@@ -138,3 +138,36 @@ bool ModuleAudio::PlayFx(unsigned int id, int repeat)
 
 	return ret;
 }
+void ModuleAudio::PreloadMusic(const char* path)
+{
+	// 如果之前有预加载的，先卸载掉，防止内存泄漏
+	if (hasPreloadedMusic) {
+		UnloadMusicStream(preloadedMusic);
+	}
+
+	// 关键：只加载流，不播放
+	preloadedMusic = LoadMusicStream(path);
+	hasPreloadedMusic = true;
+
+	// 稍微缓冲一下流数据（可选，防止播放第一帧卡顿）
+	if (IsMusicReady(preloadedMusic)) {
+		UpdateMusicStream(preloadedMusic);
+	}
+}
+
+void ModuleAudio::PlayPreloadedMusic()
+{
+	if (hasPreloadedMusic) {
+		// 如果当前有其他音乐在放，先停掉（看你的需求）
+		// StopMusicStream(currentMusic); 
+
+		// 这里的 music 是你原本 ModuleAudio 里用来播放的变量名
+		// 我们把预加载的音乐赋值给当前播放的音乐变量
+		music = preloadedMusic;
+
+		PlayMusicStream(music);
+
+		// 标记为正在播放，这样 Update 循环里就会处理它
+		// 注意：你需要确认你的 ModuleAudio::Update 里是根据什么变量来 UpdateMusicStream 的
+	}
+}
