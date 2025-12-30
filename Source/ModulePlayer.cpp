@@ -189,21 +189,12 @@ update_status ModulePlayer::Update()
         }
 
         // Sincroniza este valor (0.2f) con la IA si quieres que giren con la misma agilidad
-        float turnSmoothing = 0.2f;
+        float turnSmoothing = 0.3f;
         float currentRot = b->GetAngularVelocity();
         float newRot = currentRot + (targetRotVelocity - currentRot) * turnSmoothing;
         b->SetAngularVelocity(newRot);
 
         // 4. ACELERACI?N
-    /*    float maxSpeed = CarStats::MAX_SPEED;*/
-
-        //if (IsKeyPressed(KEY_SPACE) && boostTimer <= 0&&currentBoostCharge>=maxBoostCharge) // IsKeyPressed para que solo se active una vez por pulsación
-        //{
-        //    boostTimer = 120; // 2 segundos a 60 FPS
-        //    currentMaxSpeed = CarStats::MAX_SPEED * 1.5f; // Aumentamos la velocidad máxima (ejemplo: x1.5)
-        //    currentBoostCharge = 0.0f;
-        //    LOG("BOOST ACTIVADO! Change reset");
-        //}
 
         if (IsKeyPressed(KEY_SPACE))
         {
