@@ -80,7 +80,7 @@ update_status ModulePhysics::PreUpdate()
 
 update_status ModulePhysics::Update()
 {
-	// Si el juego ha terminado o está en pausa, NO llamamos a world->Step
+	// Si el juego ha terminado o est?en pausa, NO llamamos a world->Step
 	//if (App->game->game_over || App->game->is_paused) {
 	//	return UPDATE_CONTINUE;
 	//}
