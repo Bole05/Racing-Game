@@ -8,7 +8,9 @@
 #include "CarProperties.h"
 
 #include <cmath>
-
+#include <algorithm> // 用于 std::shuffle
+#include <random>    // 用于随机数生成器
+#include <numeric>
 // Definiciones de seguridad
 #ifndef DEGTORAD
 #define DEGTORAD 0.0174532925199432957f
@@ -80,10 +82,31 @@ bool ModuleAi::Start()
 
 void ModuleAi::CreateEnemy(int startPathIndex)
 {
-    int randomPathID = rand() % App->map->trackPaths.size();
-    if (App->map->trackPaths[randomPathID].empty()) return;
+    // 1. 首先检查是否有路径，防止除以 0 崩溃
+    if (App->map->trackPaths.empty()) return;
+   /* int randomPathID = rand() % App->map->trackPaths.size();*/
+    int totalPaths = App->map->trackPaths.size();
+    if (availablePathIDs.empty() || availablePathIDs.size() > totalPaths)
+    {
+        // 1. 清空袋子
+        availablePathIDs.clear();
 
-    b2Vec2 startPos = App->map->trackPaths[randomPathID][startPathIndex];
+        // 2. 填充 ID (0, 1, 2, ..., totalPaths-1)
+        for (int i = 0; i < totalPaths; ++i) {
+            availablePathIDs.push_back(i);
+        }
+
+        // 3. 洗牌 (随机打乱顺序)
+        // 使用随机设备作为种子，保证每次运行游戏顺序都不一样
+        std::random_device rd;
+        std::mt19937 g(rd());
+        std::shuffle(availablePathIDs.begin(), availablePathIDs.end(), g);
+    }
+    int assignedPathID = availablePathIDs.back();
+    availablePathIDs.pop_back();
+    if (App->map->trackPaths[assignedPathID].empty()) return;
+
+    b2Vec2 startPos = App->map->trackPaths[assignedPathID][startPathIndex];
 
     // 创建矩形碰撞体
     PhysBody* pb = App->physics->CreateRectangle(
@@ -115,7 +138,7 @@ void ModuleAi::CreateEnemy(int startPathIndex)
     }
 
     EnemyCar enemy;
-    enemy.Init(pb, startPathIndex, randomPathID);
+    enemy.Init(pb, startPathIndex, assignedPathID);
 
     enemy.maxSpeed = CarStats::MAX_SPEED;
     enemy.turnSpeed = CarStats::STEERING_SPEED; 
@@ -128,6 +151,8 @@ void ModuleAi::CreateEnemy(int startPathIndex)
 
     enemies.push_back(enemy);
 }
+
+
 
 float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int colorType, bool& outHitPlayer)
 {
@@ -408,8 +433,16 @@ void ModuleAi::CreateEnemyAtPosition(b2Vec2 position, int startPathIndex)
     }
     EnemyCar enemy;
     // 这里传入 0 或者最近的路径点索引
-    int defaultPathIndex = 0;
-    enemy.Init(pb, startPathIndex, defaultPathIndex);
+    /*int defaultPathIndex = 0;*/
+    // 新的代码：
+    // 同样使用轮询机制分配路径，或者你可以编写逻辑寻找离该位置最近的路径
+    int totalPaths = App->map->trackPaths.size();
+    int pathIndex = 0;
+
+    if (totalPaths > 0) {
+        pathIndex = enemies.size() % totalPaths;
+    }
+    enemy.Init(pb, startPathIndex, pathIndex);
     enemy.width = 26;
     enemy.height = 43;
     enemies.push_back(enemy);

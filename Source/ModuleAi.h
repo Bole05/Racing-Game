@@ -55,7 +55,7 @@ public:
 public:
     Texture2D texture;
     std::vector<EnemyCar> enemies;
-
+    std::vector<int> availablePathIDs;
 private:
     // Física auxiliar para evitar derrapes infinitos
     void KillOrthogonalVelocity(b2Body* body);
