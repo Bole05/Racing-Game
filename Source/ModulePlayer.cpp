@@ -82,6 +82,10 @@ bool ModulePlayer::CleanUp()
 }
 update_status ModulePlayer::Update()
 {
+    // Èç¹ûµ±Ç°²»ÊÇ¡°ÓÎÏ·ÖÐ¡±£¬½ûÖ¹Íæ¼Ò¿ØÖÆ
+    if (App->scene_intro->current_state != INGAME) {
+        return UPDATE_CONTINUE;
+    }
     float currentSpeed = pbody->body->GetLinearVelocity().Length();
     bool showNotReadyWarning = false;
 
@@ -139,7 +143,7 @@ update_status ModulePlayer::Update()
             showHelpMenu = !showHelpMenu;
         }
 
-        // Si el menú está abierto, "paramos" el juego devolviendo UPDATE_CONTINUE 
+        // Si el men?est?abierto, "paramos" el juego devolviendo UPDATE_CONTINUE 
         // pero saltándonos toda la lógica de físicas y movimiento de abajo.
         if (showHelpMenu) return UPDATE_CONTINUE;
 
@@ -212,7 +216,7 @@ update_status ModulePlayer::Update()
             }
             else if (boostTimer <= 0)
             {
-                // EL JUGADOR PULSÓ PERO NO ESTÁ LLENO
+                // EL JUGADOR PULS?PERO NO EST?LLENO
                 showNotReadyWarning = true;
                 LOG("Boost no preparado");
             }
@@ -220,7 +224,7 @@ update_status ModulePlayer::Update()
 
         if (IsKeyPressed(KEY_SPACE) && currentBoostCharge < maxBoostCharge && boostTimer <= 0)
         {
-            warningTimer = 60; // El mensaje durará 60 frames (1 segundo)
+            warningTimer = 60; // El mensaje durar?60 frames (1 segundo)
         }
 
         if (warningTimer > 0) warningTimer--;
@@ -317,7 +321,7 @@ update_status ModulePlayer::PostUpdate()
 {
     //if (App->game == nullptr) return UPDATE_CONTINUE;
     //if (App->game->current_state == START_MENU) {
-    //    // (Aquí va tu código de dibujo de menu_img que pusimos antes)
+    //    // (Aqu?va tu código de dibujo de menu_img que pusimos antes)
     //    return UPDATE_CONTINUE;
     //}
     if (pbody != nullptr)
@@ -376,7 +380,7 @@ update_status ModulePlayer::PostUpdate()
             DrawText("BOOST NO PREPARADO", barX - 20, barY + 45, 25, BLUE);
         }
 
-        // Asegúrate de que este bloque se mantenga para ver cuando SÍ funciona
+        // Asegúrate de que este bloque se mantenga para ver cuando S?funciona
         if (percentage >= 1.0f && boostTimer <= 0) {
             DrawText("Boost Ready [SPACE]", barX, barY + 25, 25, BLUE);
         }
@@ -403,7 +407,7 @@ update_status ModulePlayer::PostUpdate()
             DrawText("- W / Flecha Arriba: Acelerar", winX + 40, winY + 80, 18, DARKGRAY);
             DrawText("- S / Flecha Abajo: Frenar/Reversa", winX + 40, winY + 110, 18, DARKGRAY);
             DrawText("- A-D / Flechas Izq-Der: Girar", winX + 40, winY + 140, 18, DARKGRAY);
-            DrawText("- ESPACIO: Activar Boost (si está lleno)", winX + 40, winY + 170, 18, DARKGRAY);
+            DrawText("- ESPACIO: Activar Boost (si est?lleno)", winX + 40, winY + 170, 18, DARKGRAY);
             DrawText("- H: Cerrar este menu", winX + 40, winY + 210, 18, BLUE);
 
             DrawText("EL JUEGO ESTA EN PAUSA", winX + 80, winY + 260, 15, RED);
@@ -462,7 +466,7 @@ void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
     {
         // Si no quieres que afecte al timer de la barra, 
         // podrías aplicar un impulso directo o usar una variable diferente.
-        // Si solo quieres velocidad sin que la barra se vea afectada, quita el boostTimer aquí:
+        // Si solo quieres velocidad sin que la barra se vea afectada, quita el boostTimer aqu?
         currentMaxSpeed = CarStats::MAX_SPEED + 2.0f;
         // boostTimer = 60; <-- Elimina o comenta esta línea para que no afecte a la barra
         LOG("BOOST SUELO ACTIVO!");

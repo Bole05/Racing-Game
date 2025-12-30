@@ -13,6 +13,7 @@ class PhysicEntity;
 
 enum GameState {
 	START_MENU,
+	COUNTDOWN,
 	INGAME,
 	GAME_OVER
 };
@@ -31,7 +32,7 @@ public:
 	bool game_over = false;
 	bool is_paused = false;
 
-	GameState current_state = START_MENU; // Empezamos en el menú
+	GameState current_state = START_MENU; // Empezamos en el men?
 	Texture2D menu_img;
 
 	uint finishFx = 0;
@@ -59,4 +60,6 @@ public:
 	// Estado de progreso: Bitmask para S1=1, S2=2, S3=4, S4=8
 	int lap_progress_state = 0;
 	int laps = 0;
+
+	float countdown_timer = 3.0f;
 };

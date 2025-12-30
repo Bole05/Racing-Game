@@ -55,11 +55,15 @@ bool ModulePhysics::Start()
 
 update_status ModulePhysics::PreUpdate()
 {
+	// 只有在游戏中才进行物理模拟
+	if (App->scene_intro->current_state == INGAME) {
+		world->Step(1.0f / 60.0f, 6, 2); // 这一行是物理步进的核心
+	}
 	/*if (App->game->game_over || App->game->is_paused) {
 		return UPDATE_CONTINUE;
 	}*/
 
-	world->Step(1.0f / 60.0f, 6, 2);
+	/*world->Step(1.0f / 60.0f, 6, 2);*/
 
 	for(b2Contact* c = world->GetContactList(); c; c = c->GetNext())
 	{

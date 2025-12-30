@@ -170,6 +170,11 @@ float ModuleAi::CastRay(b2Body* body, float rayLength, float angleOffset, int co
 
 update_status ModuleAi::Update()
 {
+    // 如果当前不是“游戏中”状态，AI 暂停思考和移动
+    if (App->scene_intro->current_state != INGAME) {
+        return UPDATE_CONTINUE;
+    }
+
     if (App->game != nullptr && App->game->game_over) return UPDATE_CONTINUE;
 
     //if (App->game->is_paused || App->game->game_over) {

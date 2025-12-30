@@ -136,8 +136,9 @@ bool ModuleGame::Start()
 	menu_img = LoadTexture("Assets-racing/Textures/menu_sinletra.png");
 
 	// Asegúrate de que el resto de cosas se carguen (coche, etc.)
-	// Pero el estado inicial será START_MENU
+	// Pero el estado inicial ser?START_MENU
 	current_state = START_MENU;
+	countdown_timer = 3.0f;
 	is_paused = false;
 	game_over = false;
 
@@ -148,7 +149,7 @@ bool ModuleGame::Start()
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
 	// App->player->pbody->body->SetTransform(App->map->playerSpawnPoint, 0);
 
-	App->audio->PlayMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav");
+	/*App->audio->PlayMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav");*/
 
 	finishFx = App->audio->LoadFx("Assets-racing/Audio/Music/vueltaCompletada.wav");
 
@@ -228,22 +229,41 @@ update_status ModuleGame::Update()
 	//		current_state = INGAME;
 	//	}
 
-	//	// IMPORTANTE: Retornamos aquí para que no se ejecute NADA de lo de abajo
+	//	// IMPORTANTE: Retornamos aqu?para que no se ejecute NADA de lo de abajo
 	//	return UPDATE_CONTINUE;
 	//}
 
 	if (current_state == START_MENU) {
 		if (IsKeyPressed(KEY_ENTER)) {
-			current_state = INGAME;
+			current_state = COUNTDOWN;
+			countdown_timer = 3.0f;
+
+			//audio de countdown
 		}
 		return UPDATE_CONTINUE; // No ejecutamos lógica de juego
 	}
+
+	// 2. µ¹¼ÆÊ±×´Ì¬
+	if (current_state == COUNTDOWN) {
+		countdown_timer -= GetFrameTime(); // ¼õÈ¥ÉÏÒ»Ö¡µÄÊ±¼ä
+
+		if (countdown_timer <= 0.0f) {
+			current_state = INGAME; // Ê±¼äµ½£¬ÕýÊ½¿ªÊ¼ÓÎÏ·
+			App->audio->PlayMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav"); // ¿ªÊ¼²¥·ÅÒôÀÖ
+		}
+
+		// ÔÚµ¹¼ÆÊ±ÆÚ¼ä£¬ÎÒÃÇÒÀÈ»Ï£Íû¿´µ½±³¾°ºÍ³µ×Ó£¨µ«ÊÇËüÃÇ²»¶¯£©£¬ËùÒÔ²»Òª return£¬¼ÌÐøÏòÏÂÖ´ÐÐ»æÖÆÂß¼­
+		// µ«ÊÇÒª×èÖ¹ÉäÏß¼ì²âµÈ½»»¥
+	}
+
+
 
 	if (game_over && IsKeyPressed(KEY_R)) {
 		game_over = false;
 		laps = 0;
 		lap_progress_state = 0;
-
+		current_state = COUNTDOWN;
+		countdown_timer = 3.0f;
 		// Llamamos a la función que acabas de crear
 		//App->Ai->ResetEnemies();
 
@@ -328,7 +348,7 @@ update_status ModuleGame::PostUpdate()
 		// Dibujamos el fondo negro para tapar cualquier residuo del mapa
 		ClearBackground(BLACK);
 
-		// Dibujamos la textura del menú
+		// Dibujamos la textura del men?
 		DrawTexture(menu_img, 0, 0, WHITE);
 
 		// Texto de inicio
@@ -342,6 +362,31 @@ update_status ModuleGame::PostUpdate()
 	}
 
 	update_status ret = Module::PostUpdate();
+	if (current_state == COUNTDOWN) {
+		EndMode2D();
+		static char timerText[10];
+		// ceil() ÏòÉÏÈ¡Õû£¬ÏÔÊ¾ 3, 2, 1
+		int displayTime = (int)ceil(countdown_timer);
+
+		if (displayTime > 0) {
+			sprintf_s(timerText, "%d", displayTime);
+			// ÔÚÆÁÄ»ÖÐ¼ä»æÖÆ¾Þ´óµÄÊý×Ö
+			DrawText(timerText, SCREEN_WIDTH / 2 - 20, SCREEN_HEIGHT / 2 - 50, 100, RED);
+		}
+		else {
+			DrawText("GO!", SCREEN_WIDTH / 2 - 60, SCREEN_HEIGHT / 2 - 50, 100, GREEN);
+		}
+
+		// ²»ÐèÒªÔÚÕâÀï BeginMode2D£¬ÒòÎªÕâÊÇ PostUpdate µÄÄ©Î²
+		return UPDATE_CONTINUE;
+	
+	}
+
+
+
+
+
+
 
 	int current_lap = laps + 1;
 
