@@ -27,29 +27,6 @@ bool ModulePhysics::Start()
 	world = new b2World(b2Vec2(GRAVITY_X, -GRAVITY_Y));
 	world->SetContactListener(this);
 
-	//// needed to create joints like mouse joint
-	//b2BodyDef bd;
-	//ground = world->CreateBody(&bd);
-
-	//{
-	//	b2EdgeShape shape;
-
-	//	b2FixtureDef sd;
-	//	sd.shape = &shape;
-	//	sd.friction = 0.3f;
-
-	//	b2BodyDef bd;
-	//	b2Body* floor = world->CreateBody(&bd);
-	//	shape.SetTwoSided(b2Vec2(PIXEL_TO_METERS(0.0f), PIXEL_TO_METERS((SCREEN_HEIGHT))), b2Vec2(PIXEL_TO_METERS(SCREEN_WIDTH), PIXEL_TO_METERS(SCREEN_HEIGHT)));
-	//	floor->CreateFixture(&sd);
-	//	shape.SetTwoSided(b2Vec2(PIXEL_TO_METERS(SCREEN_WIDTH), PIXEL_TO_METERS((SCREEN_HEIGHT))), b2Vec2(PIXEL_TO_METERS(SCREEN_WIDTH), PIXEL_TO_METERS(0.0f)));
-	//	floor->CreateFixture(&sd);
-	//	shape.SetTwoSided(b2Vec2(PIXEL_TO_METERS(0.0f), PIXEL_TO_METERS((0.0f))), b2Vec2(PIXEL_TO_METERS(SCREEN_WIDTH), PIXEL_TO_METERS(0.0f)));
-	//	floor->CreateFixture(&sd);
-	//	shape.SetTwoSided(b2Vec2(PIXEL_TO_METERS(0.0f), PIXEL_TO_METERS((0.0f))), b2Vec2(PIXEL_TO_METERS(0.0f), PIXEL_TO_METERS(SCREEN_HEIGHT)));
-	//	floor->CreateFixture(&sd);
-	//}
-
 	return true;
 }
 
@@ -59,11 +36,7 @@ update_status ModulePhysics::PreUpdate()
 	if (App->scene_intro->current_state == INGAME) {
 		world->Step(1.0f / 60.0f, 6, 2); // 这一行是物理步进的核心
 	}
-	/*if (App->game->game_over || App->game->is_paused) {
-		return UPDATE_CONTINUE;
-	}*/
 
-	/*world->Step(1.0f / 60.0f, 6, 2);*/
 
 	for(b2Contact* c = world->GetContactList(); c; c = c->GetNext())
 	{
@@ -84,13 +57,6 @@ update_status ModulePhysics::PreUpdate()
 
 update_status ModulePhysics::Update()
 {
-	// Si el juego ha terminado o est?en pausa, NO llamamos a world->Step
-	//if (App->game->game_over || App->game->is_paused) {
-	//	return UPDATE_CONTINUE;
-	//}
-
-	//world->Step(1.0f / 60.0f, 6, 2);
-	// ... resto del c骴igo
 	return UPDATE_CONTINUE;
 }
 

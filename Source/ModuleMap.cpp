@@ -460,14 +460,6 @@ bool ModuleMap::Load(const char* path)
             for (pugi::xml_node object = objectGroup.child("object"); object; object = object.next_sibling("object")) {
                 std::string type = object.attribute("type").as_string(); // Tiled 的 "Class" 或 "Type" 字段
 
-                // 或者如果使用的是自定义属性，请用这段:
-                /* pugi::xml_node props = object.child("properties");
-                for (pugi::xml_node p = props.child("property"); p; p = p.next_sibling("property")) {
-                    std::string propName = p.attribute("name").as_string();
-                    if (propName == "Type") type = p.attribute("value").as_string();
-                }
-                */
-
                 // 如果检测到是加速带
                 if (type == "Boost")
                 {

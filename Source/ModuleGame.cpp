@@ -83,12 +83,6 @@ private:
 	Texture2D texture;
 };
 
-// TODO 3: Set Category and Mask to each entity
-// * Planes should not collide with other vehicles.
-// * Bikes and cars should collide with bikes and cars.
-// * Ships should collide with ships
-
-// TODO 6: Remove Mask for bikes and cars and set the groupIndex to LAND
 
 class Plane : public Box {
 public:
@@ -131,25 +125,23 @@ ModuleGame::~ModuleGame()
 bool ModuleGame::Start()
 {
 	LOG("Loading Intro assets");
-	LOG("Loading Intro assets---------------------------------------------------------------------");
 	bool ret = true;
 
 	menu_img = LoadTexture("Assets-racing/Textures/menu_sinletra.png");
 	menuMusic = App->audio->PlayMusic("Assets-racing/Audio/Music/cyberpunk-tohican-141620.wav");
 
-	// Aseg鷕ate de que el resto de cosas se carguen (coche, etc.)
-	// Pero el estado inicial ser?START_MENU
-	current_state = START_MENU;
+
+	current_state = START_MENU;//estodo de menu, ahora entramos al juego en el estado de menu inicial
 	countdown_timer = 3.0f;
 	is_paused = false;
 	game_over = false;
 
-	//App->renderer->camera.x = App->renderer->camera.y = 0;
+
 	App->renderer->camera.target = { 0.0f, 0.0f };
 	App->renderer->camera.offset = { 0.0f, 0.0f };
 	App->renderer->camera.zoom = 1.0f;
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
-	// App->player->pbody->body->SetTransform(App->map->playerSpawnPoint, 0);
+
 
 	App->audio->PreloadMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav");
 
@@ -172,15 +164,8 @@ bool ModuleGame::Start()
 		// 这里的 0 是路径索引，你可能需要逻辑来计算该生成点离哪个路径点最近
 		App->Ai->CreateEnemyAtPosition(spawnPos, 0);
 	}
-
-	//App->Ai->CreateEnemy(0);
 	
 	car_to_track = App->player->pbody;
-	
-
-	//// Crear un par de enemigos en posiciones diferentes de la ruta
-	//App->Ai->CreateEnemy(0);  // Empieza en el punto 0
-	//App->Ai->CreateEnemy(5);  // Empieza en el punto 5 (m醩 adelante)
 	
 
 	int sensor_width = 10;
@@ -375,12 +360,6 @@ update_status ModuleGame::PostUpdate()
 	
 	}
 
-
-
-
-
-
-
 	int current_lap = laps + 1;
 
 	if (laps == 0 && (lap_progress_state & 1) != 1) { // Si laps es 0 y S1 (bit 1) no ha sido tocado a鷑
@@ -396,23 +375,8 @@ update_status ModuleGame::PostUpdate()
 	static char laps_text[64];
 	sprintf_s(laps_text, 64, "Vueltas: %d", laps);
 
-	// --- DIBUJAR TEXTO (Usando DrawText simple de Raylib) ---
-	// Dibuja el texto en la esquina superior izquierda (ejemplo: 20px, 20px)
-	// El tama駉 de la fuente es 20, y el color es blanco.
-
-	// La c醡ara del renderer debe estar ajustada para esto, pero DrawText deber韆
-	// dibujar en coordenadas de pantalla (no de mundo) por defecto.
 
 	DrawText(laps_text, 20, 30, 20, WHITE);
-
-	// Opcionalmente, mostrar el estado de progreso
-	/*static char progress_text[64];
-	sprintf_s(progress_text, 64, "Progreso: %d", lap_progress_state);
-	DrawText(progress_text, 20, 50, 20, YELLOW);*/
-
-
-
-
 
 	// 1. 收集数据
 	std::vector<RankingInfo> leaderboard;
@@ -451,17 +415,7 @@ update_status ModuleGame::PostUpdate()
 	for (int i = 0; i < leaderboard.size(); ++i) {
 		py += 25;
 		Color color = leaderboard[i].isPlayer ? BLUE : WHITE;
-		//if (leaderboard[i].isPlayer) playerRank = i + 1;
 
-		//static char rankText[64];
-		//char rankText[64];
-		//const char* displayName = leaderboard[i].name;
-		//char enemyNameTemp[16];
-		//const char* finalName;
-		//if (!leaderboard[i].isPlayer) {
-		//	sprintf_s(enemyNameTemp, "Enemy %d", i + 1); // Genera "Enemy 1", "Enemy 2", etc.
-		//	finalName = enemyNameTemp;
-		//}
 		char rankText[64];
 		char nameTemp[32];
 		const char* finalName;

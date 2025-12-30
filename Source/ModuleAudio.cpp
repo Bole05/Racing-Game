@@ -31,12 +31,6 @@ bool ModuleAudio::Init()
 
 update_status ModuleAudio::Update()
 {
-    //// Esto hace que la música siga sonando
-    //if (IsMusicReady(music))
-    //{
-    //    UpdateMusicStream(music);
-    //}
-    //return update_status::UPDATE_CONTINUE;
 
 	if (music.stream.buffer != NULL && IsMusicStreamPlaying(music))
 	{
@@ -71,19 +65,7 @@ bool ModuleAudio::CleanUp()
 // Play a music file
 bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 {
-	//if(IsEnabled() == false)
-	//	return false;
 
-	//bool ret = true;
-	//
- //   StopMusicStream(music);
- //   music = LoadMusicStream(path);
- //   
- //   PlayMusicStream(music);
-
-	//LOG("Successfully playing %s", path);
-
-	//return ret;
 	if (IsEnabled() == false) return false;
 
 	StopMusicStream(music);

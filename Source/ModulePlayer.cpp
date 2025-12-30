@@ -150,17 +150,9 @@ update_status ModulePlayer::Update()
         if (App->game != nullptr && App->game->game_over == true) return UPDATE_CONTINUE;
 
 
-
-
-
         // 2. 使用 currentMaxSpeed 而不是固定值
         // 如果 currentMaxSpeed 还没初始化，就在 Start 里设置 currentMaxSpeed = CarStats::MAX_SPEED
         float maxSpeed = currentMaxSpeed;
-
-
-
-
-
 
         b2Body* b = pbody->body;
 
@@ -310,11 +302,6 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
-    //if (App->game == nullptr) return UPDATE_CONTINUE;
-    //if (App->game->current_state == START_MENU) {
-    //    // (Aqu?va tu c骴igo de dibujo de menu_img que pusimos antes)
-    //    return UPDATE_CONTINUE;
-    //}
     if (pbody != nullptr)
     {
         // --- RENDERIZADO (RAYLIB) ---
@@ -439,25 +426,10 @@ update_status ModulePlayer::PostUpdate()
     return UPDATE_CONTINUE;
 }
 
-// ModulePlayer.cpp
-//void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
-//{
-//    // bodyB 是玩家撞到的东西
-//    if (bodyB != nullptr && bodyB->ptype == BodyType::BOOST)
-//    {
-//        boostTimer = 60; // 3秒加速 (假设60fps)
-//        currentMaxSpeed = CarStats::MAX_SPEED +3.0f; // 速度翻倍
-//        LOG("BOOST ACTIVE!");
-//    }
-//}
-
 void ModulePlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
     if (bodyB != nullptr && bodyB->ptype == BodyType::BOOST)
     {
-        // Si no quieres que afecte al timer de la barra, 
-        // podr韆s aplicar un impulso directo o usar una variable diferente.
-        // Si solo quieres velocidad sin que la barra se vea afectada, quita el boostTimer aqu?
         currentMaxSpeed = CarStats::MAX_SPEED + 2.0f;
         // boostTimer = 60; <-- Elimina o comenta esta l韓ea para que no afecte a la barra
         LOG("BOOST SUELO ACTIVO!");

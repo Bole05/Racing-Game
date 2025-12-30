@@ -207,10 +207,6 @@ update_status ModuleAi::Update()
 
     if (App->game != nullptr && App->game->game_over) return UPDATE_CONTINUE;
 
-    //if (App->game->is_paused || App->game->game_over) {
-    //    return UPDATE_CONTINUE; // Congela el comportamiento de la IA
-    //}
-
     if (App->game != nullptr && App->game->game_over == true) {
         for (auto& enemy : enemies) {
             if (enemy.pbody != nullptr && enemy.pbody->body != nullptr) {
