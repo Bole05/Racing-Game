@@ -4750,16 +4750,16 @@
   </object>
  </objectgroup>
  <objectgroup id="16" name="Spawn">
-  <object id="21" name="PlayerStart" x="706" y="632">
+  <object id="21" name="PlayerStart" x="703.5" y="631.5">
    <point/>
   </object>
-  <object id="22" name="EnemyStart" x="704" y="686">
+  <object id="22" name="EnemyStart" x="703.5" y="662">
    <point/>
   </object>
-  <object id="23" name="EnemyStart" x="702" y="726">
+  <object id="23" name="EnemyStart" x="703.5" y="728.5">
    <point/>
   </object>
-  <object id="53" name="EnemyStart" x="702" y="738">
+  <object id="53" name="EnemyStart" x="703.5" y="696.5">
    <point/>
   </object>
  </objectgroup>
