@@ -58,7 +58,7 @@ update_status ModuleRender::PostUpdate()
 {
     //if (App->game->current_state == START_MENU)
     //{
-    //    // Dibujamos la textura del menú cargada en ModuleGame
+    //    // Dibujamos la textura del men?cargada en ModuleGame
     //    DrawTexture(App->game->menu_img, 0, 0, WHITE); //
 
     //    // Texto de inicio con parpadeo
@@ -79,7 +79,7 @@ update_status ModuleRender::PostUpdate()
     //        // Limpiamos el fondo para que no se vea el mapa/coche por debajo
     //        ClearBackground(BLACK);
 
-    //        // Dibujamos la textura del menú
+    //        // Dibujamos la textura del men?
     //        DrawTexture(App->game->menu_img, 0, 0, WHITE);
 
     //        // Texto de inicio
@@ -94,7 +94,7 @@ update_status ModuleRender::PostUpdate()
     //    }
     //    else
     //    {
-    //        // Si no estamos en el menú, cerramos el modo 2D normal del juego
+    //        // Si no estamos en el men? cerramos el modo 2D normal del juego
     //        EndMode2D();
     //    }
     //}

@@ -214,25 +214,6 @@ bool ModuleGame::CleanUp()
 // Update: draw background
 update_status ModuleGame::Update()
 {
-
-	//if (current_state == START_MENU) {
-	//	// 1. Dibujar imagen de fondo
-	//	DrawTexture(menu_img, 0, 0, WHITE);
-
-	//	// 2. Dibujar texto con un peque駉 parpadeo (opcional)
-	//	if ((int)(GetTime() * 2) % 2 == 0) {
-	//		DrawText("PRESIONAR ENTER PARA INICIAR", SCREEN_WIDTH / 2 - 170, SCREEN_HEIGHT / 2 + 150, 20, LIGHTGRAY);
-	//	}
-
-	//	// 3. Pasar al juego
-	//	if (IsKeyPressed(KEY_ENTER)) {
-	//		current_state = INGAME;
-	//	}
-
-	//	// IMPORTANTE: Retornamos aqu?para que no se ejecute NADA de lo de abajo
-	//	return UPDATE_CONTINUE;
-	//}
-
 	if (current_state == START_MENU) {
 		if (IsKeyPressed(KEY_ENTER)) {
 			current_state = COUNTDOWN;
@@ -256,7 +237,21 @@ update_status ModuleGame::Update()
 		// 但是要阻止射线检测等交互
 	}
 
+	// --------------------------------------
+	// 3. 游戏进行中状态 (新增游戏结束检测)
+	// --------------------------------------
+	if (current_state == INGAME) {
+		// ... 你的其他游戏逻辑 ...
 
+		// 假设这里是你检测游戏结束的逻辑，比如 laps >= 3
+		// 请根据你实际的变量修改条件
+		if (game_over) // 或者 if (laps >= total_laps)
+		{
+
+			current_state = GAME_OVER; // <--- 【关键】切换状态，物理和AI会立刻停止
+			// 这里可以播放胜利音效
+		}
+	}
 
 	if (game_over && IsKeyPressed(KEY_R)) {
 		game_over = false;
@@ -264,7 +259,7 @@ update_status ModuleGame::Update()
 		lap_progress_state = 0;
 		current_state = COUNTDOWN;
 		countdown_timer = 3.0f;
-		// Llamamos a la funci髇 que acabas de crear
+		//// Llamamos a la funci髇 que acabas de crear
 		//App->Ai->ResetEnemies();
 
 		// Resetear al Jugador (usando sus coordenadas de spawn)
@@ -276,10 +271,13 @@ update_status ModuleGame::Update()
 		}
 	}
 
-	if (game_over) {
-		// Si el juego ha terminado, no procesamos la entrada ni actualizamos entidades.
-		return UPDATE_CONTINUE;
-	}
+	//if (game_over) {
+	//	// Si el juego ha terminado, no procesamos la entrada ni actualizamos entidades.
+	//	return UPDATE_CONTINUE;
+	//}
+
+
+
 
 	if(IsKeyPressed(KEY_SPACE))
 	{
