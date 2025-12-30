@@ -57,6 +57,11 @@ void EnemyCar::Init(PhysBody* body, int startPathIndex,int pathIndex) {
     selectedPathIndex = pathIndex;
     active = true;
     if (pbody && pbody->body) {
+        //start condition
+        spawnPos = pbody->body->GetPosition();
+        initialRotation = pbody->body->GetAngle();
+        initialPathIndex = startPathIndex;
+
         // Aumentamos damping angular para reducir el "trote" (vibración)
         pbody->body->SetLinearDamping(0.3f);
         pbody->body->SetAngularDamping(4.0f); // Alto para evitar giros locos
@@ -417,20 +422,22 @@ bool ModuleAi::CleanUp()
     return true;
 }
 
-//void ModuleAi::ResetEnemies() {
-//    for (auto& enemy : enemies) {
-//        if (enemy.pbody != nullptr && enemy.pbody->body != nullptr) {
-//            // Teletransporte a la posición original de Tiled
-//            enemy.pbody->body->SetTransform(enemy.spawnPos, enemy.initialRotation);
-//
-//            // Freno total de velocidad e inercia
-//            enemy.pbody->body->SetLinearVelocity({ 0.0f, 0.0f });
-//            enemy.pbody->body->SetAngularVelocity(0.0f);
-//
-//            // Reinicio de lógica
-//            enemy.laps = 0;
-//            enemy.lap_progress_state = 0;
-//            enemy.stuckTimer = 0;
-//        }
-//    }
-//}
+void ModuleAi::ResetEnemies() {
+    for (auto& enemy : enemies) {
+        if (enemy.pbody != nullptr && enemy.pbody->body != nullptr) {
+            // Teletransporte a la posición original de Tiled
+            enemy.pbody->body->SetTransform(enemy.spawnPos, enemy.initialRotation);
+
+            // Freno total de velocidad e inercia
+            enemy.pbody->body->SetLinearVelocity({ 0.0f, 0.0f });
+            enemy.pbody->body->SetAngularVelocity(0.0f);
+
+            // Reinicio de lógica
+            enemy.laps = 0;
+            enemy.lap_progress_state = 0;
+            enemy.stuckTimer = 0;
+
+            enemy.currentPathIndex = enemy.initialPathIndex;
+        }
+    }
+}

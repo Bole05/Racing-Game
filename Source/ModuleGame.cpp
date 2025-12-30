@@ -7,6 +7,7 @@
 #include "ModuleMap.h"
 #include "ModulePlayer.h"
 #include"ModuleAi.h"
+#include"CarProperties.h"
 #include <algorithm>
 struct RankingInfo {
 	const char* name;
@@ -260,7 +261,7 @@ update_status ModuleGame::Update()
 		current_state = COUNTDOWN;
 		countdown_timer = 3.0f;
 		//// Llamamos a la funci髇 que acabas de crear
-		//App->Ai->ResetEnemies();
+		App->Ai->ResetEnemies();
 
 		// Resetear al Jugador (usando sus coordenadas de spawn)
 		if (App->player->pbody != nullptr) {
@@ -268,16 +269,15 @@ update_status ModuleGame::Update()
 			float metersY = PIXEL_TO_METERS(App->map->playerSpawnPoint.y);
 			App->player->pbody->body->SetTransform({ metersX, metersY }, -90.0f * DEGTORAD);
 			App->player->pbody->body->SetLinearVelocity({ 0, 0 });
+			App->player->pbody->body->SetAngularVelocity(0);
+
 		}
+
+		 /*可选：如果你想重置玩家的加速条 (Boost)，可以加上：*/
+		 App->player->currentBoostCharge = 0.0f;
+		 App->player->boostTimer = 0;
+		 App->player->currentMaxSpeed = CarStats::MAX_SPEED;
 	}
-
-	//if (game_over) {
-	//	// Si el juego ha terminado, no procesamos la entrada ni actualizamos entidades.
-	//	return UPDATE_CONTINUE;
-	//}
-
-
-
 
 	if(IsKeyPressed(KEY_SPACE))
 	{
@@ -332,13 +332,7 @@ update_status ModuleGame::Update()
 
 update_status ModuleGame::PostUpdate()
 {
-	/*if (current_state == START_MENU) {
-		return UPDATE_CONTINUE;
-	}*/
-	// Llama a la Update() base por si tiene l骻ica.
-
-	//if (current_state == START_MENU) return UPDATE_CONTINUE;
-
+	
 	if (current_state == START_MENU) {
 		// Obligatorio: Salir del modo c醡ara para usar coordenadas de pantalla (0,0 es la esquina)
 		EndMode2D();
@@ -542,7 +536,7 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 					vehicleLaps++;
 					vehicleProgress = S1;
 
-					if (vehicleLaps >= 2) { // Si alguien llega a las vueltas necesarias (ej: 2)
+					if (vehicleLaps >= 6) { // Si alguien llega a las vueltas necesarias (ej: 2)
 						this->game_over = true;
 						if (vehicleBody == car_to_track) {
 							// El jugador gan?(esto lo manejaremos en el dibujo)

@@ -62,8 +62,9 @@ struct EnemyCar {
     int currentPathIndex = 0;
     int selectedPathIndex = 0;
 
-    //b2Vec2 spawnPos; // Posición inicial en metros
-    //float initialRotation; // Rotación inicial
+    b2Vec2 spawnPos; // Posición inicial en metros
+    float initialRotation; // Rotación inicial
+    int initialPathIndex;
 
     int laps=0;
     int lap_progress_state = 0;
