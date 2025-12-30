@@ -402,12 +402,12 @@ update_status ModuleGame::PostUpdate()
 	// La c醡ara del renderer debe estar ajustada para esto, pero DrawText deber韆
 	// dibujar en coordenadas de pantalla (no de mundo) por defecto.
 
-	DrawText(laps_text, 20, 20, 20, WHITE);
+	DrawText(laps_text, 20, 30, 20, WHITE);
 
 	// Opcionalmente, mostrar el estado de progreso
-	static char progress_text[64];
+	/*static char progress_text[64];
 	sprintf_s(progress_text, 64, "Progreso: %d", lap_progress_state);
-	DrawText(progress_text, 20, 50, 20, YELLOW);
+	DrawText(progress_text, 20, 50, 20, YELLOW);*/
 
 
 
@@ -446,21 +446,42 @@ update_status ModuleGame::PostUpdate()
 	// 3. 绘制排行榜界面
 	int py = 100;
 	int playerRank = 0;
-	DrawText("--- RANKING ---", 20, py, 20, GOLD);
+	DrawText("--- RANKING ---", 20, py, 20, BLUE);
 	for (int i = 0; i < leaderboard.size(); ++i) {
 		py += 25;
-		Color color = leaderboard[i].isPlayer ? GREEN : WHITE;
-		if (leaderboard[i].isPlayer) playerRank = i + 1;
+		Color color = leaderboard[i].isPlayer ? BLUE : WHITE;
+		//if (leaderboard[i].isPlayer) playerRank = i + 1;
 
-		static char rankText[64];
-		sprintf_s(rankText, "%d. %s (Laps: %d)", i + 1, leaderboard[i].name, leaderboard[i].score / 10);
+		//static char rankText[64];
+		//char rankText[64];
+		//const char* displayName = leaderboard[i].name;
+		//char enemyNameTemp[16];
+		//const char* finalName;
+		//if (!leaderboard[i].isPlayer) {
+		//	sprintf_s(enemyNameTemp, "Enemy %d", i + 1); // Genera "Enemy 1", "Enemy 2", etc.
+		//	finalName = enemyNameTemp;
+		//}
+		char rankText[64];
+		char nameTemp[32];
+		const char* finalName;
+
+		if (leaderboard[i].isPlayer) {
+			finalName = "Player";
+		}
+		else {
+			// Generamos un nombre 鷑ico basado en el 韓dice i
+			sprintf_s(nameTemp, 32, "Enemy %d", i + 1);
+			finalName = nameTemp;
+		}
+	
+		sprintf_s(rankText, "%d. %s (Laps: %d)", i + 1, finalName, leaderboard[i].score / 10);
 		DrawText(rankText, 20, py, 20, color);
 	}
 
 	// 在屏幕显眼位置显示玩家当前排名
 	static char currentRankStr[32];
 	sprintf_s(currentRankStr, "POS: %d / %d", playerRank, (int)leaderboard.size());
-	DrawText(currentRankStr, SCREEN_WIDTH - 150, 20, 30, ORANGE);
+	DrawText(currentRankStr, SCREEN_WIDTH - 450, 30, 30, ORANGE);
 
 	if (laps >= 2) // Comprobamos si las vueltas son 8 o m醩
 	{
@@ -536,7 +557,7 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 					vehicleLaps++;
 					vehicleProgress = S1;
 
-					if (vehicleLaps >= 2) { // Si alguien llega a las vueltas necesarias (ej: 2)
+					if (vehicleLaps >= 6) { // Si alguien llega a las vueltas necesarias (ej: 2)
 						this->game_over = true;
 						if (vehicleBody == car_to_track) {
 							// El jugador gan?(esto lo manejaremos en el dibujo)
