@@ -536,7 +536,7 @@ void ModuleGame::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 					vehicleLaps++;
 					vehicleProgress = S1;
 
-					if (vehicleLaps >= 6) { // Si alguien llega a las vueltas necesarias (ej: 2)
+					if (vehicleLaps >= 2) { // Si alguien llega a las vueltas necesarias (ej: 2)
 						this->game_over = true;
 						if (vehicleBody == car_to_track) {
 							// El jugador gan?(esto lo manejaremos en el dibujo)

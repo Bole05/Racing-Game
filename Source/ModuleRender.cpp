@@ -56,54 +56,9 @@ update_status ModuleRender::Update()
 // PostUpdate present buffer to screen
 update_status ModuleRender::PostUpdate()
 {
-    //if (App->game->current_state == START_MENU)
-    //{
-    //    // Dibujamos la textura del men?cargada en ModuleGame
-    //    DrawTexture(App->game->menu_img, 0, 0, WHITE); //
-
-    //    // Texto de inicio con parpadeo
-    //    if ((int)(GetTime() * 2) % 2 == 0)
-    //    {
-    //        //DrawText("PRESIONAR ENTER PARA INICIAR", GetScreenWidth() / 2 - 170, GetScreenHeight() / 2 + 150, 20, LIGHTGRAY);
-    //    }
-    //}
 
     EndMode2D();
-    //if (App->game != nullptr)
-    //{
-    //    if (App->game->current_state == START_MENU)
-    //    {
-    //        // Importante: Para dibujar UI o menús fijos, debemos estar FUERA del Mode2D
-    //        EndMode2D();
-
-    //        // Limpiamos el fondo para que no se vea el mapa/coche por debajo
-    //        ClearBackground(BLACK);
-
-    //        // Dibujamos la textura del men?
-    //        DrawTexture(App->game->menu_img, 0, 0, WHITE);
-
-    //        // Texto de inicio
-    //        if ((int)(GetTime() * 2) % 2 == 0)
-    //        {
-    //            // Usamos GetScreenWidth() de raylib para centrarlo
-    //            ::DrawText("PRESIONAR ENTER PARA INICIAR", GetScreenWidth() / 2 - 170, GetScreenHeight() / 2 + 150, 20, LIGHTGRAY);
-    //        }
-
-    //        // Re-activamos el modo 2D si hay otros módulos que lo necesitan después, 
-    //        // aunque lo ideal es que este sea el final del dibujo.
-    //    }
-    //    else
-    //    {
-    //        // Si no estamos en el men? cerramos el modo 2D normal del juego
-    //        EndMode2D();
-    //    }
-    //}
-    //else
-    //{
-    //    // Si App->game es nulo, al menos cerramos el modo 2D por seguridad
-    //    EndMode2D();
-    //}
-    // Draw everything in our batch!
+  
     DrawFPS(10, 10);
 
     EndDrawing();
