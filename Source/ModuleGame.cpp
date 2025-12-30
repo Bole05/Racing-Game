@@ -150,7 +150,7 @@ bool ModuleGame::Start()
 	App->map->Load("Assets-racing/Maps/MapTemplate.tmx");
 	// App->player->pbody->body->SetTransform(App->map->playerSpawnPoint, 0);
 
-	/*App->audio->PlayMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav");*/
+	App->audio->PreloadMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav");
 
 	finishFx = App->audio->LoadFx("Assets-racing/Audio/Music/vueltaCompletada.wav");
 
@@ -231,7 +231,7 @@ update_status ModuleGame::Update()
 
 		if (countdown_timer <= 0.0f) {
 			current_state = INGAME; // 时间到，正式开始游戏
-			App->audio->PlayMusic("Assets-racing/Audio/Music/action-racing-speed-music-380058.wav"); // 开始播放音乐
+			App->audio->PlayPreloadedMusic(); // 开始播放音乐
 		}
 
 		// 在倒计时期间，我们依然希望看到背景和车子（但是它们不动），所以不要 return，继续向下执行绘制逻辑
