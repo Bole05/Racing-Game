@@ -438,14 +438,6 @@ update_status ModuleGame::PostUpdate()
 	sprintf_s(currentRankStr, "POS: %d / %d", playerRank, (int)leaderboard.size());
 	DrawText(currentRankStr, SCREEN_WIDTH - 450, 30, 30, ORANGE);
 
-	if (laps >= 2) // Comprobamos si las vueltas son 8 o más
-	{
-		// Dibuja el mensaje de "WIN" en el centro de la pantalla
-		DrawText("WIN", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2, 50, GOLD);
-
-		return UPDATE_CONTINUE;
-	}
-
 	if (game_over)
 	{
 		// Dibujamos un fondo oscuro para que resalte el texto final
