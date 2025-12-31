@@ -23,7 +23,7 @@ Drive, explore, outrun your opponents, be the first to reach the finish line.
 
 - F1 : Show coliders
 - H KEY: Help menu
-
+- R KEY: The game will only restart when someone reaches 6 laps first
 ### Game Objective:
 Be the first to reach the finish line, win the golden trophy.
 
