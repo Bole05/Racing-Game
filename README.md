@@ -2,7 +2,7 @@
 https://github.com/Bole05/Racing-Game
 
 # ITCHIO URL
-https://willow05.itch.io/racing-game
+https://bole05.itch.io/racing-game
 
 ## Team Members
 
